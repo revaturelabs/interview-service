@@ -2,6 +2,16 @@ package com.revature.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 /**
  * An object representation of our Job model.
  * 
@@ -9,12 +19,31 @@ import java.util.List;
  * @author Davin Merry
  * @author 
  */
+
+@Entity
+@Table(name="Job")
 public class Job {
+	 @Id
+	 @Column(name = "JobID")
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	 
+	 @Column(name = "Title")
 	private String title;
+	 
+	 @Column(name = "Deccription")
 	private String description;
+	 
+	 //many to manay relationship to go here
 	private List<Skill> skills;
+	
+	@Column(name = "IsFilled")
 	private boolean isFilled;
+	
+	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private Interview interview;
+	
+	//relationships to get here
 	private List<Profile> profiles;
 	
 	public Job() {
