@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
@@ -15,10 +19,21 @@ import javax.persistence.OneToMany;
  * @author Davin Merry
  * @author 
  */
+
+
 public class Profile {
+	@Id
+	@Column(name = "ProfileId")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name = "FirstName")
 	private String firstName;
+	@Column(name = "LastName")
 	private String lastName;
+	
+	
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Skill> skills;
 	
 	@OneToMany(mappedBy = "MyInterview", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

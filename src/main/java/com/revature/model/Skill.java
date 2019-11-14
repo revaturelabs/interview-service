@@ -1,5 +1,10 @@
 package com.revature.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  * An object representation of our Skill model.
  * 
@@ -10,6 +15,10 @@ package com.revature.model;
 public class Skill {
 	private int id;
 	private String title;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="SkillSet")
+	private Profile profile;
 	
 	public Skill() {
 		super();

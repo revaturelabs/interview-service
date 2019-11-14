@@ -56,7 +56,7 @@ public class Interview {
 	private Job job;
 	
 	
-	@OneToMany(mappedBy = "Interviews", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "interviews", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<User> users;
 	
 	
