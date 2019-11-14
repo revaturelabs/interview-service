@@ -40,8 +40,6 @@ public class Job {
 	@Column(name = "IsFilled")
 	private boolean isFilled;
 	
-	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private Interview interview;
 	
 	//relationships to get here
 	private List<Profile> profiles;

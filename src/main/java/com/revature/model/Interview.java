@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,6 +36,9 @@ public class Interview {
 	private int id;
 	 
 	@Column(name = "Profile") 
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="MyInterview")
 	private Profile profile;
 	
 	@Column(name = "Comments") 
@@ -45,10 +50,16 @@ public class Interview {
 	@Column(name = "isComplete") 
 	private boolean isComplete;
 	
-	@Column(name = "job") 
+	
 	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="JobId")
 	private Job job;
+	
+	
+	@OneToMany(mappedBy = "Interviews", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<User> users;
+	
+	
 	
 	public Interview() {
 		super();

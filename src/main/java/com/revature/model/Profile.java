@@ -3,6 +3,10 @@ package com.revature.model;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 /**
  * An object representation of our Profile model.
  * This model is considered our "Interviewee".
@@ -16,7 +20,9 @@ public class Profile {
 	private String firstName;
 	private String lastName;
 	private List<Skill> skills;
-	private Set<Interview> interviews;
+	
+	@OneToMany(mappedBy = "MyInterview", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Interview> MyInterview;
 	private String description;
 	
 	public Profile() {
@@ -30,7 +36,7 @@ public class Profile {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.skills = skills;
-		this.interviews = interviews;
+		this.MyInterview = interviews;
 		this.description = description;
 	}
 
@@ -67,11 +73,11 @@ public class Profile {
 	}
 
 	public Set<Interview> getInterviews() {
-		return interviews;
+		return MyInterview;
 	}
 
 	public void setInterviews(Set<Interview> interviews) {
-		this.interviews = interviews;
+		this.MyInterview = interviews;
 	}
 
 	public String getDescription() {
@@ -89,7 +95,7 @@ public class Profile {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((interviews == null) ? 0 : interviews.hashCode());
+		result = prime * result + ((MyInterview == null) ? 0 : MyInterview.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((skills == null) ? 0 : skills.hashCode());
 		return result;
@@ -116,10 +122,10 @@ public class Profile {
 			return false;
 		if (id != other.id)
 			return false;
-		if (interviews == null) {
-			if (other.interviews != null)
+		if (MyInterview == null) {
+			if (other.MyInterview != null)
 				return false;
-		} else if (!interviews.equals(other.interviews))
+		} else if (!MyInterview.equals(other.MyInterview))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -137,6 +143,6 @@ public class Profile {
 	@Override
 	public String toString() {
 		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", skills=" + skills
-				+ ", interviews=" + interviews + ", description=" + description + "]";
+				+ ", interviews=" + MyInterview + ", description=" + description + "]";
 	}
 }

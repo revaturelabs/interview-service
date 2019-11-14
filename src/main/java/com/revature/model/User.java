@@ -1,5 +1,14 @@
 package com.revature.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  * An object representation of our User model.
  * This model is considered our "Interviewer".
@@ -9,9 +18,22 @@ package com.revature.model;
  * @author 
  */
 public class User {
+	
+	@Id
+	 @Column(name = "userId")
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	 @Column(name = "Username")
 	private String username;
+	 
+	 @Column(name = "Password")
 	private String password;
+	
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="Interviews")
+	private Interview interviews;
 
 	public User() {
 		super();
