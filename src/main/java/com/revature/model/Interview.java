@@ -65,10 +65,9 @@ public class Interview {
 		super();
 	}
 	
-	public Interview(int id, Profile profile, List<String> comments, Timestamp date, boolean isComplete, Job job,
+	public Interview(Profile profile, List<String> comments, Timestamp date, boolean isComplete, Job job,
 			Set<User> users) {
 		super();
-		this.id = id;
 		this.profile = profile;
 		this.comments = comments;
 		this.date = date;

@@ -4,25 +4,18 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
+import com.revature.model.Interview;
 import com.revature.model.Profile;
 
-
-
 @Transactional
-@Repository("profileRepo")
+@Repository("interviewRepo")
+public class SkillRepo {
 
-
-
-
-public class ProfileRepo {
-	
-	
 	 static {
 	        try {
 	            Class.forName("org.postgresql.Driver");
@@ -35,7 +28,7 @@ public class ProfileRepo {
 	    private SessionFactory sesFact;
 	    
 	    @Autowired
-	    public ProfileRepo(SessionFactory sesFact) {
+	    public SkillRepo(SessionFactory sesFact) {
 	        super();
 	        this.sesFact = sesFact;
 	    }
@@ -51,17 +44,11 @@ public class ProfileRepo {
 	    }
 	    
 	    
-	    public List<Profile> getAllPosts(){
+	    public List<Interview> getAllPosts(){
 	        
 	    	 Session ses = sesFact.getCurrentSession();  
-	         String hql = "from Profile";
-	         return ses.createQuery(hql, Profile.class).list();
+	         String hql = "from Interview";
+	         return ses.createQuery(hql, Interview.class).list();
 	     }
-	    
-	    
-	
-	
-	
-	
 
 }
