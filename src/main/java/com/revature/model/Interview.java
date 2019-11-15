@@ -38,7 +38,6 @@ public class Interview {
 	@Column(name = "Profile") 
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="MyInterview")
 	private Profile profile;
 	
 	@Column(name = "Comments") 

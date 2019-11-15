@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 @Table(name="Job")
 public class Job {
 	 @Id
-	 @Column(name = "JobID")
+	 @Column(name = "id")
 	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	 
@@ -34,14 +35,14 @@ public class Job {
 	 @Column(name = "Deccription")
 	private String description;
 	 
-	 //many to manay relationship to go here
-	private List<Skill> skills;
+	 @ManyToMany(mappedBy="talent")
+	 private List<Skill> skills;
 	
 	@Column(name = "IsFilled")
 	private boolean isFilled;
 	
 	
-	//relationships to get here
+	
 	private List<Profile> profiles;
 	
 	public Job() {

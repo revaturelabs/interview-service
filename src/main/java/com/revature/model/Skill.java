@@ -1,9 +1,21 @@
 package com.revature.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
 
 /**
  * An object representation of our Skill model.
@@ -12,13 +24,32 @@ import javax.persistence.ManyToOne;
  * @author Davin Merry
  * @author 
  */
+@Entity
+@Table(name="Skills")
 public class Skill {
+	
+	@Id
+	 @Column(name = "id")
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name = "title")
 	private String title;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="SkillSet")
 	private Profile profile;
+	
+	/** Inverse join table created to map listing of jobs with skills that are fit for the job.
+	 * 
+	 * @author Alrick McIntyre
+	 */
+	
+
+@ManyToMany(cascade=CascadeType.ALL)
+@JoinTable(name="SkillSet", joinColumns={@JoinColumn(referencedColumnName="id")}
+                                    , inverseJoinColumns={@JoinColumn(referencedColumnName="id")})  
+	private List<Job> talent;
 	
 	public Skill() {
 		super();

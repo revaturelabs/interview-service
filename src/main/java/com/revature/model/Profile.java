@@ -36,7 +36,7 @@ public class Profile {
 	@OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Skill> skills;
 	
-	@OneToMany(mappedBy = "MyInterview", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Interview> MyInterview;
 	private String description;
 	
