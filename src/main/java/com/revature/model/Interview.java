@@ -35,7 +35,6 @@ public class Interview {
 	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	 
-	@Column(name = "Profile") 
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Profile profile;
