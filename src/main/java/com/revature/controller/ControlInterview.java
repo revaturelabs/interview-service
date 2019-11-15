@@ -14,7 +14,7 @@ import com.revature.repo.RepoInterview;
 import com.revature.service.ServiceInterview;
 
 @RestController
-@RequestMapping("/all")
+@RequestMapping("/interview")
 public class ControlInterview {
 	
 	//@Autowired
@@ -24,7 +24,7 @@ public class ControlInterview {
 		this.repoI =repoI;
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/getAll")
 	public List<Interview> all() {
 		return (List<Interview>) repoI.findAll();
 	}

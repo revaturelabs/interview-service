@@ -1,5 +1,8 @@
 package com.revature;
 
+
+
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,6 +29,16 @@ import com.revature.model.Interview;
 import com.revature.repo.RepoInterview;
 import com.revature.service.ServiceInterview;
 
+/**
+ * A JUnit Test Mocking the Repository.
+ * 
+ * [TODO] .
+ * @author Durrant, Jermaine
+ * @author 
+ */
+
+
+
 @RunWith(SpringRunner.class)
 @WebMvcTest					//@SpringBootTest
 public class InterviewServiceApplicationTests {
@@ -42,7 +55,7 @@ public class InterviewServiceApplicationTests {
 		Mockito.when(repoI.findAll()).thenReturn(Collections.emptyList());
 		
 		MvcResult mvcResult = mocMvc.perform(
-				MockMvcRequestBuilders.get("/all")
+				MockMvcRequestBuilders.get("/interview/getAll")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andReturn();
@@ -53,36 +66,10 @@ public class InterviewServiceApplicationTests {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-//	@Autowired
+}
+
+/*//	@Autowired
 //	private ServiceInterview serviceI;
 //	
 //	@MockBean
@@ -106,15 +93,11 @@ public class InterviewServiceApplicationTests {
 //	}
 //	
 	
-	
-	
-	
-	
-	
-	
-	
 //	@Test
 //	public void contextLoads() {
-//	}
+//	}*/
 
-}
+
+
+
+
