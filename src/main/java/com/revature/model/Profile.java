@@ -38,6 +38,8 @@ public class Profile {
 	
 	@OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Interview> MyInterview;
+	
+	@Column(name = "Description")
 	private String description;
 	
 	public Profile() {

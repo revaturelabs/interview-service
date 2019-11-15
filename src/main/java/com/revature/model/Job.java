@@ -41,6 +41,8 @@ public class Job {
 	@Column(name = "IsFilled")
 	private boolean isFilled;
 	
+	@OneToOne(mappedBy="job")
+	private Interview interview;
 	
 	
 	private List<Profile> profiles;
