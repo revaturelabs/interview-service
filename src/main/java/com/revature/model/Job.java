@@ -2,19 +2,42 @@ package com.revature.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 /**
  * An object representation of our Job model.
  * 
  * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
- * @author 
+ * @author John Thaddeus Kelly
  */
+@Entity
+@Table(name="jobs")
 public class Job {
+	@Id
+	@Column(name="job_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="job_title")
 	private String title;
+	@Column(name="job_description")
 	private String description;
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="job_skills")
 	private List<Skill> skills;
+	@Column(name="job_isFilled")
 	private boolean isFilled;
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="job_profiles")
 	private List<Profile> profiles;
 	
 	public Job() {

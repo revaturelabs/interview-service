@@ -4,27 +4,54 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 /**
  * An object representation of our Interview model.
  * 
  * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
- * @author 
+ * @author John Thaddeus Kelly
  */
+@Entity
+@Table(name="interviews")
 public class Interview {
+	@Id
+	@Column(name="interview_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="interview_profile")
 	private Profile profile;
-	private List<String> comments;
+	@Column(name="interview_comments")
+	private String comments;
+	@Column(name="interview_date")
 	private Timestamp date;
+	@Column(name="interview_is_complete")
 	private boolean isComplete;
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="interview_job")
 	private Job job;
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="interview_user")
 	private Set<User> users;
 	
 	public Interview() {
 		super();
 	}
 	
-	public Interview(int id, Profile profile, List<String> comments, Timestamp date, boolean isComplete, Job job,
+	public Interview(int id, Profile profile, String comments, Timestamp date, boolean isComplete, Job job,
 			Set<User> users) {
 		super();
 		this.id = id;
@@ -52,11 +79,11 @@ public class Interview {
 		this.profile = profile;
 	}
 
-	public List<String> getComments() {
+	public String getComments() {
 		return comments;
 	}
 
-	public void setComments(List<String> comments) {
+	public void setComments(String comments) {
 		this.comments = comments;
 	}
 
