@@ -1,21 +1,53 @@
 package com.revature.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  * An object representation of our Job model.
  * 
  * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
- * @author 
+ * @author John Thaddeus Kelly
  */
+@Entity
+@Table(name="jobs")
 public class Job {
+	@Id
+	@Column(name="job_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="job_title")
 	private String title;
+	
+	@Column(name="job_description")
 	private String description;
-	private List<Skill> skills;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="job_skills",
+				joinColumns = {@JoinColumn(name = "job_id")},
+				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
+	private List<Skill> skills = new ArrayList<Skill>();
+	
+	@Column(name="job_isFilled")
 	private boolean isFilled;
-	private List<Profile> profiles;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="job_profiles")
+	private List<Profile> profiles = new ArrayList<Profile>();
 	
 	public Job() {
 		super();

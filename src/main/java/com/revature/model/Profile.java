@@ -1,7 +1,20 @@
 package com.revature.model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * An object representation of our Profile model.
@@ -9,21 +22,38 @@ import java.util.Set;
  * 
  * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
- * @author 
+ * @author John Thaddeus Kelly
  */
+@Entity
+@Table(name="profiles")
 public class Profile {
+	@Id
+	@Column(name="profile_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="profile_firstName")
 	private String firstName;
+	
+	@Column(name="profile_lastName")
 	private String lastName;
-	private List<Skill> skills;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="profile_skills")
+	private Set<Skill> skills = new HashSet<Skill>();
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="profile_interviews")
 	private Set<Interview> interviews;
+	
+	@Column(name="profile_description")
 	private String description;
 	
 	public Profile() {
 		super();
 	}
 	
-	public Profile(int id, String firstName, String lastName, List<Skill> skills, Set<Interview> interviews,
+	public Profile(int id, String firstName, String lastName, Set<Skill> skills, Set<Interview> interviews,
 			String description) {
 		super();
 		this.id = id;
@@ -58,11 +88,11 @@ public class Profile {
 		this.lastName = lastName;
 	}
 
-	public List<Skill> getSkills() {
+	public Set<Skill> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(List<Skill> skills) {
+	public void setSkills(Set<Skill> skills) {
 		this.skills = skills;
 	}
 
