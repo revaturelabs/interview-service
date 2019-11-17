@@ -1,5 +1,6 @@
 package com.revature.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -27,18 +29,25 @@ public class Job {
 	@Column(name="job_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
 	@Column(name="job_title")
 	private String title;
+	
 	@Column(name="job_description")
 	private String description;
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="job_skills")
-	private List<Skill> skills;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="job_skills",
+				joinColumns = {@JoinColumn(name = "job_id")},
+				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
+	private List<Skill> skills = new ArrayList<Skill>();
+	
 	@Column(name="job_isFilled")
 	private boolean isFilled;
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="job_profiles")
-	private List<Profile> profiles;
+	private List<Profile> profiles = new ArrayList<Profile>();
 	
 	public Job() {
 		super();

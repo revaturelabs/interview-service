@@ -15,7 +15,7 @@ import com.revature.model.Job;
 import com.revature.repository.JobRepository;
 
 @RestController
-@CrossOrigin("origin=*")
+@CrossOrigin(origins = "*")
 @RequestMapping(value="/jobs")
 public class JobController{
 	@Autowired

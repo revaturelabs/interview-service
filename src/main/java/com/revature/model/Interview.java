@@ -1,7 +1,7 @@
 package com.revature.model;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -31,21 +30,27 @@ public class Interview {
 	@Column(name="interview_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
 	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="interview_profile")
 	private Profile profile;
+	
 	@Column(name="interview_comments")
 	private String comments;
+	
 	@Column(name="interview_date")
 	private Timestamp date;
+	
 	@Column(name="interview_is_complete")
 	private boolean isComplete;
+	
 	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="interview_job")
 	private Job job;
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="interview_user")
-	private Set<User> users;
+	private Set<User> users = new HashSet<User>();
 	
 	public Interview() {
 		super();
