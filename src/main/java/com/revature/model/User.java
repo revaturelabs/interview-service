@@ -1,16 +1,30 @@
 package com.revature.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * An object representation of our User model.
  * This model is considered our "Interviewer".
  * 
  * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author unknown
- * @author 
+ * @author John Thaddeus Kelly
  */
+@Entity
+@Table(name="users")
 public class User {
+	@Id
+	@Column(name="user_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="user_username")
 	private String username;
+	@Column(name="user_password")
 	private String password;
 
 	public User() {

@@ -3,20 +3,44 @@ package com.revature.model;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 /**
  * An object representation of our Profile model.
  * This model is considered our "Interviewee".
  * 
  * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
- * @author 
+ * @author John Thaddeus Kelly
  */
+@Entity
+@Table(name="profiles")
 public class Profile {
+	@Id
+	@Column(name="profile_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="profile_firstName")
 	private String firstName;
+	@Column(name="profile_lastName")
 	private String lastName;
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="profile_skills")
 	private List<Skill> skills;
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="profile_interviews")
 	private Set<Interview> interviews;
+	@Column(name="profile_description")
 	private String description;
 	
 	public Profile() {
