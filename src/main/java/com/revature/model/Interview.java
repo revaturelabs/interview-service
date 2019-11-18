@@ -44,7 +44,7 @@ public class Interview {
 	@Column(name="interview_is_complete")
 	private boolean isComplete;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="interview_job")
 	private Job job;
 	

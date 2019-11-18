@@ -32,21 +32,9 @@ public class SkillController {
 	}
 	
 	/**
+	 * Retrieve all skills
+	 * 
 	 * @author Seacriest Brown
-	 * 		Adding skills to the database.
-	 * @return String confirming data entry
-	 */
-	@GetMapping(value="/skill")
-	public String save() {
-//		Skill skl = new Skill(0,"System Admin");
-//		sr.save(skl);
-//		return skl.getTitle() +" was added to the database"
-		return "No skills to add at the moment";
-	}
-	
-	/**
-	 * @author Seacriest Brown
-	 * 		Retrieve all skills
 	 * @return List of skills
 	 */
 	@GetMapping(value="/allskills")
@@ -59,9 +47,10 @@ public class SkillController {
 	}
 	
 	/**
-	 * @author Seacriest Brown
-	 * 		Retrieve selected skill by id
+	 * Retrieve selected skill by id
+	 * 
 	 * @return The skill that matches the id
+	 * @author Seacriest Brown
 	 */
 	@GetMapping(value="/skill/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {

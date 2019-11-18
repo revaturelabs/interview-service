@@ -28,25 +28,27 @@ public class JobController{
 	public void setRepo(JobRepository jc) {
 		this.jc = jc;
 	}
-	/*
+	/**
+	 * Add jobs to the database
+	 * 
+	 * @return String confirming successful or unsuccessful entry
 	 * @author John Thaddeus Kelly
-	 * 		Add jobs to the database
-	 * @returns String confirming successful or unsuccessful entry
 	 */
 	@PostMapping("/saveJob")
-	public String save(@RequestBody Job job) {
+	public boolean save(@RequestBody Job job) {
 		try {
 			jc.save(job);
-			return "Saved";
+			return true;
 		}catch (Exception e){
-			return "Not Saved";
+			return false;
 		}
 	}
 	
-	/*
+	/**
+	 * Retrieve jobs from the database
+	 * 
+	 * @return A list of jobs
 	 * @author John Thaddeus Kelly
-	 * 		Retrieve jobs from the database
-	 * @returns the job
 	 */
 	@GetMapping("/jobAll")
 	public Iterable<Job> getAll(){
