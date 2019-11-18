@@ -21,13 +21,6 @@ public class JobController{
 	@Autowired
 	private JobRepository jc;
 	
-	public JobRepository getRepo() {
-		return jc;
-	}
-	@Autowired
-	public void setRepo(JobRepository jc) {
-		this.jc = jc;
-	}
 	/**
 	 * Add jobs to the database
 	 * 

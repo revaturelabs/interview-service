@@ -22,15 +22,6 @@ public class SkillController {
 	@Autowired
 	private SkillRepository sr;
 	
-	public SkillRepository getRepository() {
-		return sr;
-	}
-
-	@Autowired
-	public void setRepository(SkillRepository sr) {
-		this.sr = sr;
-	}
-	
 	/**
 	 * Retrieve all skills
 	 * 
