@@ -10,9 +10,7 @@ import javax.persistence.Table;
 /**
  * An object representation of our Skill model.
  * 
- * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
- * @author 
  */
 @Entity
 @Table(name="skills")
@@ -75,7 +73,8 @@ public class Skill {
 		if (title == null) {
 			if (other.title != null)
 				return false;
-		} else if (!title.equals(other.title))
+		}
+		else if (!title.equals(other.title))
 			return false;
 		return true;
 	}

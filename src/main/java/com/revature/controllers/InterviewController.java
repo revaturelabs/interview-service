@@ -36,7 +36,6 @@ public class InterviewController {
 			ir.save(interview);
 			return true;
 		} catch (Exception e) {
-			System.out.println(e);
 			return false;
 		}
 	}
