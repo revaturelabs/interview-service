@@ -18,7 +18,6 @@ import javax.persistence.Table;
 /**
  * An object representation of our Job model.
  * 
- * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
  * @author John Thaddeus Kelly
  */
@@ -40,14 +39,14 @@ public class Job {
 	@JoinTable(name="job_skills",
 				joinColumns = {@JoinColumn(name = "job_id")},
 				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
-	private List<Skill> skills = new ArrayList<Skill>();
+	private List<Skill> skills = new ArrayList<>();
 	
 	@Column(name="job_isFilled")
 	private boolean isFilled;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="job_profiles")
-	private List<Profile> profiles = new ArrayList<Profile>();
+	private List<Profile> profiles = new ArrayList<>();
 	
 	public Job() {
 		super();
@@ -136,7 +135,8 @@ public class Job {
 		if (description == null) {
 			if (other.description != null)
 				return false;
-		} else if (!description.equals(other.description))
+		}
+		else if (!description.equals(other.description))
 			return false;
 		if (id != other.id)
 			return false;
@@ -145,17 +145,20 @@ public class Job {
 		if (profiles == null) {
 			if (other.profiles != null)
 				return false;
-		} else if (!profiles.equals(other.profiles))
+		}
+		else if (!profiles.equals(other.profiles))
 			return false;
 		if (skills == null) {
 			if (other.skills != null)
 				return false;
-		} else if (!skills.equals(other.skills))
+		}
+		else if (!skills.equals(other.skills))
 			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
-		} else if (!title.equals(other.title))
+		}
+		else if (!title.equals(other.title))
 			return false;
 		return true;
 	}

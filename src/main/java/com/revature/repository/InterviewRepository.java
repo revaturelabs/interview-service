@@ -14,6 +14,4 @@ import com.revature.model.Interview;
  */
 public interface InterviewRepository extends CrudRepository<Interview, Integer> {
 	List<Interview> findById(int id);
-
-	
 }
