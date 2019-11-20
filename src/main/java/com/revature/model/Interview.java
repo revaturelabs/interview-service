@@ -19,7 +19,6 @@ import javax.persistence.Table;
 /**
  * An object representation of our Interview model.
  * 
- * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
  * @author John Thaddeus Kelly
  */
@@ -50,7 +49,7 @@ public class Interview {
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="interview_user")
-	private Set<User> users = new HashSet<User>();
+	private Set<User> users = new HashSet<>();
 	
 	public Interview() {
 		super();
@@ -150,12 +149,14 @@ public class Interview {
 		if (comments == null) {
 			if (other.comments != null)
 				return false;
-		} else if (!comments.equals(other.comments))
+		}
+		else if (!comments.equals(other.comments))
 			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;
-		} else if (!date.equals(other.date))
+		}
+		else if (!date.equals(other.date))
 			return false;
 		if (id != other.id)
 			return false;
@@ -164,17 +165,20 @@ public class Interview {
 		if (job == null) {
 			if (other.job != null)
 				return false;
-		} else if (!job.equals(other.job))
+		}
+		else if (!job.equals(other.job))
 			return false;
 		if (profile == null) {
 			if (other.profile != null)
 				return false;
-		} else if (!profile.equals(other.profile))
+		}
+		else if (!profile.equals(other.profile))
 			return false;
 		if (users == null) {
 			if (other.users != null)
 				return false;
-		} else if (!users.equals(other.users))
+		}
+		else if (!users.equals(other.users))
 			return false;
 		return true;
 	}

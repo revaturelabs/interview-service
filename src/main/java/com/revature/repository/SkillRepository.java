@@ -6,9 +6,10 @@ import org.springframework.stereotype.Repository;
 import com.revature.model.Skill;
 
 /**
- * 
+ * Repository to retrieve skills from the database.
  * @author Seacriest Brown
- *		Repository to retrieve skills from the database.
  */
 @Repository
-public interface SkillRepository extends CrudRepository<Skill,Integer>{}
+public interface SkillRepository extends CrudRepository<Skill,Integer>{
+	
+}

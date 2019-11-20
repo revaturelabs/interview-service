@@ -1,7 +1,6 @@
 package com.revature.model;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,7 +19,6 @@ import javax.persistence.Table;
  * An object representation of our Profile model.
  * This model is considered our "Interviewee".
  * 
- * [TODO] If you are adding on to this or incorporating Spring Data, please add your name to the author list.
  * @author Davin Merry
  * @author John Thaddeus Kelly
  */
@@ -40,7 +38,7 @@ public class Profile {
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="profile_skills")
-	private Set<Skill> skills = new HashSet<Skill>();
+	private Set<Skill> skills = new HashSet<>();
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="profile_interviews")
@@ -137,29 +135,34 @@ public class Profile {
 		if (description == null) {
 			if (other.description != null)
 				return false;
-		} else if (!description.equals(other.description))
+		}
+		else if (!description.equals(other.description))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
-		} else if (!firstName.equals(other.firstName))
+		}
+		else if (!firstName.equals(other.firstName))
 			return false;
 		if (id != other.id)
 			return false;
 		if (interviews == null) {
 			if (other.interviews != null)
 				return false;
-		} else if (!interviews.equals(other.interviews))
+		}
+		else if (!interviews.equals(other.interviews))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
-		} else if (!lastName.equals(other.lastName))
+		}
+		else if (!lastName.equals(other.lastName))
 			return false;
 		if (skills == null) {
 			if (other.skills != null)
 				return false;
-		} else if (!skills.equals(other.skills))
+		}
+		else if (!skills.equals(other.skills))
 			return false;
 		return true;
 	}

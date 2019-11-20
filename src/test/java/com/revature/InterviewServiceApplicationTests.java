@@ -59,5 +59,4 @@ public class InterviewServiceApplicationTests {
 		
 		verify(jr).findAll();
 	}*/
-
 }
