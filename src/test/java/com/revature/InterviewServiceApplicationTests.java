@@ -1,36 +1,41 @@
 package com.revature;
 
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Job;
 import com.revature.repository.JobRepository;
 
+
+//@DataJpaTest
+@SpringBootTest(classes = {JobRepository.class,/* EntityManager.class, 
+EntityManagerFactory.class*/}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@EnableAutoConfiguration
 //@WebMvcTest(JobController.class)
-@ContextConfiguration(classes = InterviewServiceApplication.class)
+//@ContextConfiguration(classes = InterviewServiceApplication.class)
 /*@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
 	classes = InterviewServiceApplication.class)*/
 //@AutoConfigureMockMvc
 //@TestPropertySource(locations = "classpath:application-test.properties")
 public class InterviewServiceApplicationTests {
-	
-	@Autowired
+	@MockBean
 	private TestEntityManager entityManager;
+	
 	//MockMvc mocMvc;
 	
 	@Autowired
-	JobRepository jr;
+	private JobRepository jobRepository;
 	
 	@Test
 	public void whenFindAll_thenReturn() {
@@ -38,9 +43,9 @@ public class InterviewServiceApplicationTests {
 		entityManager.persist(thisJob);
 		entityManager.flush();
 		
-		List<Job> found = (List<Job>) jr.findAll();
+		List<Job> found = (List<Job>) jobRepository.findAll();
 		
-		assertNotNull(found);
+		assertThat(found).contains(thisJob);
 	}
 	
 	/*@Test
