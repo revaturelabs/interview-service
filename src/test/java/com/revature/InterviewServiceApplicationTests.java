@@ -16,23 +16,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.revature.model.Job;
 import com.revature.repository.JobRepository;
 
+/*	Integration testing for the Job Repository
+ * @author John Thaddeus Kelly
+ */
 
-//@DataJpaTest
-@SpringBootTest(classes = {JobRepository.class,/* EntityManager.class, 
-EntityManagerFactory.class*/}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = {JobRepository.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
-//@WebMvcTest(JobController.class)
-//@ContextConfiguration(classes = InterviewServiceApplication.class)
-/*@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-	classes = InterviewServiceApplication.class)*/
-//@AutoConfigureMockMvc
-//@TestPropertySource(locations = "classpath:application-test.properties")
 public class InterviewServiceApplicationTests {
 	@MockBean
 	private TestEntityManager entityManager;
-	
-	//MockMvc mocMvc;
 	
 	@Autowired
 	private JobRepository jobRepository;
@@ -47,16 +40,4 @@ public class InterviewServiceApplicationTests {
 		
 		assertThat(found).contains(thisJob);
 	}
-	
-	/*@Test
-	public void getAll() throws Exception{
-		Mockito.when(jr.findAll()).thenReturn(Collections.emptyList());
-		
-		this.mocMvc.perform(
-				MockMvcRequestBuilders.get("/jobs/jobAll")
-				.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
-		
-		verify(jr).findAll();
-	}*/
 }
