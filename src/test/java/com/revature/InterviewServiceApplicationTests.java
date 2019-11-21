@@ -30,9 +30,6 @@ import com.revature.repository.SkillRepository;
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
 public class InterviewServiceApplicationTests {
-	@MockBean
-	private TestEntityManager entityManager;
-	
 	@Autowired
 	private JobRepository jobRepository;
 	@Autowired
