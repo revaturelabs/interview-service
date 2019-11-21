@@ -28,7 +28,7 @@ public class SkillController {
 	 * @author Seacriest Brown
 	 * @return List of skills
 	 */
-	@GetMapping(value="/allskills")
+	@GetMapping(value="/allSkills")
 	public @ResponseBody List<Skill> allSkills(){
 		List<Skill> list = new ArrayList<>();
 		for(Skill sk : sr.findAll()) {

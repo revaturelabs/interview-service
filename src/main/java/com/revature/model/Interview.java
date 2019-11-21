@@ -30,7 +30,7 @@ public class Interview {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="interview_profile")
 	private Profile profile;
 	
@@ -43,7 +43,7 @@ public class Interview {
 	@Column(name="interview_is_complete")
 	private boolean isComplete;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="interview_job")
 	private Job job;
 	
