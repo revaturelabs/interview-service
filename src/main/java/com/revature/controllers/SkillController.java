@@ -58,17 +58,31 @@ public class SkillController {
 		return null;
 	}
 	
+	/**
+	 * @author Joseph F Davis
+	 * @param skill s
+	 */
 	@PostMapping(value= "/insertskill")
 	public void insertSkill( @RequestBody Skill s) {
 	
 		sk.insertSkill(s);
 	}
 	
+	/**
+	 * @author Joseph F Davis
+	 * @return all skills through service layer
+	 */
 	@GetMapping(value="/getSkills")
 	public Iterable<Skill> getSkills(){
 		return sk.getAll();
 	}
 	
+	
+	/**
+	 * @author Joseph F Davis
+	 * @param title
+	 * @return skill by title
+	 */
 	@GetMapping(value="/getskill/{Title}")
 	public Skill getSkills(@PathVariable("Title")String title){
 		return sk.findSkill(title);
