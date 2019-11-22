@@ -11,5 +11,5 @@ import com.revature.model.Skill;
  */
 @Repository
 public interface SkillRepository extends JpaRepository<Skill,Integer>{
-	
+	Skill findByTitle(String title);
 }
