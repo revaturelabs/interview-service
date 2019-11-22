@@ -43,7 +43,7 @@ public class JobController{
 	 * @return A list of jobs
 	 * @author John Thaddeus Kelly
 	 */
-	@GetMapping("/jobAll")
+	@GetMapping("/allJobs")
 	public Iterable<Job> getAll(){
 		return jc.findAll();
 	}

@@ -2,7 +2,6 @@ package com.revature.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Profile;
 import com.revature.repository.ProfileRepository;
@@ -14,21 +13,30 @@ import com.revature.repository.ProfileRepository;
  * @author 
  */
 @Service
-@Transactional
 public class ProfileService {
 	@Autowired
-    private ProfileRepository profilerepo;
+    private ProfileRepository pr;
     
-    public ProfileService( ProfileRepository profilerepo) {
-        this.profilerepo = profilerepo;
+    public ProfileService(ProfileRepository pr) {
+        this.pr = pr;
     }
     
     public Profile findAllByLastName(String lastName){
-        return profilerepo.findByLastName(lastName);
+        return pr.findByLastName(lastName);
     }
     
-    public void InsertProfileInfo(Profile b) {
-    	profilerepo.save(b);
+    public boolean insertProfileInfo(Profile p) {
+    	try {
+	    	pr.save(p);
+	    	return true;
+    	} catch (Exception e) {
+    		System.out.println(e);
+    		return false;
+    	}
+    }
+    
+    public Iterable<Profile> getAllProfiles() {
+    	return pr.findAll();
     }
 }
    

@@ -25,18 +25,19 @@ public class InterviewController {
 	@Autowired
 	private InterviewRepository ir;
 	
-	@GetMapping("allInterviews")
-	public Iterable<Interview> getAll() {
-		return ir.findAll();
-	}
-	
-	@PostMapping("saveInterview")
+	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
 		try {
 			ir.save(interview);
 			return true;
 		} catch (Exception e) {
+			System.out.println(e);
 			return false;
 		}
+	}
+	
+	@GetMapping("/allInterviews")
+	public Iterable<Interview> getAll() {
+		return ir.findAll();
 	}
 }

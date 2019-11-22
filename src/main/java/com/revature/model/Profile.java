@@ -11,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * An object representation of our Profile model.
@@ -36,12 +39,15 @@ public class Profile {
 	@Column(name="profile_lastName")
 	private String lastName;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="profile_skills")
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="profile_skills",
+				joinColumns = {@JoinColumn(name = "job_id")},
+				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
 	private Set<Skill> skills = new HashSet<>();
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="profile_interviews")
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,
+			   mappedBy = "profile")
+	@JsonIgnore
 	private Set<Interview> interviews;
 	
 	@Column(name="profile_description")
