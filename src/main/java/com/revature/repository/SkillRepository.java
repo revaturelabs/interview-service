@@ -1,6 +1,6 @@
 package com.revature.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Skill;
@@ -10,6 +10,6 @@ import com.revature.model.Skill;
  * @author Seacriest Brown
  */
 @Repository
-public interface SkillRepository extends CrudRepository<Skill,Integer>{
+public interface SkillRepository extends JpaRepository<Skill,Integer>{
 	
 }
