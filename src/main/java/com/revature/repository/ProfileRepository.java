@@ -1,6 +1,6 @@
 package com.revature.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.revature.model.Profile;
 
@@ -10,7 +10,7 @@ import com.revature.model.Profile;
  * @author Adriana Long
  * @author Brian Abajah
  */
-public interface ProfileRepository extends CrudRepository <Profile, Integer>{
+public interface ProfileRepository extends JpaRepository<Profile, Integer>{
     Profile findByLastName(String lastName);
     Profile findByFirstName(String firstName);
     
