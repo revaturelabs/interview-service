@@ -69,8 +69,8 @@ public class SkillController {
 		return sk.getAll();
 	}
 	
-	@GetMapping(value="/getSkillByTitle")
-	public Skill getSkills(String title){
+	@GetMapping(value="/getskill/{Title}")
+	public Skill getSkills(@PathVariable("Title")String title){
 		return sk.findSkill(title);
 	}
 	
