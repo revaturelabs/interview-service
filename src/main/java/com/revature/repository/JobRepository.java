@@ -2,7 +2,7 @@ package com.revature.repository;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Job;
@@ -11,6 +11,6 @@ import com.revature.model.Job;
  * @author John Thaddeus Kelly
  */
 @Repository
-public interface JobRepository extends CrudRepository<Job, Integer>{
+public interface JobRepository extends JpaRepository<Job, Integer>{
 	List<Job> findByTitle(String title);
 }
