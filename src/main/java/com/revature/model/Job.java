@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * An object representation of our Job model.
@@ -35,7 +37,8 @@ public class Job {
 	@Column(name="job_description")
 	private String description;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="job_skills",
 				joinColumns = {@JoinColumn(name = "job_id")},
 				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
@@ -44,7 +47,8 @@ public class Job {
 	@Column(name="job_isFilled")
 	private boolean isFilled;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name="job_profiles")
 	private List<Profile> profiles = new ArrayList<>();
 	
