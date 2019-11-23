@@ -1,7 +1,5 @@
 package com.revature.controllers;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,46 +8,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.revature.model.Job;
+import com.revature.model.Profile;
 import com.revature.repository.JobRepository;
-
+import com.revature.service.JobService;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/jobs")
 public class JobController{
-	@Autowired
-	private JobRepository jc;
-	
-	/**
-	 * Add jobs to the database
-	 * 
-	 * @return String confirming successful or unsuccessful entry
-	 * @author John Thaddeus Kelly
-	 */
-	@PostMapping("/saveJob")
-	public boolean save(@RequestBody Job job) {
-		try {
-			jc.save(job);
-			return true;
-		}catch (Exception e){
-			return false;
-		}
-	}
-	
-	/**
-	 * Retrieve jobs from the database
-	 * 
-	 * @return A list of jobs
-	 * @author John Thaddeus Kelly
-	 */
-	@GetMapping("/allJobs")
-	public Iterable<Job> getAll(){
-		return jc.findAll();
-	}
-	
-	@GetMapping("/jobTitle/{title}")
-	public List<Job> getByTitle(@PathVariable String title){
-		return jc.findByTitle(title);
-	}
+    @Autowired
+    private JobService js;
+    
+    /**
+     * Add jobs to the database
+     * 
+     * @return String confirming successful or unsuccessful entry
+     * @author John Thaddeus Kelly
+     * @author Adriana Long
+     */
+     @PostMapping("/insertJob")
+        public boolean insertJobInfo(@RequestBody Job b) {
+            return js.insertJobInfo(b);
+        }
+    
+    /**
+     * Retrieve jobs from the database
+     * 
+     * @return A list of jobs
+     * @author John Thaddeus Kelly
+     * @author Adriana Long
+     */
+    @GetMapping("/allJobs")
+    public Iterable<Job> getAll(){
+        return js.findAll();
+    }
+    
+    
+    /**
+     * @author Adriana Long
+     * @param title
+     * @return job by title
+     */
+    @GetMapping("/jobTitle/{title}")
+    public List<Job> getByTitle(@PathVariable String title){
+        return js.findByTitle(title);
+    }
 }
