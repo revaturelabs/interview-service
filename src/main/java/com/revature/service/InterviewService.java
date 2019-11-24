@@ -10,21 +10,29 @@ import com.revature.repository.InterviewRepository;
 /**
  * The service layer (or business logic) for the Interview object.
  * 
- * This file is currently unused.
- * 
  * @author Adriana Long
  */
 @Service
 @Transactional
 public class InterviewService {
 	@Autowired
-    private InterviewRepository interviewrepo;
+    private InterviewRepository ir;
     
     public InterviewService(InterviewRepository interviewrepo) {
-    	this.interviewrepo = interviewrepo;
+    	this.ir = interviewrepo;
     }
     
-    public void InsertInterviewInfo(Interview b) {
-    	interviewrepo.save(b);
+    public boolean insertInterviewInfo(Interview i) {
+		try {
+			ir.save(i);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+    }
+    
+    public Iterable<Interview> getAllInterviews() {
+        return ir.findAll();
     }
 }
