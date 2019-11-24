@@ -39,8 +39,3 @@ public class ProfileService {
     	return pr.findAll();
     }
 }
-   
-    
-    
-    
-    
