@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.revature.repository.SkillRepository;
  * The service layer (or business logic) for the Skill object.
  * 
  * @author Joseph F Davis
+ * @author John Thaddeus Kelly
  */
 @Service
 public class SkillService {
@@ -26,5 +29,9 @@ public class SkillService {
 	
 	public Skill findSkill(String s) {
 		return sr.findByTitle(s);
+	}
+	
+	public List<Skill> searchSkill(String s){
+		return sr.findByTitleOrderByTitleAsc(s+"%");
 	}
 }

@@ -88,5 +88,14 @@ public class SkillController {
 		return sk.findSkill(title);
 	}
 	
+	/*
+	 * @author John Thaddeus Kelly
+	 * @param title
+	 * @return skill by title
+	 */
 	
+	@GetMapping(value="/searchSkill")
+	public List<Skill> searchSkills(@RequestBody String title){
+		return sk.searchSkill(title);
+	}
 }
