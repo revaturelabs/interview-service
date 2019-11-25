@@ -36,6 +36,16 @@ public class JobService {
         }
     }
     
+    public boolean updateJobInfo(Job p) {
+        try {
+            jr.save(p);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    
     public Iterable<Job> getAllJobs() {
         return jr.findAll();
     }
@@ -47,6 +57,7 @@ public class JobService {
         // TODO Auto-generated method stub
         return jr.findAll();
     }
+
+    }
     
     
-}

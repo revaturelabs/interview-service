@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,37 @@ public class JobController{
         public boolean insertJobInfo(@RequestBody Job b) {
             return js.insertJobInfo(b);
         }
+     /**
+      * update jobs to the database
+      * 
+      * @return String confirming successful or unsuccessful entry
+      * @author	william liederer
+      */
+      @PutMapping("/updateJob")
+         public boolean updateJobInfo(@RequestBody Job b) {
+             return js.updateJobInfo(b);
+         }
+     /**
+      * Add jobs to the database
+      * 
+      * @return String confirming successful or unsuccessful entry
+      * @author John Thaddeus Kelly
+      */
+     @PostMapping("/saveJob")
+     public boolean save(@RequestBody Job job) {
+         try {
+             js.insertJobInfo(job);
+             return true;
+         }catch (Exception e){
+             return false;
+         }
+     }
+
+     
+//     @PostMapping("/updateJob")
+//     public boolean updateJobInfo(@RequestBody Job b) {
+//         return js.(b);
+//     }
     
     /**
      * Retrieve jobs from the database
