@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,10 @@ public class ProfileService {
     
     public Profile findAllByLastName(String lastName){
         return pr.findByLastName(lastName);
+    }
+    
+    public List<Profile> searchAllByLastName(String lastName){
+    	return pr.findByLastNameOrderByLastNameAsc(lastName+"%");
     }
     
     public boolean insertProfileInfo(Profile p) {
