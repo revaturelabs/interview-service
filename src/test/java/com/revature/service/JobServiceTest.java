@@ -1,6 +1,6 @@
 package com.revature.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.*; 
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +48,11 @@ public class JobServiceTest {
 		assertFalse(js.insertJobInfo(null));
 	}
 	
+	@Test
+	public void testUpdateJob() {
+		Job job = new Job();
+		assertTrue(js.updateJobInfo(job));
+		}
 	@Test
 	public void testAllJobs() {
 		assertNotNull(js.getAllJobs());

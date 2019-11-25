@@ -67,10 +67,5 @@ public class InterviewServiceApplicationTests {
 		
 		assertNotNull(found);
 	}
-	@Test
-	public void updateJobTest() {
-		
-		
-		assertTrue();
-	}
+	
 }

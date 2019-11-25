@@ -41,27 +41,7 @@ public class JobController{
          public boolean updateJobInfo(@RequestBody Job b) {
              return js.updateJobInfo(b);
          }
-     /**
-      * Add jobs to the database
-      * 
-      * @return String confirming successful or unsuccessful entry
-      * @author John Thaddeus Kelly
-      */
-     @PostMapping("/saveJob")
-     public boolean save(@RequestBody Job job) {
-         try {
-             js.insertJobInfo(job);
-             return true;
-         }catch (Exception e){
-             return false;
-         }
-     }
-
-     
-//     @PostMapping("/updateJob")
-//     public boolean updateJobInfo(@RequestBody Job b) {
-//         return js.(b);
-//     }
+  
     
     /**
      * Retrieve jobs from the database

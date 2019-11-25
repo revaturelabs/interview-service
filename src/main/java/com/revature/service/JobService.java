@@ -53,11 +53,6 @@ public class JobService {
     public Iterable<Job> findAll() {
         return jr.findAll();
     }
-<<<<<<< HEAD
 
-    }
-    
-    
-=======
 }
->>>>>>> development
+
