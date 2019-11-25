@@ -7,18 +7,12 @@ import com.revature.model.Skill;
 import com.revature.repository.SkillRepository;
 
 /**
+ * The service layer (or business logic) for the Skill object.
  * 
  * @author Joseph F Davis
- * 
- * Skill service
- *
  */
-
-
 @Service
 public class SkillService {
-	
-	
 	@Autowired
 	SkillRepository sr;
 	
@@ -33,7 +27,4 @@ public class SkillService {
 	public Skill findSkill(String s) {
 		return sr.findByTitle(s);
 	}
-	
-
-
 }

@@ -1,23 +1,20 @@
 package com.revature.service;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Job;
-import com.revature.model.Profile;
 import com.revature.repository.JobRepository;
-import com.revature.repository.ProfileRepository;
 
 
 /**
+ * The service layer (or business logic) for the Job object.
  * 
  * @author Adriana Long
- *
  */
 @Service
 public class JobService {
-    
-    
     @Autowired
     private JobRepository jr;
     
@@ -25,10 +22,9 @@ public class JobService {
         this.jr = jr;
     }
     
-    
-    public boolean insertJobInfo(Job p) {
+    public boolean insertJobInfo(Job j) {
         try {
-            jr.save(p);
+            jr.save(j);
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -53,11 +49,15 @@ public class JobService {
     public List<Job> findByTitle(String title) {
         return jr.findByTitle(title);
     }
+    
     public Iterable<Job> findAll() {
-        // TODO Auto-generated method stub
         return jr.findAll();
     }
+<<<<<<< HEAD
 
     }
     
     
+=======
+}
+>>>>>>> development

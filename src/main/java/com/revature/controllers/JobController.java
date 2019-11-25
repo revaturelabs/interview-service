@@ -1,5 +1,6 @@
 package com.revature.controllers;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,9 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.revature.model.Job;
-import com.revature.model.Profile;
-import com.revature.repository.JobRepository;
 import com.revature.service.JobService;
 @RestController
 @CrossOrigin(origins = "*")
@@ -27,9 +27,9 @@ public class JobController{
      * @author John Thaddeus Kelly
      * @author Adriana Long
      */
-     @PostMapping("/insertJob")
-        public boolean insertJobInfo(@RequestBody Job b) {
-            return js.insertJobInfo(b);
+     @PostMapping("/saveJob")
+        public boolean insertJobInfo(@RequestBody Job job) {
+            return js.insertJobInfo(job);
         }
      /**
       * update jobs to the database
