@@ -60,9 +60,9 @@ public class SkillController {
 	
 	/**
 	 * @author Joseph F Davis
-	 * @param skill s
+	 * @param s The skill to insert
 	 */
-	@PostMapping(value= "/insertskill")
+	@PostMapping(value= "/insertSkill")
 	public void insertSkill( @RequestBody Skill s) {
 	
 		sk.insertSkill(s);
@@ -70,7 +70,7 @@ public class SkillController {
 	
 	/**
 	 * @author Joseph F Davis
-	 * @return all skills through service layer
+	 * @return All skills through the service layer
 	 */
 	@GetMapping(value="/getSkills")
 	public Iterable<Skill> getSkills(){

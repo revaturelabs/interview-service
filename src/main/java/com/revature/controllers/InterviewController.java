@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Interview;
-import com.revature.repository.InterviewRepository;
+import com.revature.service.InterviewService;
 
 /**
  * The main controller for obtaining information about an Interview
@@ -23,21 +23,15 @@ import com.revature.repository.InterviewRepository;
 @RequestMapping(value="/interviews")
 public class InterviewController {
 	@Autowired
-	private InterviewRepository ir;
+	private InterviewService is;
 	
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
-		try {
-			ir.save(interview);
-			return true;
-		} catch (Exception e) {
-			System.out.println(e);
-			return false;
-		}
+		return is.insertInterviewInfo(interview);
 	}
 	
 	@GetMapping("/allInterviews")
 	public Iterable<Interview> getAll() {
-		return ir.findAll();
+		return is.getAllInterviews();
 	}
 }

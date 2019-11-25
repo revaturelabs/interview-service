@@ -8,9 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Interview;
@@ -44,6 +42,11 @@ public class InterviewServiceApplicationTests {
 		
 		List<Job> found = (List<Job>) jobRepository.findAll();
 		
+		assertNotNull(found);
+	}
+	@Test
+	public void jobWhenFindSearch_thenReturn() {
+		List<Job> found = (List<Job>) jobRepository.findByTitle("Code" + "%");
 		assertNotNull(found);
 	}
 	@Test
