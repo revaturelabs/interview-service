@@ -1,6 +1,9 @@
 package com.revature.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.revature.model.Interview;
 
@@ -10,6 +13,7 @@ import com.revature.model.Interview;
  * @author Davin Merry
  * @author Adriana Long
  */
-public interface InterviewRepository extends CrudRepository<Interview, Integer> {
-	
+@Repository
+public interface InterviewRepository extends JpaRepository<Interview, Integer> {
+	List<Interview> findById(int id);
 }
