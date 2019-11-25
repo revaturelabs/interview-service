@@ -13,7 +13,7 @@ import com.revature.repository.InterviewRepository;
  * @author Adriana Long
  */
 @Service
-@Transactional
+//@Transactional
 public class InterviewService {
 	@Autowired
     private InterviewRepository ir;

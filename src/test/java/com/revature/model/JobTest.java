@@ -14,7 +14,7 @@ import org.junit.Test;
 	 * @author John Thaddeus Kelly
 	 */
 
-public class JobTEst {
+public class JobTest {
 	Job testJob = new Job();
 
 	@Test
