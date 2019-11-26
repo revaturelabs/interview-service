@@ -34,7 +34,13 @@ public class JobService {
     
     public boolean updateJobInfo(Job p) {
         try {
-            jr.save(p);
+        	 System.out.println("inside updateJobInfo");
+       	  Job b = new Job();
+       	  int id = p.getId();
+       			 b=  jr.findById(id);
+       			 System.out.println(b);
+       			 b.setFilled(true);
+            jr.save(b);
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -47,7 +53,11 @@ public class JobService {
     }
     
     public List<Job> findByTitle(String title) {
-        return jr.findByTitle(title+"%");
+        return jr.findByTitle(title);
+    }
+    
+    public Job findById(int id) {
+        return jr.findById(id);
     }
     
     public Iterable<Job> findAll() {

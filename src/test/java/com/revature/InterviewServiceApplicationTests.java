@@ -20,7 +20,7 @@ import com.revature.repository.JobRepository;
 import com.revature.repository.ProfileRepository;
 import com.revature.repository.SkillRepository;
 
-/*	Integration testing for the Job Repository
+/**	Integration testing for the Job Repository
  * @author John Thaddeus Kelly
  */
 

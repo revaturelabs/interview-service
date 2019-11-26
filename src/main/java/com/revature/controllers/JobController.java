@@ -4,9 +4,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,8 +37,9 @@ public class JobController{
       * @return String confirming successful or unsuccessful entry
       * @author	william liederer
       */
-      @PutMapping("/updateJob")
+      @PatchMapping("/updateJob")
          public boolean updateJobInfo(@RequestBody Job b) {
+    	  System.out.println("in controller");
              return js.updateJobInfo(b);
          }
   
@@ -66,12 +67,11 @@ public class JobController{
         return js.findByTitle(title);
     }
     
-    /*
+    /**
      * @author John Thaddeus Kelly
      * @param title
      * @return job by title
      */
-    
     @GetMapping("/searchTitle")
     public List<Job> getByTItle(@RequestBody String title){
     	return js.findByTitle(title);
