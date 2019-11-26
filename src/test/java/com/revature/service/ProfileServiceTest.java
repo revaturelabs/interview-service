@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -50,7 +51,12 @@ public class ProfileServiceTest {
 
 	@Test
 	public void testFindLastName() {
-		assertNotNull(ps.findAllByLastName("last"));
+		assertNotNull(ps.findAllByLastName("Doe"));
+	}
+	
+	@Test
+	public void testSearchLastName() {
+		assertEquals("Doe", ps.searchAllByLastName("Do").get(0).getLastName());
 	}
 	
 	@Test
