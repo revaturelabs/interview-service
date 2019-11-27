@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Interview;
@@ -27,6 +28,7 @@ import com.revature.repository.SkillRepository;
 @SpringBootTest(classes = {JobRepository.class, SkillRepository.class, ProfileRepository.class, InterviewRepository.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class InterviewServiceApplicationTests {
 	@Autowired
 	private JobRepository jobRepository;

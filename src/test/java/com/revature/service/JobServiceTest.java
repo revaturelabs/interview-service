@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Job;
@@ -23,6 +24,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class JobServiceTest {
 	
 	/*
@@ -35,11 +37,7 @@ public class JobServiceTest {
 	
 	@Test
 	public void testInsertJob() {
-		List<Skill> skills = new ArrayList<>();
-		skills.add(new Skill());
-		List<Profile> profiles = new ArrayList<>();
-		profiles.add(new Profile());
-		Job job = new Job(0, "test", "description", skills, true, profiles);
+		Job job = new Job();
 		assertTrue(js.insertJobInfo(job));
 	}
 	
