@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Interview;
@@ -25,6 +26,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class ProfileServiceTest {
 	/*
 	 * Unit tests for the Profile Service object
