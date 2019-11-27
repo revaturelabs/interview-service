@@ -42,11 +42,7 @@ public class InterviewServiceTests {
 	
 	@Test
 	public void testSaveInterview() {
-		Profile profile = new Profile();
-		Job job = new Job();
-		Set<User> users = new HashSet<>();
-		users.add(new User());
-		Interview interview = new Interview(0, profile, "comments", Timestamp.from(Instant.now()), true, job, users);
+		Interview interview = new Interview();
 		assertTrue(is.insertInterviewInfo(interview));
 	}
 	

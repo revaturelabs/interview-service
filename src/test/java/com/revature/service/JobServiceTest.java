@@ -37,11 +37,7 @@ public class JobServiceTest {
 	
 	@Test
 	public void testInsertJob() {
-		List<Skill> skills = new ArrayList<>();
-		skills.add(new Skill());
-		List<Profile> profiles = new ArrayList<>();
-		profiles.add(new Profile());
-		Job job = new Job(0, "test", "description", skills, true, profiles);
+		Job job = new Job();
 		assertTrue(js.insertJobInfo(job));
 	}
 	
