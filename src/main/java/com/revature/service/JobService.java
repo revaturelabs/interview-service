@@ -34,7 +34,7 @@ public class JobService {
     
     public boolean updateJobInfo(Job p) {
         try {
-        	 System.out.println("inside updateJobInfo");
+        	 
        	  Job b = new Job();
        	  int id = p.getId();
        			 b=  jr.findById(id);
