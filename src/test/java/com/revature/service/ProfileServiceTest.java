@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Interview;
@@ -26,6 +27,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class ProfileServiceTest {
 	/*
 	 * Unit tests for the Profile Service object
@@ -36,27 +38,13 @@ public class ProfileServiceTest {
 
 	@Test
 	public void testInsertProfile() {
-		Set<Skill> skills = new HashSet<>();
-		skills.add(new Skill());
-		Set<Interview> interviews = new HashSet<>();
-		interviews.add(new Interview());
-		Profile p = new Profile(0, "first", "last", skills, interviews, "description");
+		Profile p = new Profile();
 		assertTrue(ps.insertProfileInfo(p));
 	}
 	
 	@Test
 	public void testBadInsertProfile() {
 		assertFalse(ps.insertProfileInfo(null));
-	}
-
-	@Test
-	public void testFindLastName() {
-		assertNotNull(ps.findAllByLastName("Doe"));
-	}
-	
-	@Test
-	public void testSearchLastName() {
-		assertEquals("Doe", ps.searchAllByLastName("Do").get(0).getLastName());
 	}
 	
 	@Test
