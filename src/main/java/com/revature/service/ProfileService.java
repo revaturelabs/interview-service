@@ -28,7 +28,7 @@ public class ProfileService {
     }
     
     public List<Profile> searchAllByLastName(String lastName){
-    	return pr.findByLastNameOrderByLastNameAsc(lastName+"%");
+    	return pr.findByLastNameOrderByLastNameAsc(lastName);
     }
     
 //    public List<Profile> searchAllByLastName2(String lastName){

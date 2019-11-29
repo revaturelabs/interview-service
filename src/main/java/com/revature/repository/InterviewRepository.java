@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Interview;
+import com.revature.model.User;
 
 /**
  * A simple Interview Repo Interface.
@@ -16,4 +17,5 @@ import com.revature.model.Interview;
 @Repository
 public interface InterviewRepository extends JpaRepository<Interview, Integer> {
 	List<Interview> findById(int id);
+	
 }
