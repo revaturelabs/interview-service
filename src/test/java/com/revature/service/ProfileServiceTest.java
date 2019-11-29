@@ -39,7 +39,7 @@ public class ProfileServiceTest {
 		skills.add(new Skill());
 		Set<Interview> interviews = new HashSet<>();
 		interviews.add(new Interview());
-		Profile p = new Profile(0, "first", "last", skills, interviews, "description");
+		Profile p = new Profile();
 		assertTrue(ps.insertProfileInfo(p));
 	}
 	

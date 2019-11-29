@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Interview;
+import com.revature.model.User;
 import com.revature.repository.InterviewRepository;
 
 /**
@@ -35,4 +36,6 @@ public class InterviewService {
     public Iterable<Interview> getAllInterviews() {
         return ir.findAll();
     }
+    
+   
 }
