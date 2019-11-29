@@ -1,10 +1,10 @@
 package com.revature.controllers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,61 +18,43 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.revature.model.Interview;
+import com.revature.model.Profile;
 import com.revature.model.Skill;
 
-@SpringBootTest(classes = { SkillController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = { ProfileController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @EnableJpaRepositories("com.revature.repository")
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class SkillControllerTest {
+public class ProfileControllerTest {
 	/**
 	 * JUnit testing for the Skill Controller object
-	 * 
 	 * @author John Thaddeus Kelly
 	 */
+	
 	@Autowired
-	SkillController sc = new SkillController();
-	Skill skill = new Skill(1, "Spring Boot Test");
-	Skill skill2 = new Skill(2, "Java");
-	Skill skill3 = new Skill(3, "SQL");
-
+	ProfileController pc = new ProfileController();
+	Profile profile1 = new Profile(1, "Bruce", "Banner", new HashSet<Skill>(), new HashSet<Interview>(), "description");
+	Profile profile2 = new Profile(2, "Thor", "Odinson", new HashSet<Skill>(), new HashSet<Interview>(), "descrition");
+	Profile profile3 = new Profile(3, "Jean", "Grey", new HashSet<Skill>(), new HashSet<Interview>(), "description");
+	
 	@Before
-	public void setupController() {
-		sc.insertSkill(skill);
-		sc.insertSkill(skill2);
+	public void setupDb() {
+		pc.insertProfileInfo(profile1);
+		pc.insertProfileInfo(profile2);
 	}
-
+	
 	@Test
 	public void testSetup() {
-		sc.insertSkill(skill3);
+		pc.insertProfileInfo(profile3);
 	}
-
-	@Test
-	public void testAllSkills() {
-		assertTrue(sc.allSkills().contains(skill));
-	}
-
-	@Test
-	public void testFindBySkill() {
-		assertEquals(skill, sc.getBySkill(1));
-	}
-
-	@Test
-	public void testFindNonExistant() {
-		assertNull(sc.getBySkill(0));
-	}
-
+	
 	@Test
 	public void testGetAll() {
-		List<Skill> skills = (List<Skill>) sc.getSkills();
-		assertTrue(skills.contains(skill));
-	}
-
-	@Test
-	public void testGetOne() {
-		assertEquals(skill, sc.getSkills("Spring Boot Test"));
+		List<Profile> profiles = (List<Profile>) pc.getAll();
+		assertTrue(profiles.contains(profile1));
 	}
 }

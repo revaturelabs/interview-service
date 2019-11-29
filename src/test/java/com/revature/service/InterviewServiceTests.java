@@ -4,11 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +15,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Interview;
-import com.revature.model.Job;
-import com.revature.model.Profile;
-import com.revature.model.User;
 
 @SpringBootTest(classes = {InterviewService.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableJpaRepositories("com.revature.repository")
@@ -32,7 +24,7 @@ import com.revature.model.User;
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class InterviewServiceTests {
 	
-	/*
+	/**
 	 * Unit tests for the Interview Service object
 	 * @author John Thaddeus Kelly
 	 */

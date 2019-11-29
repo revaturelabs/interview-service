@@ -47,11 +47,6 @@ public class InterviewServiceApplicationTests {
 		assertNotNull(found);
 	}
 	@Test
-	public void jobWhenFindSearch_thenReturn() {
-		List<Job> found = (List<Job>) jobRepository.findByTitle("Code" + "%");
-		assertNotNull(found);
-	}
-	@Test
 	public void skillWhenFindAll_thenReturn() {
 		List<Skill> found = (List<Skill>) skillRepository.findAll();
 		

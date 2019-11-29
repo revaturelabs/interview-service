@@ -34,6 +34,7 @@ public class JobServiceTest {
 
 	@Autowired
     private JobService js;
+	Job job1 = new Job(1, "Avenger", "Saving the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
 	
 	@Test
 	public void testInsertJob() {
@@ -58,6 +59,6 @@ public class JobServiceTest {
 	
 	@Test
 	public void testGetTitle() {
-		assertNotNull(js.findByTitle("Code Wrangler"));
+		assertNotNull(js.findByTitle("Avenger"));
 	}
 }

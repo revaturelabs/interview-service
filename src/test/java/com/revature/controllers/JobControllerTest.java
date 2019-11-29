@@ -1,10 +1,9 @@
 package com.revature.controllers;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,61 +17,43 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.revature.model.Job;
+import com.revature.model.Profile;
 import com.revature.model.Skill;
 
-@SpringBootTest(classes = { SkillController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = { JobController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @EnableJpaRepositories("com.revature.repository")
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class SkillControllerTest {
-	/**
-	 * JUnit testing for the Skill Controller object
-	 * 
-	 * @author John Thaddeus Kelly
-	 */
+public class JobControllerTest {
 	@Autowired
-	SkillController sc = new SkillController();
-	Skill skill = new Skill(1, "Spring Boot Test");
-	Skill skill2 = new Skill(2, "Java");
-	Skill skill3 = new Skill(3, "SQL");
-
+	JobController jc;
+	Job job1 = new Job(1, "Avenger", "Saving the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
+	Job job2 = new Job(2, "Justice League", "Rescuing the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
+	Job job3 = new Job(3, "Villain", "Destroying the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
+	
 	@Before
-	public void setupController() {
-		sc.insertSkill(skill);
-		sc.insertSkill(skill2);
+	public void setup() {
+		jc.insertJobInfo(job1);
+		jc.insertJobInfo(job2);
 	}
-
+	
 	@Test
 	public void testSetup() {
-		sc.insertSkill(skill3);
+		assertTrue(jc.insertJobInfo(job3));
 	}
-
-	@Test
-	public void testAllSkills() {
-		assertTrue(sc.allSkills().contains(skill));
-	}
-
-	@Test
-	public void testFindBySkill() {
-		assertEquals(skill, sc.getBySkill(1));
-	}
-
-	@Test
-	public void testFindNonExistant() {
-		assertNull(sc.getBySkill(0));
-	}
-
+	
 	@Test
 	public void testGetAll() {
-		List<Skill> skills = (List<Skill>) sc.getSkills();
-		assertTrue(skills.contains(skill));
+		ArrayList<Job> list = (ArrayList<Job>) jc.getAll();
+		assertTrue(list.contains(job2));
 	}
-
+	
 	@Test
-	public void testGetOne() {
-		assertEquals(skill, sc.getSkills("Spring Boot Test"));
+	public void testGetTitle() {
+		assertEquals(job1, jc.getByTitle("Avenger"));
 	}
 }

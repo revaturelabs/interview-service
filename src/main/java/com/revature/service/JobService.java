@@ -36,8 +36,8 @@ public class JobService {
         return jr.findAll();
     }
     
-    public List<Job> findByTitle(String title) {
-        return jr.findByTitle(title+"%");
+    public Job findByTitle(String title) {
+        return jr.findByTitle(title);
     }
     
     public Iterable<Job> findAll() {
