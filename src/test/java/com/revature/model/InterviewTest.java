@@ -78,4 +78,14 @@ public class InterviewTest {
 		testInterview.setUsers(users);
 		assertEquals(users, testInterview.getUsers());
 	}
+	
+	@Test
+	public void testHashcode() {
+		assertNotNull(testInterview.hashCode());
+	}
+	
+	@Test
+	public void testToString() {
+		assertNotNull(testInterview.toString());
+	}
 }
