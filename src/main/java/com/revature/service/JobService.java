@@ -56,7 +56,8 @@ public class JobService {
     
     public Job findById(int id) {
         return jr.findById(id);
-
+    }
+    
     public Job findByTitle(String title) {
         return jr.findByTitle(title);
 

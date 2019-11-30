@@ -74,7 +74,7 @@ public class JobController{
      * @return job by title
      */
     @GetMapping("/searchTitle")
-    public List<Job> getByTItle(@RequestBody String title){
+    public Job getByTItle(@RequestBody String title){
     	return js.findByTitle(title);
     }
 
