@@ -76,4 +76,9 @@ public class JobTest {
 	public void testHashCode() {
 		assertNotNull(testJob.hashCode());
 	}
+	
+	@Test
+	public void testToString() {
+		assertNotNull(testJob.toString());
+	}
 }
