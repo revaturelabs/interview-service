@@ -1,7 +1,5 @@
 package com.revature.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,11 +52,9 @@ public class JobService {
 
 	public Job findByTitle(String title) {
 		return jr.findByTitle(title);
-
 	}
 
 	public Iterable<Job> findAll() {
 		return jr.findAll();
 	}
-
 }

@@ -2,10 +2,8 @@ package com.revature.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Interview;
-import com.revature.model.User;
 import com.revature.repository.InterviewRepository;
 
 /**
@@ -14,7 +12,6 @@ import com.revature.repository.InterviewRepository;
  * @author Adriana Long
  */
 @Service
-//@Transactional
 public class InterviewService {
 	@Autowired
     private InterviewRepository ir;
@@ -36,6 +33,4 @@ public class InterviewService {
     public Iterable<Interview> getAllInterviews() {
         return ir.findAll();
     }
-    
-   
 }

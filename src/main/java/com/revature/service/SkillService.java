@@ -1,7 +1,5 @@
 package com.revature.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,17 +22,15 @@ public class SkillService {
 	}
 	
 	public boolean insertSkill(Skill s) {
-		 try {
-			 sr.save(s); 
-	            return true;
-	        } catch (Exception e) {
-	            return false;
-	        }
+		try {
+			sr.save(s); 
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	public Skill findSkill(String s) {
 		return sr.findByTitle(s);
 	}
-	
-	
 }
