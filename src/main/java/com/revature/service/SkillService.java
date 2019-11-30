@@ -28,7 +28,6 @@ public class SkillService {
 			 sr.save(s); 
 	            return true;
 	        } catch (Exception e) {
-	            System.out.println(e);
 	            return false;
 	        }
 	}

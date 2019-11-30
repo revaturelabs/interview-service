@@ -21,8 +21,5 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer>{
     Profile findByFirstName(String firstName);
     List<Profile> findByLastNameOrderByLastNameAsc(String lastName);
     
-//    @Query("SELECT lastname FROM profiles WHERE lastname LIKE %?1%")
-//    List<Profile> findByLastName2(String lastname);
-    
     List<Profile> findByLastNameContaining(String lastname);
 }

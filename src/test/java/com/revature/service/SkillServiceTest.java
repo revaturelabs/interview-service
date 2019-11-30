@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -43,6 +44,11 @@ public class SkillServiceTest {
 		Skill skill = new Skill(0, "testskill");
 		assertTrue(ss.insertSkill(skill));
 	
+	}
+	
+	@Test
+	public void testBadSkill() {
+		assertFalse(ss.insertSkill(null));
 	}
 	
 	@Test

@@ -55,9 +55,12 @@ public class JobServiceTest {
 	
 	@Test
 	public void testUpdateJob() {
-		job1.setTitle("Justice League");
 		assertTrue(js.updateJobInfo(job1));
-		}
+	}
+	@Test
+	public void testBadJob() {
+		assertFalse(js.updateJobInfo(null));
+	}
 	@Test
 	public void testAllJobs() {
 		assertNotNull(js.getAllJobs());
@@ -71,5 +74,10 @@ public class JobServiceTest {
 	@Test
 	public void testGetTitle() {
 		assertEquals(job1, js.findByTitle("Avenger"));
+	}
+	
+	@Test
+	public void testGetId() {
+		assertEquals(job1, js.findById(1));
 	}
 }
