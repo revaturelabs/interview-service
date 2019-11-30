@@ -27,14 +27,6 @@ public class ProfileService {
         return pr.findByLastName(lastName);
     }
     
-    public List<Profile> searchAllByLastName(String lastName){
-    	return pr.findByLastNameOrderByLastNameAsc(lastName);
-    }
-    
-//    public List<Profile> searchAllByLastName2(String lastName){
-//    	return pr.findByLastName2(lastName);
-//    }
-    
     public List<Profile> searchByNameContaining(String lastName){
     	return pr.findByLastNameContaining(lastName);
     }
