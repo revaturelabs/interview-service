@@ -23,15 +23,19 @@ public class SkillService {
 		return sr.findAll();
 	}
 	
-	public void insertSkill(Skill s) {
-		sr.save(s);
+	public boolean insertSkill(Skill s) {
+		 try {
+			 sr.save(s); 
+	            return true;
+	        } catch (Exception e) {
+	            System.out.println(e);
+	            return false;
+	        }
 	}
 	
 	public Skill findSkill(String s) {
 		return sr.findByTitle(s);
 	}
 	
-	public List<Skill> searchSkill(String s){
-		return sr.findByTitleOrderByTitleAsc(s+"%");
-	}
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,18 @@ public class JobController{
         public boolean insertJobInfo(@RequestBody Job job) {
             return js.insertJobInfo(job);
         }
+     /**
+      * update jobs to the database
+      * 
+      * @return String confirming successful or unsuccessful entry
+      * @author	william liederer
+      */
+      @PatchMapping("/updateJob")
+         public boolean updateJobInfo(@RequestBody Job b) {
+    	  System.out.println("in controller");
+             return js.updateJobInfo(b);
+         }
+  
     
     /**
      * Retrieve jobs from the database
@@ -53,4 +66,16 @@ public class JobController{
     public Job getByTitle(@PathVariable String title){
         return js.findByTitle(title);
     }
+
+    
+    /**
+     * @author John Thaddeus Kelly
+     * @param title
+     * @return job by title
+     */
+    @GetMapping("/searchTitle")
+    public List<Job> getByTItle(@RequestBody String title){
+    	return js.findByTitle(title);
+    }
+
 }

@@ -38,6 +38,12 @@ public class ProfileServiceTest {
 
 	@Test
 	public void testInsertProfile() {
+
+		Set<Skill> skills = new HashSet<>();
+		skills.add(new Skill());
+		Set<Interview> interviews = new HashSet<>();
+		interviews.add(new Interview());
+
 		Profile p = new Profile();
 		assertTrue(ps.insertProfileInfo(p));
 	}

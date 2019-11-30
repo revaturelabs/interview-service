@@ -87,4 +87,5 @@ public class SkillController {
 	public Skill getSkills(@PathVariable("Title")String title){
 		return sk.findSkill(title);
 	}
+
 }
