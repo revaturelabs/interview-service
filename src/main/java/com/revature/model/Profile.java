@@ -16,6 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -40,6 +43,7 @@ public class Profile {
 	private String lastName;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="profile_skills",
 				joinColumns = {@JoinColumn(name = "job_id")},
 				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
@@ -47,6 +51,7 @@ public class Profile {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,
 			   mappedBy = "profile")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	private Set<Interview> interviews;
 	

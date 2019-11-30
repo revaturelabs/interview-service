@@ -63,9 +63,10 @@ public class JobController{
      * @return job by title
      */
     @GetMapping("/jobTitle/{title}")
-    public List<Job> getByTitle(@PathVariable String title){
+    public Job getByTitle(@PathVariable String title){
         return js.findByTitle(title);
     }
+
     
     /**
      * @author John Thaddeus Kelly
@@ -76,4 +77,5 @@ public class JobController{
     public List<Job> getByTItle(@RequestBody String title){
     	return js.findByTitle(title);
     }
+
 }

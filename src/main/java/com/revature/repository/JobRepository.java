@@ -14,7 +14,10 @@ import com.revature.model.Job;
  */
 @Repository
 public interface JobRepository extends JpaRepository<Job, Integer>{
-	List<Job> findByTitle(String title);
+
 	Job findById(int id);
+
+
+	Job findByTitle(String title);
 
 }
