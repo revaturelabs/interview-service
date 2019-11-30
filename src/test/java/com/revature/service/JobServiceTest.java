@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class JobServiceTest {
     private JobService js;
 	Job job1 = new Job(1, "Avenger", "Saving the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
 	
+	@Before
+	public void setup() {
+		js.insertJobInfo(job1);
+	}
+	
 	@Test
 	public void testInsertJob() {
 		Job job = new Job();
@@ -49,8 +55,8 @@ public class JobServiceTest {
 	
 	@Test
 	public void testUpdateJob() {
-		Job job = new Job();
-		assertTrue(js.updateJobInfo(job));
+		job1.setTitle("Justice League");
+		assertTrue(js.updateJobInfo(job1));
 		}
 	@Test
 	public void testAllJobs() {
@@ -64,6 +70,6 @@ public class JobServiceTest {
 	
 	@Test
 	public void testGetTitle() {
-		assertNotNull(js.findByTitle("Avenger"));
+		assertEquals(job1, js.findByTitle("Avenger"));
 	}
 }
