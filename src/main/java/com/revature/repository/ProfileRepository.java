@@ -19,6 +19,7 @@ import com.revature.model.Profile;
 public interface ProfileRepository extends JpaRepository<Profile, Integer>{
     Profile findByLastName(String lastName);
     Profile findByFirstName(String firstName);
+    Profile findById(int id);
     List<Profile> findByLastNameOrderByLastNameAsc(String lastName);
     
     List<Profile> findByLastNameContaining(String lastname);

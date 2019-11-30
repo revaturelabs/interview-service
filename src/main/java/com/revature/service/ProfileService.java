@@ -31,6 +31,10 @@ public class ProfileService {
     	return pr.findByLastNameContaining(lastName);
     }
     
+    public Profile findById(int id) {
+    	return pr.findById(id);
+    }
+    
     public boolean insertProfileInfo(Profile p) {
     	try {
 	    	pr.save(p);
