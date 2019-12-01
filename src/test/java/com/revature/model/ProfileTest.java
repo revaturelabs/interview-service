@@ -1,13 +1,14 @@
 package com.revature.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
 
-	/*
+	/**
 	 * Unit tests for the Profile object
 	 * @author John Thaddeus Kelly
 	 */
@@ -53,5 +54,15 @@ public class ProfileTest {
 		interviews.add(new Interview());
 		testProfile.setInterviews(interviews);
 		assertEquals(interviews, testProfile.getInterviews());
+	}
+	
+	@Test
+	public void testHashcode() {
+		assertNotNull(testProfile.hashCode());
+	}
+	
+	@Test
+	public void testToString() {
+		assertNotNull(testProfile.toString());
 	}
 }
