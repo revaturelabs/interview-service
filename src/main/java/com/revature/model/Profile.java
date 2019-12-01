@@ -51,7 +51,7 @@ public class Profile {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,
 			   mappedBy = "profile")
-	@LazyCollection(LazyCollectionOption.FALSE)
+//	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	private Set<Interview> interviews;
 	
