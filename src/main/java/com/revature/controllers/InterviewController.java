@@ -1,15 +1,16 @@
 package com.revature.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.model.Comment;
 import com.revature.model.Interview;
-
 import com.revature.service.InterviewService;
 
 /**
@@ -29,6 +30,11 @@ public class InterviewController {
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
 		return is.insertInterviewInfo(interview);
+	}
+	
+	@PostMapping("/insertComment")
+	public boolean insertComment(@RequestParam int id, @RequestBody Comment comment) {
+		return is.insertCommentInInterview(id, comment);
 	}
 	
 	@GetMapping("/allInterviews")
