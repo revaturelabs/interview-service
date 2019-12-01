@@ -39,18 +39,18 @@ public class InterviewController {
 	
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
-//		int id1 = interview.getProfile().getId();
-//		int id2 = interview.getJob().getId();
-//		Profile profile = ps.findById(id1);
-//		Job job = js.findById(id2);
-		String title = interview.getJob().getTitle();
-		Job job = js.findByTitle(title);
-		String fullName = interview.getProfile().getFirstName();
-		String[] name = fullName.split(" ",2);
-		String firstName = name[0];
-		String lastName = name[1];
-		System.out.println(lastName + "" + title);
-		Profile profile = ps.findAllByLastName(lastName);
+		int id1 = interview.getProfile().getId();
+		int id2 = interview.getJob().getId();
+		Profile profile = ps.findById(id1);
+		Job job = js.findById(id2);
+//		String title = interview.getJob().getTitle();
+//		Job job = js.findByTitle(title);
+//		String fullName = interview.getProfile().getFirstName();
+//		String[] name = fullName.split(" ",2);
+//		String firstName = name[0];
+//		String lastName = name[1];
+//		System.out.println(lastName + "" + title);
+//		Profile profile = ps.findAllByLastName(lastName);
 		interview.setJob(job);
 		interview.setProfile(profile);
 		return is.insertInterviewInfo(interview);
