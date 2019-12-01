@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Job;
 import com.revature.service.JobService;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/jobs")
@@ -25,22 +26,22 @@ public class JobController{
      * @author John Thaddeus Kelly
      * @author Adriana Long
      */
-     @PostMapping("/saveJob")
-        public boolean insertJobInfo(@RequestBody Job job) {
-            return js.insertJobInfo(job);
-        }
-     /**
-      * update jobs to the database
-      * 
-      * @return String confirming successful or unsuccessful entry
-      * @author	william liederer
-      */
-      @PatchMapping("/updateJob")
-         public boolean updateJobInfo(@RequestBody Job b) {
-    	  System.out.println("in controller");
-             return js.updateJobInfo(b);
-         }
-  
+    @PostMapping("/saveJob")
+    public boolean insertJobInfo(@RequestBody Job job) {
+    	return js.insertJobInfo(job);
+	}
+    
+    /**
+     * Update jobs to the database
+     * 
+     * @return String confirming successful or unsuccessful entry
+     * @author william liederer
+     */
+    @PatchMapping("/updateJob")
+	public boolean updateJobInfo(@RequestBody Job b) {
+    	System.out.println("in controller");
+    	return js.updateJobInfo(b);
+    }
     
     /**
      * Retrieve jobs from the database
@@ -53,7 +54,6 @@ public class JobController{
     public Iterable<Job> getAll(){
         return js.findAll();
     }
-    
     
     /**
      * @author Adriana Long
