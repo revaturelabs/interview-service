@@ -1,6 +1,6 @@
 package com.revature.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Comment;
 import com.revature.model.Interview;
-<<<<<<< HEAD
 import com.revature.model.Job;
 import com.revature.model.Profile;
-=======
->>>>>>> development
+
 import com.revature.service.InterviewService;
 import com.revature.service.JobService;
 import com.revature.service.ProfileService;
@@ -40,11 +38,18 @@ public class InterviewController {
 	
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
-		int id1 = interview.getProfile().getId();
-		int id2 = interview.getJob().getId();
-		
-		Profile profile = ps.findById(id1);
-		Job job = js.findById(id2);
+//		int id1 = interview.getProfile().getId();
+//		int id2 = interview.getJob().getId();
+//		Profile profile = ps.findById(id1);
+//		Job job = js.findById(id2);
+		String title = interview.getJob().getTitle();
+		Job job = js.findByTitle(title);
+		String fullName = interview.getProfile().getFirstName();
+		String[] name = fullName.split(" ",2);
+		String firstName = name[0];
+		String lastName = name[1];
+		System.out.println(lastName + "" + title);
+		Profile profile = ps.findAllByLastName(lastName);
 		interview.setJob(job);
 		interview.setProfile(profile);
 		return is.insertInterviewInfo(interview);
