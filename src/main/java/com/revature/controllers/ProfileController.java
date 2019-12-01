@@ -35,22 +35,6 @@ public class ProfileController {
     	return ps.getAllProfiles();
     }
     
-    /*
-     * @author John Thaddeus Kelly
-     * @param title
-     * @return profile by last name
-     */
-    
-    @GetMapping("/searchProfiles")
-    public List<Profile> searchProfiles(@RequestHeader String lastName){
-    	return ps.searchAllByLastName(lastName);
-    }
-    
-//    @GetMapping("/searchLikeProfiles")
-//    public List<Profile> searchLikeProfiles(@RequestHeader String lastName){
-//    	return ps.searchAllByLastName2(lastName);
-//    }
-    
     @GetMapping("/searchContainProfiles")
     public List<Profile> searchContainProfiles(@RequestHeader String lastName){
     	return ps.searchByNameContaining(lastName);

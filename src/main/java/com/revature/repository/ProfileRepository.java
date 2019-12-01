@@ -3,7 +3,6 @@ package com.revature.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Profile;
@@ -19,10 +18,7 @@ import com.revature.model.Profile;
 public interface ProfileRepository extends JpaRepository<Profile, Integer>{
     Profile findByLastName(String lastName);
     Profile findByFirstName(String firstName);
+    Profile findById(int id);
     List<Profile> findByLastNameOrderByLastNameAsc(String lastName);
-    
-//    @Query("SELECT lastname FROM profiles WHERE lastname LIKE %?1%")
-//    List<Profile> findByLastName2(String lastname);
-    
     List<Profile> findByLastNameContaining(String lastname);
 }

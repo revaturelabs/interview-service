@@ -1,6 +1,4 @@
 package com.revature.controllers;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Job;
 import com.revature.service.JobService;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/jobs")
@@ -27,22 +26,21 @@ public class JobController{
      * @author John Thaddeus Kelly
      * @author Adriana Long
      */
-     @PostMapping("/saveJob")
-        public boolean insertJobInfo(@RequestBody Job job) {
-            return js.insertJobInfo(job);
-        }
-     /**
-      * update jobs to the database
-      * 
-      * @return String confirming successful or unsuccessful entry
-      * @author	william liederer
-      */
-      @PatchMapping("/updateJob")
-         public boolean updateJobInfo(@RequestBody Job b) {
-    	  System.out.println("in controller");
-             return js.updateJobInfo(b);
-         }
-  
+    @PostMapping("/saveJob")
+    public boolean insertJobInfo(@RequestBody Job job) {
+    	return js.insertJobInfo(job);
+	}
+    
+    /**
+     * Update jobs to the database
+     * 
+     * @return String confirming successful or unsuccessful entry
+     * @author william liederer
+     */
+    @PatchMapping("/updateJob")
+	public boolean updateJobInfo(@RequestBody Job b) {
+    	return js.updateJobInfo(b);
+    }
     
     /**
      * Retrieve jobs from the database
@@ -56,7 +54,6 @@ public class JobController{
         return js.findAll();
     }
     
-    
     /**
      * @author Adriana Long
      * @param title
@@ -66,16 +63,4 @@ public class JobController{
     public Job getByTitle(@PathVariable String title){
         return js.findByTitle(title);
     }
-
-    
-    /**
-     * @author John Thaddeus Kelly
-     * @param title
-     * @return job by title
-     */
-    @GetMapping("/searchTitle")
-    public List<Job> getByTItle(@RequestBody String title){
-    	return js.findByTitle(title);
-    }
-
 }

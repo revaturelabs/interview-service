@@ -51,9 +51,9 @@ public class Profile {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,
 			   mappedBy = "profile")
-	@LazyCollection(LazyCollectionOption.FALSE)
+
 	@JsonIgnore
-	private Set<Interview> interviews;
+	private Set<Interview> interviews = new HashSet<>();
 	
 	@Column(name="profile_description")
 	private String description;
