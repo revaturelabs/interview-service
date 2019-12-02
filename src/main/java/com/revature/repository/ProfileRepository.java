@@ -20,5 +20,5 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer>{
     Profile findByFirstName(String firstName);
     Profile findById(int id);
     List<Profile> findByLastNameOrderByLastNameAsc(String lastName);
-    List<Profile> findByLastNameContaining(String lastname);
+ 
 }

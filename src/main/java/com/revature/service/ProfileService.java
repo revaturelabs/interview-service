@@ -27,9 +27,6 @@ public class ProfileService {
         return pr.findByLastName(lastName);
     }
     
-    public List<Profile> searchByNameContaining(String lastName){
-    	return pr.findByLastNameContaining(lastName);
-    }
     
     public Profile findById(int id) {
     	return pr.findById(id);

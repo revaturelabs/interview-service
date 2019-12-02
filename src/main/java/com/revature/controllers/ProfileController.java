@@ -35,6 +35,7 @@ public class ProfileController {
     	return ps.getAllProfiles();
     }
     
+<<<<<<< HEAD
     /**
      * @param lastName
      * @return Profiles by lastName
@@ -43,4 +44,6 @@ public class ProfileController {
     public List<Profile> searchContainProfiles(@RequestHeader String lastName){
     	return ps.searchByNameContaining(lastName);
     }
+=======
+>>>>>>> development
 }
