@@ -24,6 +24,11 @@ import com.revature.model.Skill;
 @EnableAutoConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class SkillServiceTest {
+	
+	/**
+	 * Unit tests for the Skill Service object
+	 * @author John Thaddeus Kelly
+	 */
 
 	@Autowired
     private SkillService ss;

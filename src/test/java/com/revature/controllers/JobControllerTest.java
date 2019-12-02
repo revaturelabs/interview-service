@@ -29,6 +29,11 @@ import com.revature.model.Skill;
 @EnableAutoConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class JobControllerTest {
+	/**
+	 * JUnit tests for the Job Controller object
+	 * @author John Thaddeus Kelly
+	 */
+	
 	@Autowired
 	JobController jc;
 	Job job1 = new Job(1, "Avenger", "Saving the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
@@ -55,5 +60,10 @@ public class JobControllerTest {
 	@Test
 	public void testGetTitle() {
 		assertEquals(job1, jc.getByTitle("Avenger"));
+	}
+	
+	@Test
+	public void testUpdate() {
+		assertTrue(jc.updateJobInfo(new Job(1, "Avenger", "Defending the World", new ArrayList<Skill>(), true, new ArrayList<Profile>())));
 	}
 }

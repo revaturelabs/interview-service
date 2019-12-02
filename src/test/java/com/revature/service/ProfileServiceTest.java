@@ -29,7 +29,7 @@ import com.revature.model.Skill;
 @EnableAutoConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class ProfileServiceTest {
-	/*
+	/**
 	 * Unit tests for the Profile Service object
 	 * @author John Thaddeus Kelly
 	 */
@@ -56,5 +56,12 @@ public class ProfileServiceTest {
 	@Test
 	public void testFindAll() {
 		assertNotNull(ps.getAllProfiles());
+	}
+	
+	@Test
+	public void testFindId() {
+		Profile profile1 = new Profile(1, "Bruce", "Banner", new HashSet<Skill>(), new HashSet<Interview>(), "description");
+		ps.insertProfileInfo(profile1);
+		assertEquals(profile1, ps.findById(1));
 	}
 }
