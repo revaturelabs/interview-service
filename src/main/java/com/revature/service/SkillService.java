@@ -10,6 +10,7 @@ import com.revature.repository.SkillRepository;
  * The service layer (or business logic) for the Skill object.
  * 
  * @author Joseph F Davis
+ * @author John Thaddeus Kelly
  */
 @Service
 public class SkillService {
@@ -20,8 +21,13 @@ public class SkillService {
 		return sr.findAll();
 	}
 	
-	public void insertSkill(Skill s) {
-		sr.save(s);
+	public boolean insertSkill(Skill s) {
+		try {
+			sr.save(s); 
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	public Skill findSkill(String s) {

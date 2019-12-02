@@ -1,7 +1,9 @@
 package com.revature.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,7 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * An object representation of our Interview model.
@@ -34,8 +40,10 @@ public class Interview {
 	@JoinColumn(name="interview_profile")
 	private Profile profile;
 	
-	@Column(name="interview_comments")
-	private String comments;
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name="interview_comments")
+	private List<Comment> comments = new ArrayList<>();
 	
 	@Column(name="interview_date")
 	private Timestamp date;
@@ -48,6 +56,7 @@ public class Interview {
 	private Job job;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name="interview_user")
 	private Set<User> users = new HashSet<>();
 	
@@ -55,7 +64,7 @@ public class Interview {
 		super();
 	}
 	
-	public Interview(int id, Profile profile, String comments, Timestamp date, boolean isComplete, Job job,
+	public Interview(int id, Profile profile, List<Comment> comments, Timestamp date, boolean isComplete, Job job,
 			Set<User> users) {
 		super();
 		this.id = id;
@@ -83,11 +92,11 @@ public class Interview {
 		this.profile = profile;
 	}
 
-	public String getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(String comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 

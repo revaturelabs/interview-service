@@ -25,12 +25,16 @@ public class ProfileService {
         return pr.findByLastName(lastName);
     }
     
+    
+    public Profile findById(int id) {
+    	return pr.findById(id);
+    }
+    
     public boolean insertProfileInfo(Profile p) {
     	try {
 	    	pr.save(p);
 	    	return true;
     	} catch (Exception e) {
-    		System.out.println(e);
     		return false;
     	}
     }

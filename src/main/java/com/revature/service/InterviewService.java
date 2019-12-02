@@ -2,8 +2,8 @@ package com.revature.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.model.Comment;
 import com.revature.model.Interview;
 import com.revature.repository.InterviewRepository;
 
@@ -13,7 +13,6 @@ import com.revature.repository.InterviewRepository;
  * @author Adriana Long
  */
 @Service
-//@Transactional
 public class InterviewService {
 	@Autowired
     private InterviewRepository ir;
@@ -27,12 +26,26 @@ public class InterviewService {
 			ir.save(i);
 			return true;
 		} catch (Exception e) {
-			System.out.println(e);
 			return false;
 		}
     }
     
+    public boolean insertCommentInInterview(int id, Comment c) {
+    	try {
+    		Interview i = ir.findById(id);
+    		i.getComments().add(c);
+    		ir.save(i);
+    		return true;
+    	} catch (Exception e) {
+    		return false;
+    	}
+    }
+    
     public Iterable<Interview> getAllInterviews() {
         return ir.findAll();
+    }
+    
+    public Interview getById(int id) {
+        return ir.findById(id);
     }
 }

@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Interview;
@@ -20,13 +21,14 @@ import com.revature.repository.JobRepository;
 import com.revature.repository.ProfileRepository;
 import com.revature.repository.SkillRepository;
 
-/*	Integration testing for the Job Repository
+/**	Integration testing for the Job Repository
  * @author John Thaddeus Kelly
  */
 
 @SpringBootTest(classes = {JobRepository.class, SkillRepository.class, ProfileRepository.class, InterviewRepository.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class InterviewServiceApplicationTests {
 	@Autowired
 	private JobRepository jobRepository;
@@ -42,11 +44,6 @@ public class InterviewServiceApplicationTests {
 		
 		List<Job> found = (List<Job>) jobRepository.findAll();
 		
-		assertNotNull(found);
-	}
-	@Test
-	public void jobWhenFindSearch_thenReturn() {
-		List<Job> found = (List<Job>) jobRepository.findByTitle("Code" + "%");
 		assertNotNull(found);
 	}
 	@Test
@@ -67,4 +64,5 @@ public class InterviewServiceApplicationTests {
 		
 		assertNotNull(found);
 	}
+	
 }

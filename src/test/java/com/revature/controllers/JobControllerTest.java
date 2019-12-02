@@ -1,8 +1,6 @@
-package com.revature.service;
+package com.revature.controllers;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -14,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,64 +21,49 @@ import com.revature.model.Job;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
 
-@SpringBootTest(classes = {JobService.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = { JobController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringRunner.class)
 @EnableJpaRepositories("com.revature.repository")
 @EntityScan("com.revature.model")
-@RunWith(SpringRunner.class)
+@ComponentScan("com.revature.service")
 @EnableAutoConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class JobServiceTest {
-	
+public class JobControllerTest {
 	/**
-	 * Unit tests for the Job Service object
+	 * JUnit tests for the Job Controller object
 	 * @author John Thaddeus Kelly
 	 */
-
+	
 	@Autowired
-    private JobService js;
+	JobController jc;
 	Job job1 = new Job(1, "Avenger", "Saving the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
+	Job job2 = new Job(2, "Justice League", "Rescuing the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
+	Job job3 = new Job(3, "Villain", "Destroying the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
 	
 	@Before
 	public void setup() {
-		js.insertJobInfo(job1);
+		jc.insertJobInfo(job1);
+		jc.insertJobInfo(job2);
 	}
 	
 	@Test
-	public void testInsertJob() {
-		Job job = new Job();
-		assertTrue(js.insertJobInfo(job));
+	public void testSetup() {
+		assertTrue(jc.insertJobInfo(job3));
 	}
 	
 	@Test
-	public void testBadInsertJob() {
-		assertFalse(js.insertJobInfo(null));
-	}
-	
-	@Test
-	public void testUpdateJob() {
-		assertTrue(js.updateJobInfo(job1));
-	}
-	@Test
-	public void testBadJob() {
-		assertFalse(js.updateJobInfo(null));
-	}
-	@Test
-	public void testAllJobs() {
-		assertNotNull(js.getAllJobs());
-	}
-	
-	@Test
-	public void testFindAll() {
-		assertNotNull(js.findAll());
+	public void testGetAll() {
+		ArrayList<Job> list = (ArrayList<Job>) jc.getAll();
+		assertTrue(list.contains(job2));
 	}
 	
 	@Test
 	public void testGetTitle() {
-		assertEquals(job1, js.findByTitle("Avenger"));
+		assertEquals(job1, jc.getByTitle("Avenger"));
 	}
 	
 	@Test
-	public void testGetId() {
-		assertEquals(job1, js.findById(1));
+	public void testUpdate() {
+		assertTrue(jc.updateJobInfo(new Job(1, "Avenger", "Defending the World", new ArrayList<Skill>(), true, new ArrayList<Profile>())));
 	}
 }
