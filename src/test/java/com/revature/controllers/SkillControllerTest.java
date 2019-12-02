@@ -47,7 +47,7 @@ public class SkillControllerTest {
 
 	@Test
 	public void testSetup() {
-		sc.insertSkill(skill3);
+		assertTrue(sc.insertSkill(skill3));
 	}
 
 	@Test

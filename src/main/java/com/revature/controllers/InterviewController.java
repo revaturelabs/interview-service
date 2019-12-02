@@ -32,10 +32,10 @@ import com.revature.service.ProfileService;
 public class InterviewController {
 	@Autowired
 	private InterviewService is;
-	 @Autowired
-	    private JobService js;
-	 @Autowired
-	    private ProfileService ps;
+	@Autowired
+	private JobService js;
+	@Autowired
+	private ProfileService ps;
 	
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
@@ -51,8 +51,6 @@ public class InterviewController {
 	
 	@PostMapping("/insertComment")
 	public boolean insertComment(@RequestParam int id, @RequestBody Comment comment) { 
-		Interview i = is.getById(id);
-		System.out.println(i);
 		return is.insertCommentInInterview(id, comment);
 	}
 	
@@ -65,5 +63,4 @@ public class InterviewController {
     public Interview getById(@PathVariable int id) {
         return is.getById(id);
     }
-	
 }

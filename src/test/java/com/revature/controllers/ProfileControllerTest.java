@@ -48,7 +48,7 @@ public class ProfileControllerTest {
 	
 	@Test
 	public void testSetup() {
-		pc.insertProfileInfo(profile3);
+		assertTrue(pc.insertProfileInfo(profile3));
 	}
 	
 	@Test
