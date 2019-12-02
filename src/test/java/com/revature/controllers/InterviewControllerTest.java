@@ -58,6 +58,6 @@ public class InterviewControllerTest {
 	
 	@Test
 	public void testGetId() {
-		Interview testInt = ic.getById(1);
+		assertNotNull(ic.getById(1));
 	}
 }

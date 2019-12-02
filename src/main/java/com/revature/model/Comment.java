@@ -11,23 +11,22 @@ import javax.persistence.Table;
 /**
  * An object representation of our Comment model.
  * 
+ * A side note to others:
+ * 
+ * Notice the lack of @Column annotations throughout this model.
+ * There is really no need to add this if there doesn't have to be.
+ * 
+ * For one, it just causes a bit more clutter and confusion.
+ * Second, they're really only useful for renaming the column on the backend, which
+ * this program has no real use for.
+ * 
+ * Unless absolutely necessary, do not add more clutter here (which, ironically, this comment does).
+ * 
  * @author Davin Merry
  */
 @Entity
 @Table(name="comments")
 public class Comment {
-	/*
-	 * A side note to others:
-	 * 
-	 * Notice the lack of @Column annotations throughout this model.
-	 * There is really no need to add this if there doesn't have to be.
-	 * 
-	 * For one, it just causes a bit more clutter and confusion.
-	 * Second, they're really only useful for renaming the column on the backend, which
-	 * this program has no real use for.
-	 * 
-	 * Unless absolutely necessary, do not add more clutter here (which, ironically, this comment does).
-	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
