@@ -49,12 +49,11 @@ public class InterviewTest {
 		assertEquals(profile, testInterview.getProfile());
 	}
 	
-	//[TODO] Completely re-write. New comment model was made.
 	@Test
 	public void testComments(){
-		fail("A new comment model was made. Please re-write");
-		//testInterview.setComments("comments");
-		//assertEquals("comments", testInterview.getComments());
+		List<Comment> comments = new ArrayList<>();
+		testInterview.setComments(comments);
+		assertEquals(comments, testInterview.getComments());
 	}
 	
 	@Test

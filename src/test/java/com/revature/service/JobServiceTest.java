@@ -28,7 +28,7 @@ import com.revature.model.Skill;
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class JobServiceTest {
 	
-	/*
+	/**
 	 * Unit tests for the Job Service object
 	 * @author John Thaddeus Kelly
 	 */

@@ -32,16 +32,9 @@ public class InterviewService {
     
     public boolean insertCommentInInterview(int id, Comment c) {
     	try {
-    		System.out.println(id);
-    		System.out.println(c);
-    		Interview i = ir.findById(id);
-    		System.out.println(i);
-    		//i.getComments().add(c);
-    		//System.out.println(i);
-    		//ir.save(i);
+    		ir.findById(id);
     		return true;
     	} catch (Exception e) {
-    		System.out.println(e);
     		return false;
     	}
     }
