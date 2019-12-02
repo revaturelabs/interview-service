@@ -49,8 +49,9 @@ public class Profile {
 				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
 	private Set<Skill> skills = new HashSet<>();
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER,
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,
 			   mappedBy = "profile")
+
 	@JsonIgnore
 	private Set<Interview> interviews = new HashSet<>();
 	

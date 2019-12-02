@@ -39,7 +39,6 @@ public class JobController{
      */
     @PatchMapping("/updateJob")
 	public boolean updateJobInfo(@RequestBody Job b) {
-    	System.out.println("in controller");
     	return js.updateJobInfo(b);
     }
     
