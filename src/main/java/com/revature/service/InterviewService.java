@@ -49,4 +49,8 @@ public class InterviewService {
     public Iterable<Interview> getAllInterviews() {
         return ir.findAll();
     }
+    
+    public Interview getById(int id) {
+        return ir.findById(id);
+    }
 }
