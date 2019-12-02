@@ -34,16 +34,4 @@ public class ProfileController {
     public Iterable<Profile> getAll() {
     	return ps.getAllProfiles();
     }
-    
-<<<<<<< HEAD
-    /**
-     * @param lastName
-     * @return Profiles by lastName
-     */
-    @GetMapping("/searchContainProfiles")
-    public List<Profile> searchContainProfiles(@RequestHeader String lastName){
-    	return ps.searchByNameContaining(lastName);
-    }
-=======
->>>>>>> development
 }
