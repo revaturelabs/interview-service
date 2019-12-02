@@ -42,8 +42,7 @@ public class Profile {
 	@Column(name="profile_lastName")
 	private String lastName;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="profile_skills",
 				joinColumns = {@JoinColumn(name = "job_id")},
 				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
@@ -52,6 +51,7 @@ public class Profile {
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,
 			   mappedBy = "profile")
 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	private Set<Interview> interviews = new HashSet<>();
 	

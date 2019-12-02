@@ -43,7 +43,7 @@ public class InterviewController {
 //		int id2 = interview.getJob().getId();
 //		Profile profile = ps.findById(id1);
 //		Job job = js.findById(id2);
-		String title = interview.getJob().getTitle();
+		/*String title = interview.getJob().getTitle();
 		Job job = js.findByTitle(title);
 		String fullName = interview.getProfile().getFirstName();
 		String[] name = fullName.split(" ",2);
@@ -52,7 +52,7 @@ public class InterviewController {
 		System.out.println(lastName + "" + title);
 		Profile profile = ps.findAllByLastName(lastName);
 		interview.setJob(job);
-		interview.setProfile(profile);
+		interview.setProfile(profile);*/
 		return is.insertInterviewInfo(interview);
 	}
 	

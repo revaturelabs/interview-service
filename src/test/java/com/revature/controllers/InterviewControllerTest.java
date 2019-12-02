@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.Timestamp;
@@ -52,6 +53,11 @@ public class InterviewControllerTest {
 	@Test
 	public void testGetAll() {
 		ArrayList<Interview> list = (ArrayList<Interview>) ic.getAll();
-		assertTrue(list.contains(interview1));
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void testGetId() {
+		Interview testInt = ic.getById(1);
 	}
 }
