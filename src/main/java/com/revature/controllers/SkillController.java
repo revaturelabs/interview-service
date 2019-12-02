@@ -60,8 +60,9 @@ public class SkillController {
 	public Skill getBySkill(@RequestHeader(name="auth") String token, @PathVariable("id") int id) {
 		if (ai.authorize(token)) {
 			for(Skill sk : sr.findAll()) {
-				if(sk.getId()==id)
+				if(sk.getId()==id) {
 					return sk;
+        }
 			}
 			return null;
 		} else {
@@ -93,7 +94,6 @@ public class SkillController {
 		}
 	}
 	
-	
 	/**
 	 * @author Joseph F Davis
 	 * @param title
@@ -107,5 +107,4 @@ public class SkillController {
 			return null;
 		}
 	}
-
 }
