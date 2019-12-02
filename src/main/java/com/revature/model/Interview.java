@@ -133,6 +133,66 @@ public class Interview {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + id;
+		result = prime * result + (isComplete ? 1231 : 1237);
+		result = prime * result + ((job == null) ? 0 : job.hashCode());
+		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + ((users == null) ? 0 : users.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Interview other = (Interview) obj;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		}
+		else if (!comments.equals(other.comments))
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		}
+		else if (!date.equals(other.date))
+			return false;
+		if (id != other.id)
+			return false;
+		if (isComplete != other.isComplete)
+			return false;
+		if (job == null) {
+			if (other.job != null)
+				return false;
+		}
+		else if (!job.equals(other.job))
+			return false;
+		if (profile == null) {
+			if (other.profile != null)
+				return false;
+		}
+		else if (!profile.equals(other.profile))
+			return false;
+		if (users == null) {
+			if (other.users != null)
+				return false;
+		}
+		else if (!users.equals(other.users))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return "Interview [id=" + id + ", profile=" + profile + ", comments=" + comments + ", date=" + date
 				+ ", isComplete=" + isComplete + ", job=" + job + ", users=" + users + "]";

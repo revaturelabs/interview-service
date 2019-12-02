@@ -41,33 +41,33 @@ public class SkillControllerTest {
 
 	@Before
 	public void setupController() {
-		sc.insertSkill(skill);
-		sc.insertSkill(skill2);
+		sc.insertSkill("admin", skill);
+		sc.insertSkill("admin", skill2);
 	}
 
 	@Test
 	public void testSetup() {
-		assertTrue(sc.insertSkill(skill3));
+		assertTrue(sc.insertSkill("admin", skill3));
 	}
 
 	@Test
 	public void testAllSkills() {
-		assertTrue(sc.allSkills().contains(skill));
+		assertTrue(sc.allSkills("admin").contains(skill));
 	}
 
 	@Test
 	public void testFindBySkill() {
-		assertEquals(skill, sc.getBySkill(1));
+		assertEquals(skill, sc.getBySkill("admin", 1));
 	}
 
 	@Test
 	public void testFindNonExistant() {
-		assertNull(sc.getBySkill(0));
+		assertNull(sc.getBySkill("admin", 0));
 	}
 
 	@Test
 	public void testGetAll() {
-		List<Skill> skills = (List<Skill>) sc.getSkills();
+		List<Skill> skills = (List<Skill>) sc.getSkills("admin");
 		assertTrue(skills.contains(skill));
 	}
 
