@@ -42,18 +42,18 @@ public class ProfileControllerTest {
 	
 	@Before
 	public void setupDb() {
-		pc.insertProfileInfo("admin", profile1);
-		pc.insertProfileInfo("admin", profile2);
+		pc.insertProfileInfo(profile1);
+		pc.insertProfileInfo(profile2);
 	}
 	
 	@Test
 	public void testSetup() {
-		assertTrue(pc.insertProfileInfo("admin", profile3));
+		assertTrue(pc.insertProfileInfo(profile3));
 	}
 	
 	@Test
 	public void testGetAll() {
-		List<Profile> profiles = (List<Profile>) pc.getAll("admin");
+		List<Profile> profiles = (List<Profile>) pc.getAll();
 		assertTrue(profiles.contains(profile1));
 	}
 }
