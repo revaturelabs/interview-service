@@ -38,28 +38,28 @@ public class InterviewController {
 	
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
-		int id1 = interview.getProfile().getId();
-		int id2 = interview.getJob().getId();
-		Profile profile = ps.findById(id1);
-		Job job = js.findById(id2);
-
-		interview.setJob(job);
-		interview.setProfile(profile);
-		return is.insertInterviewInfo(interview);
+			int id1 = interview.getProfile().getId();
+			int id2 = interview.getJob().getId();
+			Profile profile = ps.findById(id1);
+			Job job = js.findById(id2);
+	
+			interview.setJob(job);
+			interview.setProfile(profile);
+			return is.insertInterviewInfo(interview);
 	}
 	
 	@PostMapping("/insertComment")
 	public boolean insertComment(@RequestParam int id, @RequestBody Comment comment) {
-		return is.insertCommentInInterview(id, comment);
+			return is.insertCommentInInterview(id, comment);
 	}
 	
 	@GetMapping("/allInterviews")
 	public Iterable<Interview> getAll() {
-		return is.getAllInterviews();
+			return is.getAllInterviews();
 	}
 	
 	@GetMapping("/id/{id}")
     public Interview getById(@PathVariable int id) {
-		return is.getById(id);
+			return is.getById(id);
     }
 }

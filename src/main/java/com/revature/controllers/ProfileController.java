@@ -24,11 +24,11 @@ public class ProfileController {
     
     @PostMapping("/saveProfile")
     public boolean insertProfileInfo(@RequestBody Profile profile) {
-		return ps.insertProfileInfo(profile);
+    		return ps.insertProfileInfo(profile);
     }
     
     @GetMapping("/allProfiles")
     public Iterable<Profile> getAll() {
-		return ps.getAllProfiles();
+    		return ps.getAllProfiles();
     }
 }

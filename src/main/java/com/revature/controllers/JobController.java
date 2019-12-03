@@ -28,7 +28,7 @@ public class JobController{
      */
     @PostMapping("/saveJob")
     public boolean insertJobInfo(@RequestBody Job job) {
-		return js.insertJobInfo(job);
+    		return js.insertJobInfo(job);
 	}
     
     /**
@@ -39,7 +39,7 @@ public class JobController{
      */
     @PatchMapping("/updateJob")
 	public boolean updateJobInfo(@RequestBody Job b) {
-		return js.updateJobInfo(b);
+    		return js.updateJobInfo(b);
     }
     
     /**
@@ -51,7 +51,7 @@ public class JobController{
      */
     @GetMapping("/allJobs")
     public Iterable<Job> getAll() {
-		return js.findAll();
+    		return js.findAll();
     }
     
     /**
@@ -61,6 +61,6 @@ public class JobController{
      */
     @GetMapping("/jobTitle/{title}")
     public Job getByTitle(@PathVariable String title) {
-		return js.findByTitle(title);
+    		return js.findByTitle(title);
     }
 }

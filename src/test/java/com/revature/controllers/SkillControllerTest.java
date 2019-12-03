@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
@@ -26,6 +27,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
+@EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class SkillControllerTest {
 	/**
@@ -46,13 +48,9 @@ public class SkillControllerTest {
 	}
 
 	@Test
-	public void testSetup() {
-		assertTrue(sc.insertSkill(skill3));
-	}
-
-	@Test
 	public void testAllSkills() {
-		assertTrue(sc.allSkills().contains(skill));
+		sc.insertSkill(skill3);
+		assertTrue(sc.allSkills().contains(skill3));
 	}
 
 	@Test
