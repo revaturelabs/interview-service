@@ -35,11 +35,11 @@ public class SkillController {
 	 */
 	@GetMapping(value="/allSkills")
 	public @ResponseBody List<Skill> allSkills() {
-		List<Skill> list = new ArrayList<>();
-		for(Skill sk : sr.findAll()) {
-			list.add(sk);
-		}
-		return list;
+			List<Skill> list = new ArrayList<>();
+			for(Skill sk : sr.findAll()) {
+				list.add(sk);
+			}
+			return list;
 	}
 	
 	/**
@@ -50,12 +50,12 @@ public class SkillController {
 	 */
 	@GetMapping(value="/skill/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {
-		for(Skill sk : sr.findAll()) {
-			if(sk.getId()==id) {
-				return sk;
+			for(Skill sk : sr.findAll()) {
+				if(sk.getId()==id) {
+					return sk;
+				}
 			}
-		}
-		return null;
+			return null;
 	}
 	
 	/**
@@ -63,8 +63,8 @@ public class SkillController {
 	 * @param s The skill to insert
 	 */
 	@PostMapping(value= "/insertSkill")
-	public boolean insertSkill(@RequestBody Skill s) {
-		return sk.insertSkill(s);
+	public void insertSkill(@RequestBody Skill s) {
+			sk.insertSkill(s);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class SkillController {
 	 */
 	@GetMapping(value="/getSkills")
 	public Iterable<Skill> getSkills() {
-		return sk.getAll();
+			return sk.getAll();
 	}
 	
 	/**
@@ -83,6 +83,6 @@ public class SkillController {
 	 */
 	@GetMapping(value="/getskill/{Title}")
 	public Skill getSkills(@PathVariable("Title") String title) {
-		return sk.findSkill(title);
+			return sk.findSkill(title);
 	}
 }
