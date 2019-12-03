@@ -21,7 +21,6 @@ import com.revature.service.SkillService;
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/skills")
 public class SkillController {
-	
 	@Autowired
 	private SkillRepository sr;
 	
@@ -35,10 +34,10 @@ public class SkillController {
 	 * @return List of skills
 	 */
 	@GetMapping(value="/allSkills")
-	public @ResponseBody List<Skill> allSkills(){
+	public @ResponseBody List<Skill> allSkills() {
 		List<Skill> list = new ArrayList<>();
-		for(Skill s : sr.findAll()) {
-			list.add(s);
+		for(Skill sk : sr.findAll()) {
+			list.add(sk);
 		}
 		return list;
 	}
@@ -51,9 +50,10 @@ public class SkillController {
 	 */
 	@GetMapping(value="/skill/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {
-		for(Skill s : sr.findAll()) {
-			if(s.getId()==id)
-				return s;
+		for(Skill sk : sr.findAll()) {
+			if(sk.getId()==id) {
+				return sk;
+			}
 		}
 		return null;
 	}
@@ -72,7 +72,7 @@ public class SkillController {
 	 * @return All skills through the service layer
 	 */
 	@GetMapping(value="/getSkills")
-	public Iterable<Skill> getSkills(){
+	public Iterable<Skill> getSkills() {
 		return sk.getAll();
 	}
 	
@@ -82,7 +82,7 @@ public class SkillController {
 	 * @return skill by title
 	 */
 	@GetMapping(value="/getskill/{Title}")
-	public Skill getSkills(@PathVariable("Title")String title){
+	public Skill getSkills(@PathVariable("Title") String title) {
 		return sk.findSkill(title);
 	}
 }

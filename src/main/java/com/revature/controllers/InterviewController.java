@@ -1,6 +1,6 @@
 package com.revature.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +14,6 @@ import com.revature.model.Comment;
 import com.revature.model.Interview;
 import com.revature.model.Job;
 import com.revature.model.Profile;
-
 import com.revature.service.InterviewService;
 import com.revature.service.JobService;
 import com.revature.service.ProfileService;
@@ -50,7 +49,7 @@ public class InterviewController {
 	}
 	
 	@PostMapping("/insertComment")
-	public boolean insertComment(@RequestParam int id, @RequestBody Comment comment) { 
+	public boolean insertComment(@RequestParam int id, @RequestBody Comment comment) {
 		return is.insertCommentInInterview(id, comment);
 	}
 	
@@ -61,6 +60,6 @@ public class InterviewController {
 	
 	@GetMapping("/id/{id}")
     public Interview getById(@PathVariable int id) {
-        return is.getById(id);
+		return is.getById(id);
     }
 }
