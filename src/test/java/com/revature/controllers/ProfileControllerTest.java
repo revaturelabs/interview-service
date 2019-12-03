@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
@@ -27,6 +28,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
+@EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class ProfileControllerTest {
 	/**
@@ -42,18 +44,18 @@ public class ProfileControllerTest {
 	
 	@Before
 	public void setupDb() {
-		pc.insertProfileInfo("admin", profile1);
-		pc.insertProfileInfo("admin", profile2);
+		pc.insertProfileInfo(profile1);
+		pc.insertProfileInfo(profile2);
 	}
 	
 	@Test
 	public void testSetup() {
-		assertTrue(pc.insertProfileInfo("admin", profile3));
+		assertTrue(pc.insertProfileInfo(profile3));
 	}
 	
 	@Test
 	public void testGetAll() {
-		List<Profile> profiles = (List<Profile>) pc.getAll("admin");
+		List<Profile> profiles = (List<Profile>) pc.getAll();
 		assertTrue(profiles.contains(profile1));
 	}
 }

@@ -27,20 +27,12 @@ public class ProfileController {
 	private AuthInterface ai;
     
     @PostMapping("/saveProfile")
-    public boolean insertProfileInfo(@RequestHeader(name="auth") String token, @RequestBody Profile profile) {
-    	if (ai.authorize(token)) {
+    public boolean insertProfileInfo(@RequestBody Profile profile) {
     		return ps.insertProfileInfo(profile);
-    	} else {
-    		return false;
-    	}
     }
     
     @GetMapping("/allProfiles")
-    public Iterable<Profile> getAll(@RequestHeader(name="auth") String token) {
-    	if (ai.authorize(token)) {
+    public Iterable<Profile> getAll() {
     		return ps.getAllProfiles();
-    	} else {
-    		return null;
-    	}
     }
 }

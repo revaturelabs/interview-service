@@ -41,8 +41,7 @@ public class InterviewController {
 	private AuthInterface ai;
 	
 	@PostMapping("/saveInterview")
-	public boolean saveInterview(@RequestHeader(name="auth") String token, @RequestBody Interview interview) {
-		if (ai.authorize(token)) {
+	public boolean saveInterview(@RequestBody Interview interview) {
 			int id1 = interview.getProfile().getId();
 			int id2 = interview.getJob().getId();
 			Profile profile = ps.findById(id1);
@@ -51,35 +50,20 @@ public class InterviewController {
 			interview.setJob(job);
 			interview.setProfile(profile);
 			return is.insertInterviewInfo(interview);
-		} else {
-			return false;
-		}
 	}
 	
 	@PostMapping("/insertComment")
-	public boolean insertComment(@RequestHeader(name="auth") String token, @RequestParam int id, @RequestBody Comment comment) {
-		if (ai.authorize(token)) {
+	public boolean insertComment(@RequestParam int id, @RequestBody Comment comment) {
 			return is.insertCommentInInterview(id, comment);
-		} else {
-			return false;
-		}
 	}
 	
 	@GetMapping("/allInterviews")
-	public Iterable<Interview> getAll(@RequestHeader(name="auth") String token) {
-		if (ai.authorize(token)) {
+	public Iterable<Interview> getAll() {
 			return is.getAllInterviews();
-		} else {
-			return null;
-		}
 	}
 	
 	@GetMapping("/id/{id}")
-    public Interview getById(@RequestHeader(name="auth") String token, @PathVariable int id) {
-		if (ai.authorize(token)) {
+    public Interview getById(@PathVariable int id) {
 			return is.getById(id);
-		} else {
-			return null;
-		}
     }
 }

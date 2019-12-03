@@ -38,16 +38,12 @@ public class SkillController {
 	 * @return List of skills
 	 */
 	@GetMapping(value="/allSkills")
-	public @ResponseBody List<Skill> allSkills(@RequestHeader(name="auth") String token) {
-		if (ai.authorize(token)) {
+	public @ResponseBody List<Skill> allSkills() {
 			List<Skill> list = new ArrayList<>();
 			for(Skill sk : sr.findAll()) {
 				list.add(sk);
 			}
 			return list;
-		} else {
-			return null;
-		}
 	}
 	
 	/**
@@ -57,17 +53,13 @@ public class SkillController {
 	 * @author Seacriest Brown
 	 */
 	@GetMapping(value="/skill/{id}")
-	public Skill getBySkill(@RequestHeader(name="auth") String token, @PathVariable("id") int id) {
-		if (ai.authorize(token)) {
+	public Skill getBySkill(@PathVariable("id") int id) {
 			for(Skill sk : sr.findAll()) {
 				if(sk.getId()==id) {
 					return sk;
-        }
+				}
 			}
 			return null;
-		} else {
-			return null;
-		}
 	}
 	
 	/**
@@ -75,10 +67,8 @@ public class SkillController {
 	 * @param s The skill to insert
 	 */
 	@PostMapping(value= "/insertSkill")
-	public void insertSkill(@RequestHeader(name="auth") String token, @RequestBody Skill s) {
-		if (ai.authorize(token)) {
+	public void insertSkill(@RequestBody Skill s) {
 			sk.insertSkill(s);
-		}
 	}
 	
 	/**
@@ -86,12 +76,8 @@ public class SkillController {
 	 * @return All skills through the service layer
 	 */
 	@GetMapping(value="/getSkills")
-	public Iterable<Skill> getSkills(@RequestHeader(name="auth") String token) {
-		if (ai.authorize(token)) {
+	public Iterable<Skill> getSkills() {
 			return sk.getAll();
-		} else {
-			return null;
-		}
 	}
 	
 	/**
@@ -100,11 +86,7 @@ public class SkillController {
 	 * @return skill by title
 	 */
 	@GetMapping(value="/getskill/{Title}")
-	public Skill getSkills(@RequestHeader(name="auth") String token, @PathVariable("Title") String title) {
-		if (ai.authorize(token)) {
+	public Skill getSkills(@PathVariable("Title") String title) {
 			return sk.findSkill(title);
-		} else {
-			return null;
-		}
 	}
 }

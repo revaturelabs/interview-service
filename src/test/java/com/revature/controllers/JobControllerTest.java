@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
@@ -27,6 +28,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
+@EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class JobControllerTest {
 	/**
@@ -42,28 +44,28 @@ public class JobControllerTest {
 	
 	@Before
 	public void setup() {
-		jc.insertJobInfo("admin", job1);
-		jc.insertJobInfo("admin", job2);
+		jc.insertJobInfo(job1);
+		jc.insertJobInfo(job2);
 	}
 	
 	@Test
 	public void testSetup() {
-		assertTrue(jc.insertJobInfo("admin", job3));
+		assertTrue(jc.insertJobInfo( job3));
 	}
 	
 	@Test
 	public void testGetAll() {
-		ArrayList<Job> list = (ArrayList<Job>) jc.getAll("admin");
+		ArrayList<Job> list = (ArrayList<Job>) jc.getAll();
 		assertTrue(list.contains(job2));
 	}
 	
 	@Test
 	public void testGetTitle() {
-		assertEquals(job1, jc.getByTitle("admin", "Avenger"));
+		assertEquals(job1, jc.getByTitle("Avenger"));
 	}
 	
 	@Test
 	public void testUpdate() {
-		assertTrue(jc.updateJobInfo("admin", new Job(1, "Avenger", "Defending the World", new ArrayList<Skill>(), true, new ArrayList<Profile>())));
+		assertTrue(jc.updateJobInfo(new Job(1, "Avenger", "Defending the World", new ArrayList<Skill>(), true, new ArrayList<Profile>())));
 	}
 }
