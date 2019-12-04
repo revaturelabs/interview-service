@@ -17,10 +17,6 @@ public class InterviewService {
 	@Autowired
     private InterviewRepository ir;
     
-    public InterviewService(InterviewRepository interviewrepo) {
-    	this.ir = interviewrepo;
-    }
-    
     public boolean insertInterviewInfo(Interview i) {
 		try {
 			ir.save(i);
@@ -28,17 +24,6 @@ public class InterviewService {
 		} catch (Exception e) {
 			return false;
 		}
-    }
-    
-    public boolean insertCommentInInterview(int id, Comment c) {
-    	try {
-    		Interview i = ir.findById(id);
-    		i.getComments().add(c);
-    		ir.save(i);
-    		return true;
-    	} catch (Exception e) {
-    		return false;
-    	}
     }
     
     public Iterable<Interview> getAllInterviews() {

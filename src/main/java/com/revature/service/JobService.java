@@ -16,10 +16,6 @@ public class JobService {
 	@Autowired
 	private JobRepository jr;
 
-	public JobService(JobRepository jr) {
-		this.jr = jr;
-	}
-
 	public boolean insertJobInfo(Job j) {
 		try {
 			jr.save(j);

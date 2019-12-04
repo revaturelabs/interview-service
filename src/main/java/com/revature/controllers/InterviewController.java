@@ -48,11 +48,6 @@ public class InterviewController {
 			return is.insertInterviewInfo(interview);
 	}
 	
-	@PostMapping("/insertComment")
-	public boolean insertComment(@RequestParam int id, @RequestBody Comment comment) {
-			return is.insertCommentInInterview(id, comment);
-	}
-	
 	@GetMapping("/allInterviews")
 	public Iterable<Interview> getAll() {
 			return is.getAllInterviews();
