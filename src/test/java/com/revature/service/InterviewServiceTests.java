@@ -47,4 +47,5 @@ public class InterviewServiceTests {
 	public void testGetAll() {
 		assertNotNull(is.getAllInterviews());
 	}
+	
 }
