@@ -22,6 +22,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.revature.controller.InterviewController;
 import com.revature.model.Comment;
 import com.revature.model.Interview;
 import com.revature.model.Job;
@@ -30,66 +31,60 @@ import com.revature.model.Skill;
 import com.revature.model.User;
 import com.revature.service.ProfileService;
 
-@SpringBootTest(classes = {InterviewController.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = { InterviewController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @EnableJpaRepositories("com.revature.repository")
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class InterviewControllerTest{
+public class InterviewControllerTest {
 
-@Autowired 
-InterviewController ic = new InterviewController();
+	@Autowired
+	InterviewController ic = new InterviewController();
 
+	Profile profile1 = new Profile(1, "Fred", "Jenkins", new HashSet<Skill>(), null, "description");
+	Profile profile2 = new Profile(2, "testfirst", "testlast", new HashSet<Skill>(), null, "description");
+	Profile profile3 = new Profile(3, "anotherone", "anotherone", new HashSet<Skill>(), null, "description");
+	Job job1 = new Job(1, "title1", "description", new ArrayList<Skill>(), true, new ArrayList());
+	Job job2 = new Job(2, "title1", "description", new ArrayList<Skill>(), true, new ArrayList());
+	Job job3 = new Job(3, "title1", "description", new ArrayList<Skill>(), true, new ArrayList());
 
+	Interview interview1 = new Interview(1, profile1, new ArrayList<Comment>(), Timestamp.from(Instant.now()), true,
+			job1, new HashSet<User>());
+	Interview interview2 = new Interview(2, profile2, new ArrayList<Comment>(), Timestamp.from(Instant.now()), true,
+			job2, new HashSet<User>());
+	Interview interview3 = new Interview(3, profile3, new ArrayList<Comment>(), Timestamp.from(Instant.now()), true,
+			job3, new HashSet<User>());
 
-Profile profile1 = new Profile(1, "Fred", "Jenkins", new HashSet<Skill>(),null, "description");
-Profile profile2 = new Profile(2, "testfirst", "testlast", new HashSet<Skill>(), null, "description");
-Profile profile3 = new Profile(3, "anotherone", "anotherone", new HashSet<Skill>(), null, "description");
-Job job1  = new Job(1, "title1", "description", new ArrayList<Skill>(), true, new ArrayList());
-Job job2  = new Job(2, "title1", "description", new ArrayList<Skill>(), true, new ArrayList());
-Job job3  = new Job(3, "title1", "description", new ArrayList<Skill>(), true, new ArrayList());
+	@Before
+	public void setUp() {
 
-Interview interview1 = new Interview(1, profile1, new ArrayList<Comment>(), Timestamp.from(Instant.now()), true, job1, new HashSet<User>());
-Interview interview2 = new Interview(2, profile2, new ArrayList<Comment>(), Timestamp.from(Instant.now()), true, job2, new HashSet<User>());
-Interview interview3 = new Interview(3, profile3, new ArrayList<Comment>(), Timestamp.from(Instant.now()), true, job3, new HashSet<User>());
+		ic.saveInterview(interview1);
+		ic.saveInterview(interview2);
+	}
 
-@Before
-public void setUp(){
-    
+	@Test
+	public void testSetup() {
 
-    ic.saveInterview(interview1);
-    ic.saveInterview(interview2);
-}
+		assertTrue(ic.saveInterview(interview3));
+	}
 
-@Test
-public void testSetup(){
-    
-    assertTrue(ic.saveInterview(interview3));
-}
+	@Test
+	public void testgetAll() {
 
-@Test
-public void testgetAll(){
+		List<Interview> list = new ArrayList<>();
+		list.add(interview1);
+		list.add(interview2);
 
-    List<Interview> list = new ArrayList<>();
-    list.add(interview1);
-    list.add(interview2);
+		assertEquals(list.iterator().next(), ic.getAll().iterator().next());
+	}
 
+	@Test
+	public void getById() {
 
-    assertEquals(list.iterator().next(), ic.getAll().iterator().next());
-}
+		assertEquals(ic.getById(1).getId(), interview1.getId());
 
-
-
-
-@Test 
-public void getById(){
-    
-    
-assertEquals(ic.getById(1).getId(), interview1.getId());
-
-
-}
+	}
 
 }
