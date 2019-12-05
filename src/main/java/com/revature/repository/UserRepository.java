@@ -1,4 +1,4 @@
-package com.revature.service;
+package com.revature.repository;
 
 
 import org.springframework.data.repository.CrudRepository;
