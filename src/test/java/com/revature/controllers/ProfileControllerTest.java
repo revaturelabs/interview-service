@@ -28,7 +28,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
-@EnableFeignClients(clients = { AuthInterface.class })
+// @EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class ProfileControllerTest {
 	/**

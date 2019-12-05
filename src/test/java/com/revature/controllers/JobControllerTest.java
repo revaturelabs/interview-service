@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +29,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
-@EnableFeignClients(clients = { AuthInterface.class })
+// @EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class JobControllerTest {
 	/**
@@ -46,17 +47,22 @@ public class JobControllerTest {
 	public void setup() {
 		jc.insertJobInfo(job1);
 		jc.insertJobInfo(job2);
+		jc.insertJobInfo(job3);
 	}
 	
 	@Test
 	public void testSetup() {
-		assertTrue(jc.insertJobInfo( job3));
+		assertTrue(jc.insertJobInfo(job3));
 	}
 	
 	@Test
 	public void testGetAll() {
-		ArrayList<Job> list = (ArrayList<Job>) jc.getAll();
-		assertTrue(list.contains(job2));
+		List<Job> list = new ArrayList<Job>();
+		list.add(job1);
+		list.add(job2);
+		list.add(job3);
+		assertEquals(list, jc.getAll());
+		// assertTrue(list.contains(job2));
 	}
 	
 	@Test
