@@ -1,4 +1,4 @@
-package com.revature.controllers;
+package com.revature.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +15,7 @@ import com.revature.service.ProfileService;
  * The main controller for obtaining information about an Interview
  * @author Adriana Long
  */
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/profiles")

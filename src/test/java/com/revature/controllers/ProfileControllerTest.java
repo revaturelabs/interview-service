@@ -18,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.revature.controller.ProfileController;
 import com.revature.model.Interview;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
@@ -28,7 +29,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
-@EnableFeignClients(clients = { AuthInterface.class })
+@EnableFeignClients//(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class ProfileControllerTest {
 	/**
