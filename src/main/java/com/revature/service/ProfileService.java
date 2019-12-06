@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,15 +33,19 @@ public class ProfileService {
     }
     
     public boolean insertProfileInfo(Profile p) {
+    	
     	try {
+    		System.out.println("made it close");
 	    	pr.save(p);
+	    	System.out.println("made it this far");
 	    	return true;
     	} catch (Exception e) {
+    		System.out.println(e);
     		return false;
     	}
     }
     
-    public Iterable<Profile> getAllProfiles() {
+    public List<Profile> getAllProfiles() {
     	return pr.findAll();
     }
 }

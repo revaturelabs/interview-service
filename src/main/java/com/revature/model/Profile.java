@@ -42,14 +42,15 @@ public class Profile {
 	@Column(name = "profile_lastName")
 	private String lastName;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinTable(name = "profile_skills", joinColumns = { @JoinColumn(name = "job_id") }, inverseJoinColumns = {
+	@ManyToMany(fetch = FetchType.EAGER,
+			cascade = CascadeType.MERGE )
+//	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinTable(name = "profile_skills", joinColumns = { @JoinColumn(name = "profile_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "skill_id") })
 	private Set<Skill> skills = new HashSet<>();
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "profile")
+//	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	private Set<Interview> interviews;
 
@@ -60,14 +61,14 @@ public class Profile {
 		super();
 	}
 
-	public Profile(int id, String firstName, String lastName, Set<Skill> skills, Set<Interview> interviews,
+	public Profile(int id, String firstName, String lastName, Set<Skill> skills,
 			String description) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.skills = skills;
-		this.interviews = interviews;
+		this.interviews = new HashSet<Interview>();
 		this.description = description;
 	}
 

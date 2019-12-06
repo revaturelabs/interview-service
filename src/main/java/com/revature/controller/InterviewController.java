@@ -46,7 +46,6 @@ public class InterviewController {
 			interview.setJob(job);
 			interview.setProfile(profile);
 			return is.insertInterviewInfo(interview);
-	
 	} 
 	
 	@PostMapping("/insertComment")
