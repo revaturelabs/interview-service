@@ -41,7 +41,7 @@ public class Interview {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="interview_profile")
-	@JsonIgnore
+//	@JsonIgnore
 	private Profile profile;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
@@ -63,7 +63,7 @@ public class Interview {
 	@JoinTable(name = "interviewer_users", joinColumns = { @JoinColumn(name = "interview_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "users_id") })
 //	@LazyCollection(LazyCollectionOption.FALSE)
-	@JsonIgnore
+//	@JsonIgnore
 	private Set<User> users = new HashSet<>();
 	
 	public Interview() {
