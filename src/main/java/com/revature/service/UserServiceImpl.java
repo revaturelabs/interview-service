@@ -1,8 +1,12 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;   
 import org.springframework.stereotype.Service;
-import com.revature.model.UserBean;
+
+import com.revature.model.User;
+
 import com.revature.repository.UserRepository;
 
 @Service
@@ -15,7 +19,7 @@ public class UserServiceImpl {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Iterable<UserBean> getAllUsers() {
+	public List<User> getAllUsers() {
     	return ur.findAll();
     }
 	

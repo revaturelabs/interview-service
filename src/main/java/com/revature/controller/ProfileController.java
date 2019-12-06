@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +27,12 @@ public class ProfileController {
     
     @PostMapping("/saveProfile")
     public boolean insertProfileInfo(@RequestBody Profile profile) {
+    	System.out.println(profile);
     		return ps.insertProfileInfo(profile);
     }
     
     @GetMapping("/allProfiles")
-    public Iterable<Profile> getAll() {
+    public List<Profile> getAll() {
     		return ps.getAllProfiles();
     }
 }

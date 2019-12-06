@@ -1,11 +1,14 @@
 package com.revature.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,26 +40,28 @@ public class Job {
 	@Column(name="job_description")
 	private String description;
 	
-	@ManyToMany
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany(fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL)
 	@JoinTable(name="job_skills",
 				joinColumns = {@JoinColumn(name = "job_id")},
 				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
-	private List<Skill> skills = new ArrayList<>();
+	private Set<Skill> skills = new HashSet<>();
 	
 	@Column(name="job_isFilled")
 	private boolean isFilled;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinColumn(name="job_profiles")
-	private List<Profile> profiles = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL)
+	@JoinTable(name="job_profiles",
+	joinColumns = {@JoinColumn(name = "job_id")},
+	inverseJoinColumns = {@JoinColumn(name = "profile_id")})
+	private Set<Profile> profiles = new HashSet<>();
 	
 	public Job() {
 		super();
 	}
 	
-	public Job(int id, String title, String description, List<Skill> skills, boolean isFilled, List<Profile> profiles) {
+	public Job(int id, String title, String description, Set<Skill> skills, boolean isFilled, Set<Profile> profiles) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -90,11 +95,11 @@ public class Job {
 		this.description = description;
 	}
 
-	public List<Skill> getSkills() {
+	public Set<Skill> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(List<Skill> skills) {
+	public void setSkills(Set<Skill> skills) {
 		this.skills = skills;
 	}
 
@@ -106,11 +111,11 @@ public class Job {
 		this.isFilled = isFilled;
 	}
 
-	public List<Profile> getProfiles() {
+	public Set<Profile> getProfiles() {
 		return profiles;
 	}
 
-	public void setProfiles(List<Profile> profiles) {
+	public void setProfiles(Set<Profile> profiles) {
 		this.profiles = profiles;
 	}
 

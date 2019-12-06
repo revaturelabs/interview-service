@@ -1,6 +1,8 @@
 package com.revature.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.UserBean;
+import com.revature.model.User;
 import com.revature.repository.UserRepository;
 
 
@@ -30,7 +32,7 @@ public class UserController {
 	 */
 	 @GetMapping(value = "/users")
 	    public String save() {
-	        UserBean dev = new UserBean(2,"admin","admin");
+	        User dev = new User(2,"admin","admin");
 	        repository.save(dev);
 	        return "worked";
 	    }
@@ -45,8 +47,8 @@ public class UserController {
 	 * @return the user information after username is verified
 	 */
 	@PostMapping(value = "/login")
-	public @ResponseBody UserBean login(@RequestBody UserBean user) {
-		for (UserBean u : repository.findAll()) {
+	public User login(@RequestBody User user) {
+		for (User u : repository.findAll()) {
 			if (user.getUsername().equals(u.getUsername())) {
 				return u;
 			}
@@ -63,13 +65,13 @@ public class UserController {
 	 * @return a list of all users
 	 */
 	@GetMapping(value = "/allusers")
-	public Iterable<UserBean> findAll() {
+	public List<User> findAll() {
 		return repository.findAll();
 	}
 	
 	@PostMapping(value = "/authorize")
 	public boolean authorizeUser(@RequestHeader(name = "auth") String token) {
-		UserBean u = repository.findByUsername(token);
+		User u = repository.findByUsername(token);
 		if(u == null) {
 			throw new UnauthorizedException();
 		} else {
