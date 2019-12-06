@@ -53,6 +53,7 @@ public class Profile {
 
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "profile")
 //	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private Set<Interview> interviews;
 
 	@Column(name = "profile_description")
