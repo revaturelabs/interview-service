@@ -20,6 +20,8 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * An object representation of our Profile model. This model is considered our
@@ -42,15 +44,15 @@ public class Profile {
 	@Column(name = "profile_lastName")
 	private String lastName;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinTable(name = "profile_skills", joinColumns = { @JoinColumn(name = "job_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "skill_id") })
+	@ManyToMany(fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL )
+//	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinTable(name = "profile_skills", joinColumns = { @JoinColumn(name = "profile_id") }, inverseJoinColumns = {
+	@JoinColumn(name = "skill_id") })
 	private Set<Skill> skills = new HashSet<>();
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@JsonIgnore
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "profile")
+//	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Interview> interviews;
 
 	@Column(name = "profile_description")
@@ -60,14 +62,14 @@ public class Profile {
 		super();
 	}
 
-	public Profile(int id, String firstName, String lastName, Set<Skill> skills, Set<Interview> interviews,
+	public Profile(int id, String firstName, String lastName,
 			String description) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.skills = skills;
-		this.interviews = interviews;
+		this.skills = new HashSet<Skill>();
+		this.interviews = new HashSet<Interview>();
 		this.description = description;
 	}
 
@@ -119,57 +121,57 @@ public class Profile {
 		this.description = description;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((interviews == null) ? 0 : interviews.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((skills == null) ? 0 : skills.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Profile other = (Profile) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id != other.id)
-			return false;
-		if (interviews == null) {
-			if (other.interviews != null)
-				return false;
-		} else if (!interviews.equals(other.interviews))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (skills == null) {
-			if (other.skills != null)
-				return false;
-		} else if (!skills.equals(other.skills))
-			return false;
-		return true;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((description == null) ? 0 : description.hashCode());
+//		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+//		result = prime * result + id;
+//		result = prime * result + ((interviews == null) ? 0 : interviews.hashCode());
+//		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+//		result = prime * result + ((skills == null) ? 0 : skills.hashCode());
+//		return result;
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Profile other = (Profile) obj;
+//		if (description == null) {
+//			if (other.description != null)
+//				return false;
+//		} else if (!description.equals(other.description))
+//			return false;
+//		if (firstName == null) {
+//			if (other.firstName != null)
+//				return false;
+//		} else if (!firstName.equals(other.firstName))
+//			return false;
+//		if (id != other.id)
+//			return false;
+//		if (interviews == null) {
+//			if (other.interviews != null)
+//				return false;
+//		} else if (!interviews.equals(other.interviews))
+//			return false;
+//		if (lastName == null) {
+//			if (other.lastName != null)
+//				return false;
+//		} else if (!lastName.equals(other.lastName))
+//			return false;
+//		if (skills == null) {
+//			if (other.skills != null)
+//				return false;
+//		} else if (!skills.equals(other.skills))
+//			return false;
+//		return true;
+//	}
 
 	@Override
 	public String toString() {

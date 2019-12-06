@@ -1,3 +1,4 @@
+
 package com.revature.controllers;
 
 import static org.junit.Assert.assertEquals;
@@ -19,6 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.revature.controller.SkillController;
 import com.revature.model.Skill;
 
 @SpringBootTest(classes = { SkillController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -27,7 +29,7 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
-@EnableFeignClients(clients = { AuthInterface.class })
+// @EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class SkillControllerTest {
 	/**
