@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +40,7 @@ public class InterviewController {
 	
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
+			System.out.println(interview);
 			int id1 = interview.getProfile().getId();
 			int id2 = interview.getJob().getId();
 			Profile profile = ps.findById(id1);
@@ -54,7 +57,7 @@ public class InterviewController {
 	}
 	
 	@GetMapping("/allInterviews")
-	public Iterable<Interview> getAll() {
+	public List<Interview> getAll() {
 			return is.getAllInterviews();
 	}
 	

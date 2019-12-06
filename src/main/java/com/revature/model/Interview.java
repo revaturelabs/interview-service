@@ -41,6 +41,7 @@ public class Interview {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="interview_profile")
+	@JsonIgnore
 	private Profile profile;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
