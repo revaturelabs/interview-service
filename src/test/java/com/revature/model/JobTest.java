@@ -39,20 +39,32 @@ public class JobTest {
 		Job testJob = new Job();
 		Set<Profile> testProfiles = new HashSet();
 		Set<Skill> testSkills = new HashSet();
+		String description;
+		String title;
+		String title1;
+		String title2;
+		String lastname;
+		String firstname;
 	
-		Profile profile1 = new Profile(0, "firstname", "lastname", "description");
-		Profile profile2 = new Profile(1, "firstname", "lastname", "description");
-		Profile profile3 = new Profile(2, "firstname", "lastname", "description");
+		Profile profile1 = new Profile(0, firstname, lastname, description);
+		Profile profile2 = new Profile(1, firstname, lastname, description);
+		Profile profile3 = new Profile(2, firstname, lastname, description);
 
-		Skill skill1 = new Skill("title", testProfiles);
-		Skill skill2 = new Skill("title", testProfiles);
-		Skill skill3 = new Skill("title", testProfiles);
+		Skill skill1 = new Skill(title, testProfiles);
+		Skill skill2 = new Skill(title1, testProfiles);
+		Skill skill3 = new Skill(title2, testProfiles);
 	
 
 
 		@Before
 		public void setUp(){
+		String description = "description";
+		String title = "title";
+		String title1 = "title1";
+		String title2 = "title2";
 
+		String lastname = "lastname";
+		String firstname = "firstname";
 			
 			Set<Profile> testProfiles = new HashSet<>();
 			testProfiles.add(profile1);
@@ -67,7 +79,7 @@ public class JobTest {
 			testSkills.add(skill2);
 			testSkills.add(skill3);
 
-			Job testJob = new Job(0, "title", "description", testSkills, false, testProfiles);
+			Job testJob = new Job(0, title, description, testSkills, false);
 	
 		}
 	
@@ -80,12 +92,12 @@ public class JobTest {
 	
 	@Test
 	public void testTitle(){
-		assertEquals("title", testJob.getTitle());
+		assertEquals(title, testJob.getTitle());
 	}
 	
 	@Test
 	public void testDescription() {
-		assertEquals("description", testJob.getDescription());
+		assertEquals(description, testJob.getDescription());
 	}
 	
 	@Test
@@ -99,11 +111,11 @@ public class JobTest {
 		assertEquals(false, testJob.isFilled());
 	}
 	
-	@Test
-	public void testProfiles() {
+	// @Test
+	// public void testProfiles() {
 	
-		assertEquals(testProfiles, testJob.getProfiles());
-	}
+	// 	assertEquals(testProfiles, testJob.getProfiles());
+	// }
 	
 	@Test
 	public void testHashCode() {
