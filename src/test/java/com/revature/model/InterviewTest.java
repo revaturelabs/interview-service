@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Before;
 import org.junit.Test;
 	/*
 	 * Unit testing for the Interview object
@@ -20,73 +21,109 @@ public class InterviewTest {
 	Interview testInterview = new Interview();
 	List<Comment> testComment = new ArrayList();
 	Set<User> testUser = new HashSet();
-	Job testJob = new Job();
+	List<Job> testJob = new ArrayList();
+	Timestamp date;
+	Set<Profile> testProfiles = new HashSet();
+	Set<Skill> testSkills = new HashSet();
+
+
+	Profile profile1 = new Profile(0, "firstname", "lastname", "description");
+	Profile profile2 = new Profile(1, "firstname", "lastname", "description");
+	Profile profile3 = new Profile(2, "firstname", "lastname", "description");
+
+	Skill skill1 = new Skill("title", testProfiles);
+	Skill skill2 = new Skill("title", testProfiles);
+	Skill skill3 = new Skill("title", testProfiles);
+
+	Comment comment1 = new Comment(0, date, "name", "text", testInterview);
+	Comment comment2 = new Comment(0, date, "name", "text", testInterview);
+	Comment comment3 = new Comment(0, date, "name", "text", testInterview);
+
+	Job job1 = new Job(0, "title", "description", testSkills, false, testProfiles);
+	Job job2 = new Job(0, "title", "description", testSkills, false, testProfiles);
+	Job job3 = new Job(0, "title", "description", testSkills, false, testProfiles);
+
+	User user1 = new User(0, "username", "password");
+	User user2 = new User(0, "username", "password");
+	User user3 = new User(0, "username", "password");
 
 
 
 
-	@Test
-	public void testExistance() {
-		Profile profile = new Profile();
-		List<Comment> c = new ArrayList<>();
-		Job job = new Job();
-		Set<User> users = new HashSet<>();
-		users.add(new User());
-		Interview interview = new Interview(0, profile, c, Timestamp.from(Instant.now()), true, job, users);
-		assertNotNull(interview);
+	@Before
+	public void setUp(){
+		Set<Profile> testProfiles = new HashSet<>();
+			testProfiles.add(profile1);
+			testProfiles.add(profile2);
+			testProfiles.add(profile3);
+
+
+		Set<Skill> testSkills = new HashSet<>();
+			testSkills.add(skill1);
+			testSkills.add(skill2);
+			testSkills.add(skill3);
+
+		List<Comment> testComment = new ArrayList();
+			testComment.add(comment1);
+			testComment.add(comment2);
+			testComment.add(comment3);
+
+		Set<User> testUser = new HashSet();
+			testUser.add(user1);
+			testUser.add(user2);
+			testUser.add(user3);
+
+		List<Job> testJob= new ArrayList();
+			testJob.add(job1);
+			testJob.add(job2);
+			testJob.add(job3);
+
+
+		Interview testInterview = new Interview(0, profile1, date, true, job1,testUser);
+
 	}
-	
-	@Test
-	public void testExistanceArgs() {
-		assertNotNull(testInterview);
-	}
+
+
+
+
 	
 	@Test
 	public void testId() {
-		testInterview.setId(0);
 		assertEquals(0, testInterview.getId());
 	}
 	
 	@Test
 	public void testProfile() {
-		Profile profile = new Profile();
-		testInterview.setProfile(profile);
-		assertEquals(profile, testInterview.getProfile());
+		
+		while (testProfiles.iterator().hasNext()){
+			assertEquals(profile3, testInterview.getProfile());
+		}
 	}
 	
-	@Test
-	public void testComments(){
-		List<Comment> comments = new ArrayList<>();
-		testInterview.setComments(comments);
-		assertEquals(comments, testInterview.getComments());
-	}
 	
 	@Test
 	public void testDate(){
-		Timestamp date = Timestamp.from(Instant.now());
-		testInterview.setDate(date);
 		assertEquals(date, testInterview.getDate());
 	}
 	
 	@Test
 	public void testComplete() {
-		testInterview.setComplete(true);
-		assertTrue(testInterview.isComplete());
+		
+		assertEquals(false, testInterview.getIsComplete());
 	}
 	
 	@Test
 	public void testJob() {
-		Job job = new Job();
-		testInterview.setJob(job);
-		assertEquals(job, testInterview.getJob());
+		while (testJob.iterator().hasNext()){
+			assertEquals(testJob, testInterview.getProfile());
+		
+		}
 	}
 	
 	@Test
 	public void testUsers() {
-		Set<User> users = new HashSet<>();
-		users.add(new User());
-		testInterview.setInterviewUsers(users);
-		assertEquals(users, testInterview.getInterviewUsers());
+	
+		assertEquals(testUser, testInterview.getUsers());
 	}
 	
 	@Test

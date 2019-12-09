@@ -73,12 +73,6 @@ public class JobTest {
 	
 
 	
-	// @Test
-	// public void testExistenceArgs() {
-		
-	// 	assertEquals(skill1, testSkills.skill1);
-	// }
-
 	@Test
 	public void testId() {
 		assertEquals(0, testJob.getId());
@@ -86,13 +80,11 @@ public class JobTest {
 	
 	@Test
 	public void testTitle(){
-		testJob.setTitle("title");
 		assertEquals("title", testJob.getTitle());
 	}
 	
 	@Test
 	public void testDescription() {
-		testJob.setDescription("description");
 		assertEquals("description", testJob.getDescription());
 	}
 	
@@ -100,7 +92,6 @@ public class JobTest {
 	public void testSkills() {
 	
 		assertEquals(testSkills, testJob.getSkills());
-		// assertNotNull(testjob.getSkills().get(0));
 	}
 	
 	@Test
@@ -110,11 +101,8 @@ public class JobTest {
 	
 	@Test
 	public void testProfiles() {
-		// Set<Profile> profiles = new HashSet<>();
-		// profiles.add(new Profile());
-		// testJob.setProfiles(profiles);
+	
 		assertEquals(testProfiles, testJob.getProfiles());
-		// assertNotNull(testjob.getProfiles().iterator().;
 	}
 	
 	@Test
