@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.model.Comment;
 import com.revature.model.Interview;
 import com.revature.repository.InterviewRepository;
 
@@ -30,17 +29,6 @@ public class InterviewService {
 		} catch (Exception e) {
 			return false;
 		}
-    }
-    
-    public boolean insertCommentInInterview(int id, Comment c) {
-    	try {
-    		Interview i = ir.findById(id);
-    		i.getComments().add(c);
-    		ir.save(i);
-    		return true;
-    	} catch (Exception e) {
-    		return false;
-    	}
     }
     
     public List<Interview> getAllInterviews() {
