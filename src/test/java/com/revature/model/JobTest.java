@@ -5,36 +5,82 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnit;
+import org.junit.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
 
-	/*
-	 * Unit tests for the Job object
-	 * @author John Thaddeus Kelly
-	 */
-
+/*
+ * Unit tests for the Job object
+ * @author John Thaddeus Kelly
+ */
+// @SpringBootTest(classes = { Job.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// @RunWith(SpringRunner.class)
+// @EnableJpaRepositories("com.revature.repository")
+// @EntityScan("com.revature.model")
+// @ComponentScan("com.revature.service")
+// @EnableAutoConfiguration
+// // @EnableFeignClients(clients = { AuthInterface.class })
+// @TestPropertySource(locations = "classpath:application-test.properties")
 public class JobTest {
-	Job testJob = new Job();
 
-	@Test
-	public void testExistance() {
-		List<Skill> skills = new ArrayList<>();
-		skills.add(new Skill());
-		List<Profile> profiles = new ArrayList<>();
-		profiles.add(new Profile());
-		Job job = new Job(0, "title", "description", skills, true, profiles) ;
-		assertNotNull(job);
-	}
+		Job testJob = new Job();
+		Set<Profile> testProfiles = new HashSet();
+		Set<Skill> testSkills = new HashSet();
 	
-	@Test
-	public void testExistenceArgs() {
-		assertNotNull(testJob);
-	}
+		Profile profile1 = new Profile(0, "firstname", "lastname", "description");
+		Profile profile2 = new Profile(1, "firstname", "lastname", "description");
+		Profile profile3 = new Profile(2, "firstname", "lastname", "description");
+
+		Skill skill1 = new Skill("title", testProfiles);
+		Skill skill2 = new Skill("title", testProfiles);
+		Skill skill3 = new Skill("title", testProfiles);
+	
+
+
+		@Before
+		public void setUp(){
+
+			
+			Set<Profile> testProfiles = new HashSet<>();
+			testProfiles.add(profile1);
+			testProfiles.add(profile2);
+			testProfiles.add(profile3);
+
+	
+
+	
+			Set<Skill> testSkills = new HashSet<>();
+			testSkills.add(skill1);
+			testSkills.add(skill2);
+			testSkills.add(skill3);
+
+			Job testJob = new Job(0, "title", "description", testSkills, false, testProfiles);
+	
+		}
+	
+
+	
+	// @Test
+	// public void testExistenceArgs() {
+		
+	// 	assertEquals(skill1, testSkills.skill1);
+	// }
 
 	@Test
 	public void testId() {
-		testJob.setId(0);
 		assertEquals(0, testJob.getId());
 	}
 	
@@ -52,24 +98,23 @@ public class JobTest {
 	
 	@Test
 	public void testSkills() {
-		List<Skill> skills = new ArrayList<>();
-		skills.add(new Skill());
-		testJob.setSkills(skills);
-		assertNotNull(testJob.getSkills().get(0));
+	
+		assertEquals(testSkills, testJob.getSkills());
+		// assertNotNull(testjob.getSkills().get(0));
 	}
 	
 	@Test
 	public void testFilled() {
-		testJob.setFilled(true);
-		assertTrue(testJob.isFilled());
+		assertEquals(false, testJob.isFilled());
 	}
 	
 	@Test
 	public void testProfiles() {
-		List<Profile> profiles = new ArrayList<>();
-		profiles.add(new Profile());
-		testJob.setProfiles(profiles);
-		assertNotNull(testJob.getProfiles().get(0));
+		// Set<Profile> profiles = new HashSet<>();
+		// profiles.add(new Profile());
+		// testJob.setProfiles(profiles);
+		assertEquals(testProfiles, testJob.getProfiles());
+		// assertNotNull(testjob.getProfiles().iterator().;
 	}
 	
 	@Test
