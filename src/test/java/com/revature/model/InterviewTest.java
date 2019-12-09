@@ -38,9 +38,9 @@ public class InterviewTest {
 	Comment comment3 = new Comment(0, date, "name", "text", testInterview);
 
 
-	User user1 = new User(0, "username", "password");
-	User user2 = new User(0, "username", "password");
-	User user3 = new User(0, "username", "password");
+	User user1 = new User("username", "password");
+	User user2 = new User("username", "password");
+	User user3 = new User("username", "password");
 
 
 
@@ -48,13 +48,13 @@ public class InterviewTest {
 	@Before
 	public void setUp(){
 		Profile profile1 = new Profile(0, "firstname", "lastname", "description");
-		Profile profile2 = new Profile(1, "firstname", "lastname", "description");
-		Profile profile3 = new Profile(2, "firstname", "lastname", "description");
+		// Profile profile2 = new Profile(1, "firstname", "lastname", "description");
+		// Profile profile3 = new Profile(2, "firstname", "lastname", "description");
 	
-		Set<Profile> testProfiles = new HashSet<>();
-			testProfiles.add(profile1);
-			testProfiles.add(profile2);
-			testProfiles.add(profile3);
+		// Set<Profile> testProfiles = new HashSet<>();
+		// 	testProfiles.add(profile1);
+		// 	testProfiles.add(profile2);
+		// 	testProfiles.add(profile3);
 
 
 		Set<Skill> testSkills = new HashSet<>();
@@ -74,8 +74,8 @@ public class InterviewTest {
 
 		
 
-		Job testJob = new Job(0, "title", "description", testSkills, true, testProfiles);
-		Interview testInterview = new Interview(0, profile1, date, true, testJob,testUser);
+		Job testJob = new Job(0, "title", "description", testSkills, true);
+		Interview testInterview = new Interview(0, profile1, testComment, date, true, testJob, testUser);
 
 	}
 
