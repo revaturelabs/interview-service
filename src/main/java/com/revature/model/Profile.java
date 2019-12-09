@@ -55,11 +55,6 @@ public class Profile {
 	@JsonIgnore
 	private Set<Interview> interviews;
 
-	// @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy =
-	// "profiles")
-	// @JsonIgnore
-	// private Set<Job> jobs = new HashSet<>();
-
 	@Column(name = "profile_description")
 	private String description;
 
@@ -75,7 +70,6 @@ public class Profile {
 		this.skills = new HashSet<Skill>();
 		this.interviews = new HashSet<Interview>();
 		this.description = description;
-		// this.jobs = new HashSet<Job>();
 	}
 
 	public int getId() {

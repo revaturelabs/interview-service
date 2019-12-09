@@ -48,7 +48,6 @@ public class UserController {
 	 */
 	@GetMapping(value = "/register")
 	public User register(@RequestBody User user) {
-
 		String password = user.getPassword(); // get password
 		user.setPassword(DigestUtils.sha256Hex(password)); // hash password
 		repository.save(user); // persist the change to the DB
@@ -69,7 +68,7 @@ public class UserController {
 		// System.out.println(user);
 		for (User u : repository.findAll()) {
 			if (user.getUsername().equals(u.getUsername())) {
-				if (user.getPassword().equalsIgnoreCase(DigestUtils.sha256Hex(u.getPassword()))) {
+				if (u.getPassword().equals(DigestUtils.sha256Hex(user.getPassword()))) {
 					return u;
 				}
 			}

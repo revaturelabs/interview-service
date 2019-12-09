@@ -2,6 +2,7 @@ package com.revature.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Job;
 import com.revature.repository.JobRepository;
@@ -25,6 +26,7 @@ public class JobService {
 			jr.save(j);
 			return true;
 		} catch (Exception e) {
+			System.out.println(e);
 			return false;
 		}
 	}
