@@ -33,7 +33,7 @@ public class UserController {
 	 */
 	@GetMapping(value = "/users")
 	public String save() {
-		User dev = new User(2, "admin", DigestUtils.sha256Hex("admin"));
+		User dev = new User("admin", DigestUtils.sha256Hex("admin"));
 		repository.save(dev);
 		return "worked";
 	}
@@ -43,8 +43,7 @@ public class UserController {
 	 * Very basic method to register a user to database
 	 * </p>
 	 * 
-	 * @author Daniel Cavaretta
-	 * 	 * @param user the user information from logging in
+	 * @author Daniel Cavaretta * @param user the user information from logging in
 	 * @return the user information after username and password is verified
 	 */
 	@GetMapping(value = "/register")
@@ -67,7 +66,7 @@ public class UserController {
 	 */
 	@PostMapping(value = "/login")
 	public User login(@RequestBody User user) {
-		System.out.println(user);
+		// System.out.println(user);
 		for (User u : repository.findAll()) {
 			if (user.getUsername().equals(u.getUsername())) {
 				if (user.getPassword().equalsIgnoreCase(DigestUtils.sha256Hex(u.getPassword()))) {

@@ -27,48 +27,45 @@ import org.hibernate.annotations.LazyCollectionOption;
  * @author John Thaddeus Kelly
  */
 @Entity
-@Table(name="jobs")
+@Table(name = "jobs")
 public class Job {
 	@Id
-	@Column(name="job_id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "job_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="job_title")
+
+	@Column(name = "job_title")
 	private String title;
-	
-	@Column(name="job_description")
+
+	@Column(name = "job_description")
 	private String description;
-	
-	@ManyToMany(fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL)
-	@JoinTable(name="job_skills",
-				joinColumns = {@JoinColumn(name = "job_id")},
-				inverseJoinColumns = {@JoinColumn(name = "skill_id")})
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "job_skills", joinColumns = { @JoinColumn(name = "job_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "skill_id") })
 	private Set<Skill> skills = new HashSet<>();
-	
-	@Column(name="job_isFilled")
+
+	@Column(name = "job_isFilled")
 	private boolean isFilled;
-	
-	@ManyToMany(fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL)
-	@JoinTable(name="job_profiles",
-	joinColumns = {@JoinColumn(name = "job_id")},
-	inverseJoinColumns = {@JoinColumn(name = "profile_id")})
-	private Set<Profile> profiles = new HashSet<>();
-	
+
+	// @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	// @JoinTable(name = "job_profiles", joinColumns = { @JoinColumn(name =
+	// "job_id") }, inverseJoinColumns = {
+	// @JoinColumn(name = "profile_id") })
+	// private Set<Profile> profiles = new HashSet<>();
+
 	public Job() {
 		super();
 	}
-	
-	public Job(int id, String title, String description, Set<Skill> skills, boolean isFilled, Set<Profile> profiles) {
+
+	public Job(int id, String title, String description, Set<Skill> skills, boolean isFilled) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.skills = skills;
 		this.isFilled = isFilled;
-		this.profiles = profiles;
+		// this.profiles = profiles;
 	}
 
 	public int getId() {
@@ -111,70 +108,71 @@ public class Job {
 		this.isFilled = isFilled;
 	}
 
-	public Set<Profile> getProfiles() {
-		return profiles;
-	}
+	// public Set<Profile> getProfiles() {
+	// return profiles;
+	// }
 
-	public void setProfiles(Set<Profile> profiles) {
-		this.profiles = profiles;
-	}
+	// public void setProfiles(Set<Profile> profiles) {
+	// this.profiles = profiles;
+	// }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
-		result = prime * result + (isFilled ? 1231 : 1237);
-		result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
-		result = prime * result + ((skills == null) ? 0 : skills.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
+	// @Override
+	// public int hashCode() {
+	// final int prime = 31;
+	// int result = 1;
+	// result = prime * result + ((description == null) ? 0 :
+	// description.hashCode());
+	// result = prime * result + id;
+	// result = prime * result + (isFilled ? 1231 : 1237);
+	// result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
+	// result = prime * result + ((skills == null) ? 0 : skills.hashCode());
+	// result = prime * result + ((title == null) ? 0 : title.hashCode());
+	// return result;
+	// }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Job other = (Job) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		}
-		else if (!description.equals(other.description))
-			return false;
-		if (id != other.id)
-			return false;
-		if (isFilled != other.isFilled)
-			return false;
-		if (profiles == null) {
-			if (other.profiles != null)
-				return false;
-		}
-		else if (!profiles.equals(other.profiles))
-			return false;
-		if (skills == null) {
-			if (other.skills != null)
-				return false;
-		}
-		else if (!skills.equals(other.skills))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		}
-		else if (!title.equals(other.title))
-			return false;
-		return true;
-	}
+	// @Override
+	// public boolean equals(Object obj) {
+	// if (this == obj)
+	// return true;
+	// if (obj == null)
+	// return false;
+	// if (getClass() != obj.getClass())
+	// return false;
+	// Job other = (Job) obj;
+	// if (description == null) {
+	// if (other.description != null)
+	// return false;
+	// }
+	// else if (!description.equals(other.description))
+	// return false;
+	// if (id != other.id)
+	// return false;
+	// if (isFilled != other.isFilled)
+	// return false;
+	// if (profiles == null) {
+	// if (other.profiles != null)
+	// return false;
+	// }
+	// else if (!profiles.equals(other.profiles))
+	// return false;
+	// if (skills == null) {
+	// if (other.skills != null)
+	// return false;
+	// }
+	// else if (!skills.equals(other.skills))
+	// return false;
+	// if (title == null) {
+	// if (other.title != null)
+	// return false;
+	// }
+	// else if (!title.equals(other.title))
+	// return false;
+	// return true;
+	// }
 
 	@Override
 	public String toString() {
 		return "Job [id=" + id + ", title=" + title + ", description=" + description + ", skills=" + skills
-				+ ", isFilled=" + isFilled + ", profiles=" + profiles + "]";
+				+ ", isFilled=" + isFilled + "]";
 	}
 }
