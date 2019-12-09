@@ -21,15 +21,13 @@ public class InterviewTest {
 	Interview testInterview = new Interview();
 	List<Comment> testComment = new ArrayList();
 	Set<User> testUser = new HashSet();
-	List<Job> testJob = new ArrayList();
 	Timestamp date;
+	Job testJob;
+	Profile profile1;
 	Set<Profile> testProfiles = new HashSet();
 	Set<Skill> testSkills = new HashSet();
 
 
-	Profile profile1 = new Profile(0, "firstname", "lastname", "description");
-	Profile profile2 = new Profile(1, "firstname", "lastname", "description");
-	Profile profile3 = new Profile(2, "firstname", "lastname", "description");
 
 	Skill skill1 = new Skill("title", testProfiles);
 	Skill skill2 = new Skill("title", testProfiles);
@@ -39,9 +37,6 @@ public class InterviewTest {
 	Comment comment2 = new Comment(0, date, "name", "text", testInterview);
 	Comment comment3 = new Comment(0, date, "name", "text", testInterview);
 
-	Job job1 = new Job(0, "title", "description", testSkills, false, testProfiles);
-	Job job2 = new Job(0, "title", "description", testSkills, false, testProfiles);
-	Job job3 = new Job(0, "title", "description", testSkills, false, testProfiles);
 
 	User user1 = new User(0, "username", "password");
 	User user2 = new User(0, "username", "password");
@@ -52,6 +47,10 @@ public class InterviewTest {
 
 	@Before
 	public void setUp(){
+		Profile profile1 = new Profile(0, "firstname", "lastname", "description");
+		Profile profile2 = new Profile(1, "firstname", "lastname", "description");
+		Profile profile3 = new Profile(2, "firstname", "lastname", "description");
+	
 		Set<Profile> testProfiles = new HashSet<>();
 			testProfiles.add(profile1);
 			testProfiles.add(profile2);
@@ -73,13 +72,10 @@ public class InterviewTest {
 			testUser.add(user2);
 			testUser.add(user3);
 
-		List<Job> testJob= new ArrayList();
-			testJob.add(job1);
-			testJob.add(job2);
-			testJob.add(job3);
+		
 
-
-		Interview testInterview = new Interview(0, profile1, date, true, job1,testUser);
+		Job testJob = new Job(0, "title", "description", testSkills, true, testProfiles);
+		Interview testInterview = new Interview(0, profile1, date, true, testJob,testUser);
 
 	}
 
@@ -95,9 +91,8 @@ public class InterviewTest {
 	@Test
 	public void testProfile() {
 		
-		while (testProfiles.iterator().hasNext()){
-			assertEquals(profile3, testInterview.getProfile());
-		}
+		assertEquals(profile1, testInterview.getProfile());
+		
 	}
 	
 	
@@ -114,10 +109,10 @@ public class InterviewTest {
 	
 	@Test
 	public void testJob() {
-		while (testJob.iterator().hasNext()){
-			assertEquals(testJob, testInterview.getProfile());
 		
-		}
+			assertEquals(testJob, testInterview.getJob());
+		
+		
 	}
 	
 	@Test
