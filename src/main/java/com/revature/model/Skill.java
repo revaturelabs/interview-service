@@ -13,9 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * An object representation of our Skill model.
@@ -23,34 +21,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @author Davin Merry
  */
 @Entity
-@Table(name="skills")
+@Table(name = "skills")
 public class Skill {
-	
+
 	@Id
-	@Column(name="skill_id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "skill_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="skill_title")
+
+	@Column(name = "skill_title")
 	private String title;
-	
-	@ManyToMany(fetch=FetchType.EAGER,
-			cascade= {
-					CascadeType.ALL},
-	mappedBy= "skills")
-	@Column(name="profiles")
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, mappedBy = "skills")
+	@Column(name = "profiles")
 	@JsonIgnore
 	private Set<Profile> profiles = new HashSet<>();
-	
+
 	public Skill() {
 		super();
 	}
 
 	@Override
 	public String toString() {
-	return "Skill [id=" + id + ", title=" + title + "]";
+		return "Skill [id=" + id + ", title=" + title + ", profiles=" + profiles + "]";
 	}
-	
 
 	public Skill(String title, Set<Profile> skillProfiles) {
 		super();
@@ -82,41 +76,39 @@ public class Skill {
 	public void setProfiles(Set<Profile> profiles) {
 		this.profiles = profiles;
 	}
-	
 
-//	@Override
-//	public int hashCode() {
-//		final int prime = 31;
-//		int result = 1;
-//		result = prime * result + id;
-//		result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
-//		result = prime * result + ((title == null) ? 0 : title.hashCode());
-//		return result;
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Skill other = (Skill) obj;
-//		if (id != other.id)
-//			return false;
-//		if (profiles == null) {
-//			if (other.profiles != null)
-//				return false;
-//		} else if (!profiles.equals(other.profiles))
-//			return false;
-//		if (title == null) {
-//			if (other.title != null)
-//				return false;
-//		} else if (!title.equals(other.title))
-//			return false;
-//		return true;
-//	}
+	// @Override
+	// public int hashCode() {
+	// final int prime = 31;
+	// int result = 1;
+	// result = prime * result + id;
+	// result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
+	// result = prime * result + ((title == null) ? 0 : title.hashCode());
+	// return result;
+	// }
+	//
+	// @Override
+	// public boolean equals(Object obj) {
+	// if (this == obj)
+	// return true;
+	// if (obj == null)
+	// return false;
+	// if (getClass() != obj.getClass())
+	// return false;
+	// Skill other = (Skill) obj;
+	// if (id != other.id)
+	// return false;
+	// if (profiles == null) {
+	// if (other.profiles != null)
+	// return false;
+	// } else if (!profiles.equals(other.profiles))
+	// return false;
+	// if (title == null) {
+	// if (other.title != null)
+	// return false;
+	// } else if (!title.equals(other.title))
+	// return false;
+	// return true;
+	// }
 
-	
 }
