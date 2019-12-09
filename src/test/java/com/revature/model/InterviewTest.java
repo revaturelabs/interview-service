@@ -18,7 +18,13 @@ import org.junit.Test;
 	 */
 public class InterviewTest {
 	Interview testInterview = new Interview();
-	
+	List<Comment> testComment = new ArrayList();
+	Set<User> testUser = new HashSet();
+	Job testJob = new Job();
+
+
+
+
 	@Test
 	public void testExistance() {
 		Profile profile = new Profile();
@@ -79,8 +85,8 @@ public class InterviewTest {
 	public void testUsers() {
 		Set<User> users = new HashSet<>();
 		users.add(new User());
-		testInterview.setUsers(users);
-		assertEquals(users, testInterview.getUsers());
+		testInterview.setInterviewUsers(users);
+		assertEquals(users, testInterview.getInterviewUsers());
 	}
 	
 	@Test
