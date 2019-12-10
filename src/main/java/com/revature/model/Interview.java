@@ -39,10 +39,10 @@ public class Interview {
 	// @JsonIgnore
 	private Profile profile;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	// @LazyCollection(LazyCollectionOption.FALSE)
-	@JoinColumn(name = "interview_comments")
-	private List<Comment> comments = new ArrayList<>();
+	// @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	// // @LazyCollection(LazyCollectionOption.FALSE)
+	// @JoinColumn(name = "interview_comments")
+	// private List<Comment> comments = new ArrayList<>();
 
 	@Column(name = "interview_date")
 	private Timestamp date;
@@ -182,11 +182,11 @@ public class Interview {
 		this.users = users;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
-	}
+	// public List<Comment> getComments() {
+	// return comments;
+	// }
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
+	// public void setComments(List<Comment> comments) {
+	// this.comments = comments;
+	// }
 }

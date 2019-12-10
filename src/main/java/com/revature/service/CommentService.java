@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CommentService{
+public class CommentService {
 
     @Autowired
     private CommentRepository cr;
@@ -20,23 +20,24 @@ public class CommentService{
     private InterviewRepository ir;
 
     public Comment insertCommentWithInterview(int id, Comment c) {
-    	try {
-            Interview i = ir.findById(id);
-            c.setInterviewId(i);
-            cr.save(c);
-    		return c;
-    	} catch (Exception e) {
-    		return null;
-    	}
+        try {
+            // Interview i = ir.findById(id);
+            // c.setInterviewId(i);
+            // cr.save(c);
+            cr.insertComment(c.getDate(), c.getName(), c.getText(), id);
+            return c;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public List<Comment> getCommentsByInterview(int id){
+    public List<Comment> getCommentsByInterview(int id) {
 
-       Interview i = ir.findById(id);
+        Interview i = ir.findById(id);
 
-        if(i == null){
+        if (i == null) {
             return null;
-        } else{
+        } else {
             return cr.findAllByInterviewId(i);
         }
     }
