@@ -23,9 +23,19 @@ public class InterviewService {
 		this.ir = interviewrepo;
 	}
 
+	// public boolean insertInterviewInfo(Interview i) {
+	// try {
+	// ir.save(i);
+	// return true;
+	// } catch (Exception e) {
+	// System.out.println(e);
+	// return false;
+	// }
+	// }
+
 	public boolean insertInterviewInfo(Interview i) {
 		try {
-			ir.save(i);
+			ir.mergeEntity(i);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -36,7 +46,7 @@ public class InterviewService {
 	public boolean insertCommentInInterview(int id, Comment c) {
 		try {
 			Interview i = ir.findById(id);
-			i.getComments().add(c);
+			// i.getComments().add(c);
 			ir.save(i);
 			return true;
 		} catch (Exception e) {

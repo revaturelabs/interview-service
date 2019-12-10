@@ -119,51 +119,21 @@ public class Interview {
 		this.users = users;
 	}
 
-	public Interview id(int id) {
-		this.id = id;
-		return this;
-	}
+// 	@Override
+// 	public boolean equals(Object o) {
+// 		if (o == this)
+// 			return true;
+// 		if (!(o instanceof Interview)) {
+// 			return false;
+// 		}
+// 		Interview interview = (Interview) o;
+// 		return id == interview.id && Objects.equals(profile, interview.profile) && Objects.equals(date, interview.date) && isComplete == interview.isComplete && Objects.equals(job, interview.job) && Objects.equals(users, interview.users);
+// 	}
 
-	public Interview profile(Profile profile) {
-		this.profile = profile;
-		return this;
-	}
-
-	public Interview date(Timestamp date) {
-		this.date = date;
-		return this;
-	}
-
-	public Interview isComplete(boolean isComplete) {
-		this.isComplete = isComplete;
-		return this;
-	}
-
-	public Interview job(Job job) {
-		this.job = job;
-		return this;
-	}
-
-	public Interview users(Set<User> users) {
-		this.users = users;
-		return this;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (o == this)
-			return true;
-		if (!(o instanceof Interview)) {
-			return false;
-		}
-		Interview interview = (Interview) o;
-		return id == interview.id && Objects.equals(profile, interview.profile) && Objects.equals(date, interview.date) && isComplete == interview.isComplete && Objects.equals(job, interview.job) && Objects.equals(users, interview.users);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, profile, date, isComplete, job, users);
-	}
+// 	@Override
+// 	public int hashCode() {
+// 		return Objects.hash(id, profile, date, isComplete, job, users);
+// 	}
 
 	@Override
 	public String toString() {
@@ -176,5 +146,5 @@ public class Interview {
 			", users='" + getUsers() + "'" +
 			"}";
 	}
-	
+
 }
