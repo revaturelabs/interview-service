@@ -26,20 +26,6 @@ public class UserController {
 
 	/**
 	 * <p>
-	 * Very basic method to save a user to database
-	 * </p>
-	 * 
-	 * @author Daniel Cavaretta, William Liederer and Brittany Tinnin
-	 */
-	@GetMapping(value = "/users")
-	public String save() {
-		User dev = new User("admin", DigestUtils.sha256Hex("admin"));
-		repository.save(dev);
-		return "worked";
-	}
-
-	/**
-	 * <p>
 	 * Very basic method to register a user to database
 	 * </p>
 	 * 

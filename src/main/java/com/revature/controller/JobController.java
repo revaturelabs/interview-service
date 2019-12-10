@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import com.revature.model.Job;
 import com.revature.model.Skill;
 import com.revature.service.JobService;
@@ -35,11 +37,12 @@ public class JobController {
      * @author Adriana Long
      */
     @PostMapping("/saveJob")
+    @Transactional
     public boolean insertJobInfo(@RequestBody Job job) {
         Set<Skill> skills = new HashSet<Skill>();
         for (Skill s : job.getSkills()) {
             Skill tempSkill = ss.findSkill(s.getTitle());
-            tempSkill.setId(0);
+            // tempSkill.setId(0);
             skills.add(tempSkill);
         }
         job.setSkills(skills);

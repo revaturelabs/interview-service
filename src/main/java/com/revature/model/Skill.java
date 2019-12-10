@@ -51,9 +51,9 @@ public class Skill {
 		return "Skill [id=" + id + ", title=" + title + ", profiles=" + profiles + "]";
 	}
 
-	public Skill(String title, Set<Profile> skillProfiles) {
+	public Skill(int id, String title, Set<Profile> skillProfiles) {
 		super();
-		this.id = 0;
+		this.id = id;
 		this.title = title;
 		this.profiles = skillProfiles;
 	}

@@ -15,10 +15,13 @@ import com.revature.model.Profile;
  */
 
 @Repository
-public interface ProfileRepository extends JpaRepository<Profile, Integer>, CustomProfileRepo{
+public interface ProfileRepository extends JpaRepository<Profile, Integer>, CustomRepo {
     Profile findByLastName(String lastName);
+
     Profile findByFirstName(String firstName);
+
     Profile findById(int id);
+
     List<Profile> findByLastNameOrderByLastNameAsc(String lastName);
- 
+
 }

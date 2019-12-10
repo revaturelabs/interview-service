@@ -3,6 +3,8 @@ package com.revature.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 import com.revature.model.Job;
 import com.revature.repository.JobRepository;
 
@@ -20,9 +22,10 @@ public class JobService {
 		this.jr = jr;
 	}
 
+	@Transactional
 	public boolean insertJobInfo(Job j) {
 		try {
-			jr.save(j);
+			jr.mergeEntity(j);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);

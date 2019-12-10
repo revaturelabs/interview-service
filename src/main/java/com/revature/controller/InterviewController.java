@@ -33,9 +33,9 @@ public class InterviewController {
 
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
-		for (User u : interview.getUsers()) {
-			u.setId(0);
-		}
+		// for (User u : interview.getUsers()) {
+		// u.setId(0);
+		// }
 		return is.insertInterviewInfo(interview);
 	}
 

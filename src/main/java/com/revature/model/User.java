@@ -43,16 +43,9 @@ public class User {
 		super();
 	}
 
-	public User(String username, String password) {
+	public User(int id, String username, String password, Set<Interview> interviews) {
 		super();
-		this.id = 0;
-		this.username = username;
-		this.password = password;
-		this.interviews = new HashSet<Interview>();
-	}
-
-	public User(String username, String password, Set<Interview> interviews) {
-		this.id = 0;
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.interviews = interviews;

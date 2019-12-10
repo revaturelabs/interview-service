@@ -34,7 +34,7 @@ public class ProfileService {
     public boolean insertProfileInfo(Profile p) {
 
         try {
-            pr.save(p);
+            pr.mergeEntity(p);
             return true;
         } catch (Exception e) {
             System.out.println(e);
