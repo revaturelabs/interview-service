@@ -15,7 +15,7 @@ import com.revature.model.Profile;
  */
 
 @Repository
-public interface ProfileRepository extends JpaRepository<Profile, Integer>{
+public interface ProfileRepository extends JpaRepository<Profile, Integer>, CustomProfileRepo{
     Profile findByLastName(String lastName);
     Profile findByFirstName(String firstName);
     Profile findById(int id);
