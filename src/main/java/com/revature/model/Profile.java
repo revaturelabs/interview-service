@@ -16,12 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * An object representation of our Profile model. This model is considered our
@@ -45,13 +40,11 @@ public class Profile {
 	private String lastName;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	// @LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name = "profile_skills", joinColumns = { @JoinColumn(name = "profile_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "skill_id") })
 	private Set<Skill> skills = new HashSet<>();
 
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "profile")
-	// @LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	private Set<Interview> interviews;
 
@@ -119,14 +112,6 @@ public class Profile {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	// public Set<Job> getJobs() {
-	// return jobs;
-	// }
-
-	// public void setJobs(Set<Job> jobs) {
-	// this.jobs = jobs;
-	// }
 
 	// @Override
 	// public int hashCode() {

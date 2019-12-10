@@ -39,6 +39,7 @@ public class JobController {
         Set<Skill> skills = new HashSet<Skill>();
         for (Skill s : job.getSkills()) {
             Skill tempSkill = ss.findSkill(s.getTitle());
+            tempSkill.setId(0);
             skills.add(tempSkill);
         }
         job.setSkills(skills);
