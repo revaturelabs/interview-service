@@ -1,8 +1,6 @@
 package com.revature.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,9 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * An object representation of our Job model.
@@ -47,12 +42,6 @@ public class Job {
 
 	@Column(name = "job_isFilled")
 	private boolean isFilled;
-
-	// @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	// @JoinTable(name = "job_profiles", joinColumns = { @JoinColumn(name =
-	// "job_id") }, inverseJoinColumns = {
-	// @JoinColumn(name = "profile_id") })
-	// private Set<Profile> profiles = new HashSet<>();
 
 	public Job() {
 		super();

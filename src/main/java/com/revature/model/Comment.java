@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,30 +18,30 @@ import javax.persistence.Table;
  * 
  * A side note to others:
  * 
- * Notice the lack of @Column annotations throughout this model.
- * There is really no need to add this if there doesn't have to be.
+ * Notice the lack of @Column annotations throughout this model. There is really
+ * no need to add this if there doesn't have to be.
  * 
- * For one, it just causes a bit more clutter and confusion.
- * Second, they're really only useful for renaming the column on the backend, which
- * this program has no real use for.
+ * For one, it just causes a bit more clutter and confusion. Second, they're
+ * really only useful for renaming the column on the backend, which this program
+ * has no real use for.
  * 
- * Unless absolutely necessary, do not add more clutter here (which, ironically, this comment does).
+ * Unless absolutely necessary, do not add more clutter here (which, ironically,
+ * this comment does).
  * 
  * @author Davin Merry
  */
 @Entity
-@Table(name="comments")
+@Table(name = "comments")
 public class Comment {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private Timestamp date;
 	private String name;
 	private String text;
-	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="interview_comments")
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "interview_comments")
 	private Interview interviewId;
-
 
 	public Comment() {
 	}
@@ -128,7 +127,8 @@ public class Comment {
 			return false;
 		}
 		Comment comment = (Comment) o;
-		return id == comment.id && Objects.equals(date, comment.date) && Objects.equals(name, comment.name) && Objects.equals(text, comment.text) && Objects.equals(interviewId, comment.interviewId);
+		return id == comment.id && Objects.equals(date, comment.date) && Objects.equals(name, comment.name)
+				&& Objects.equals(text, comment.text) && Objects.equals(interviewId, comment.interviewId);
 	}
 
 	@Override
@@ -138,14 +138,8 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "{" +
-			" id='" + getId() + "'" +
-			", date='" + getDate() + "'" +
-			", name='" + getName() + "'" +
-			", text='" + getText() + "'" +
-			", interviewId='" + getInterviewId() + "'" +
-			"}";
+		return "{" + " id='" + getId() + "'" + ", date='" + getDate() + "'" + ", name='" + getName() + "'" + ", text='"
+				+ getText() + "'" + ", interviewId='" + getInterviewId() + "'" + "}";
 	}
 
-	
 }

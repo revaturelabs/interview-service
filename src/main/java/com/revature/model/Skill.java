@@ -37,6 +37,11 @@ public class Skill {
 	@JsonIgnore
 	private Set<Profile> profiles = new HashSet<>();
 
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, mappedBy = "skills")
+	@Column(name = "jobs")
+	@JsonIgnore
+	private Set<Job> jobs = new HashSet<>();
+
 	public Skill() {
 		super();
 	}
@@ -75,6 +80,14 @@ public class Skill {
 
 	public void setProfiles(Set<Profile> profiles) {
 		this.profiles = profiles;
+	}
+
+	public Set<Job> getJobs() {
+		return jobs;
+	}
+
+	public void setJobs(Set<Job> jobs) {
+		this.jobs = jobs;
 	}
 
 	// @Override
