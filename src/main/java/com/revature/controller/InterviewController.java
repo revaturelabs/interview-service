@@ -1,6 +1,8 @@
 package com.revature.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +18,7 @@ import com.revature.model.Comment;
 import com.revature.model.Interview;
 import com.revature.model.User;
 import com.revature.service.InterviewService;
+import com.revature.service.UserServiceImpl;
 
 /**
  * The main controller for obtaining information about an Interview from the
@@ -30,12 +33,17 @@ import com.revature.service.InterviewService;
 public class InterviewController {
 	@Autowired
 	private InterviewService is;
+	@Autowired
+	private UserServiceImpl us;
 
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
-		// for (User u : interview.getUsers()) {
-		// u.setId(0);
-		// }
+		Set<User> users = new HashSet<User>();
+		for (User u : interview.getUsers()) {
+			User tempUser = us.findById(u.getId());
+			users.add(tempUser);
+		}
+		interview.setUsers(users);
 		return is.insertInterviewInfo(interview);
 	}
 
