@@ -10,7 +10,7 @@ import com.revature.model.Job;
  * @author John Thaddeus Kelly
  */
 @Repository
-public interface JobRepository extends JpaRepository<Job, Integer>{
+public interface JobRepository extends JpaRepository<Job, Integer>, CustomJobRepo{
 	Job findById(int id);
 	Job findByTitle(String title);
 }
