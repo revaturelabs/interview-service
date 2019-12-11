@@ -32,7 +32,7 @@ public class SkillTest {
 	testProfiles.add(profile2);
 	testProfiles.add(profile3);
 	
-	Skill testSkill = new Skill(title, testProfiles);
+	Skill testSkill = new Skill(0, title, testProfiles);
 
 	}
 	@Test

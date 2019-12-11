@@ -1,8 +1,14 @@
 package com.revature.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +21,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.revature.model.Job;
+import com.revature.model.Profile;
 import com.revature.model.Skill;
 
 @SpringBootTest(classes = {SkillService.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -31,9 +39,15 @@ public class SkillServiceTest {
 	 */
 
 	@Autowired
-    private SkillService ss;
-	private Skill skill1 = new Skill(1, "angular");
+	SkillService ss;
+	Set<Job> testJob = new HashSet<>();
+	Set<Profile> testProfile = new HashSet<>();
 	
+	Skill skill1 = new Skill(1, "angular", testProfile);
+	Skill skill2 = new Skill(1, "angular", testProfile);
+	Skill skill3 = new Skill(1, "angular", testProfile);
+
+
 	@Before
 	public void setup() {
 		ss.insertSkill(skill1);
@@ -41,13 +55,16 @@ public class SkillServiceTest {
 	
 	@Test
 	public void testAllSkill() {
-		assertNotNull(ss.getAll());
+		List<Skill> list = new ArrayList<>();
+			list.add(skill1);
+			list.add(skill2);
+			list.add(skill3);
+		assertEquals(list.iterator().next().getId(),ss.getAll().iterator().next().getId());
 	}
 	
 	@Test
 	public void testInsertSkill() {
-		Skill skill = new Skill(0, "testskill");
-		assertTrue(ss.insertSkill(skill));
+		assertTrue(ss.insertSkill(skill1));
 	
 	}
 	
