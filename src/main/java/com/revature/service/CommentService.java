@@ -41,4 +41,9 @@ public class CommentService {
             return cr.findAllByInterviewId(i);
         }
     }
+
+	public List<Comment> findAll() {
+		// TODO Auto-generated method stub
+		return cr.findAll();
+	}
 }

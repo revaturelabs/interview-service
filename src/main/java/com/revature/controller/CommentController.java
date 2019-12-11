@@ -31,4 +31,9 @@ public class CommentController {
     public List<Comment> findByInterviewId(@PathVariable int id){
         return cs.getCommentsByInterview(id);
     }
+    
+    @GetMapping("/getAllComments")
+    public List<Comment> findAll(){
+    	return cs.findAll();
+    }
 }
