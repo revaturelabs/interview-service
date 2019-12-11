@@ -31,7 +31,6 @@ public class ProfileController {
     @PostMapping("/saveProfile")
     @Transactional
     public boolean insertProfileInfo(@RequestBody Profile profile) {
-        System.out.println(profile);
         return ps.insertProfileInfo(profile);
     }
 

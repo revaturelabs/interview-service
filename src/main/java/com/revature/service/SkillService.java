@@ -16,20 +16,21 @@ import com.revature.repository.SkillRepository;
 public class SkillService {
 	@Autowired
 	SkillRepository sr;
-	
-	public Iterable<Skill> getAll(){
+
+	public Iterable<Skill> getAll() {
 		return sr.findAll();
 	}
-	
+
 	public boolean insertSkill(Skill s) {
 		try {
-			sr.save(s); 
+			sr.save(s);
 			return true;
 		} catch (Exception e) {
+			System.out.println(e);
 			return false;
 		}
 	}
-	
+
 	public Skill findSkill(String s) {
 		return sr.findByTitle(s);
 	}
