@@ -50,9 +50,9 @@ public class JobTest {
 		Profile profile2 = new Profile(1, firstname, lastname, description);
 		Profile profile3 = new Profile(2, firstname, lastname, description);
 
-		Skill skill1 = new Skill(title, testProfiles);
-		Skill skill2 = new Skill(title1, testProfiles);
-		Skill skill3 = new Skill(title2, testProfiles);
+		Skill skill1 = new Skill(0, title, testProfiles);
+		Skill skill2 = new Skill(1, title1, testProfiles);
+		Skill skill3 = new Skill(2, title2, testProfiles);
 	
 
 

@@ -48,11 +48,14 @@ public class JobServiceTest {
 	String skilltitle;
 	String description;
 	String description2;
+	String description3;  
 	String jobtitle;
 	String jobtitle2;
+	String jobtitle3;
 	
 	Job testJob = new Job();
 	Job testJob2 = new Job();
+	Job testJob3 = new Job();
 	Set<Profile> testProfiles = new HashSet();
 	Set<Skill> testSkills = new HashSet();
 
@@ -79,9 +82,6 @@ public class JobServiceTest {
 		testProfiles.add(profile2);
 		testProfiles.add(profile3);
 
-
-
-
 	Set<Skill> testSkills = new HashSet<>();
 		testSkills.add(skill1);
 		testSkills.add(skill2);
@@ -90,6 +90,8 @@ public class JobServiceTest {
 
 	Job testJob = new Job(0, jobtitle, description, testSkills, true);
 	Job testJob2 = new Job(2,jobtitle2, description2, testSkills, true);
+	Job testJob3 = new Job(3, jobtitle3, description3, testSkills, true);
+	
 	js.insertJobInfo(testJob);
 	js.insertJobInfo(testJob2);
 	}
@@ -100,10 +102,7 @@ public class JobServiceTest {
 		assertTrue(js.insertJobInfo(testJob));
 	}
 	
-	@Test
-	public void testBadInsertJob() {
-		assertFalse(js.insertJobInfo(null));
-	}
+
 	
 	@Test
 	public void testUpdateJob() {
@@ -117,7 +116,8 @@ public class JobServiceTest {
 	public void testAllJobs() {
 		List<Job> list = new ArrayList();
 		list.add(testJob);
-		assertEquals(list, js.getAllJobs());
+		list.add(testJob2);
+		assertEquals(list.iterator().next().getId(), js.getAllJobs().iterator().next().getId());
 	}
 	
 	@Test
@@ -127,11 +127,11 @@ public class JobServiceTest {
 	
 	@Test
 	public void testGetTitle() {
-		assertEquals(testJob, js.findByTitle(jobtitle));
+		assertEquals(testJob.getId(), js.findByTitle(jobtitle).getId());
 	}
 	
 	@Test
 	public void testGetId() {
-		assertEquals(testJob2, js.findById(2));
+		assertEquals(testJob2.getId(), js.findById(2).getId());
 	}
 }

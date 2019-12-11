@@ -85,6 +85,26 @@ public class InterviewControllerTest {
 		ic.saveInterview(interview1);
 		ic.saveInterview(interview2);
 		userset.add(uc.register(user1));
+
+	// Comment comment1 = new Comment(1, Timestamp.from(Instant.now()), "name", "text", interview1);
+	// Comment comment2 = new Comment(2, Timestamp.from(Instant.now()), "name", "text", interview2);
+		
+
+
+	@Before
+	public void setUp() {
+		User user1 = new User(0, "username", "passowrd", interviewset);
+		User user2 = new User(2, "username1", "password", interviewset);
+
+		Set<User> userset = new HashSet<>();
+			userset.add(user1);
+			userset.add(user2);
+		
+		ic.saveInterview(interview1);
+		ic.saveInterview(interview2);
+
+		
+
 	}
 
 	@Test
@@ -92,9 +112,8 @@ public class InterviewControllerTest {
 		assertFalse(ic.saveInterview(interview2));
 	}
 
-	@Test
-	public void testSaveInterview(){
-		assertTrue(ic.saveInterview(interview3));
+		assertEquals(true, ic.saveInterview(interview1));
+
 	}
 
 	@Test
