@@ -39,9 +39,11 @@ public class JobServiceTest {
 	 * @author John Thaddeus Kelly
 	 */
 
+	@Autowired 
+	JobRepository jr; 
 
 	@Autowired
-	JobService js;
+	JobService js = new JobService(jr);
 	
 	String skilltitle;
 	String description;
@@ -58,9 +60,9 @@ public class JobServiceTest {
 	Profile profile2 = new Profile(1, "firstname", "lastname", "description");
 	Profile profile3 = new Profile(2, "firstname", "lastname", "description");
 
-	Skill skill1 = new Skill(skilltitle, testProfiles);
-	Skill skill2 = new Skill(skilltitle, testProfiles);
-	Skill skill3 = new Skill(skilltitle, testProfiles);
+	Skill skill1 = new Skill(0, skilltitle, testProfiles);
+	Skill skill2 = new Skill(1, skilltitle, testProfiles);
+	Skill skill3 = new Skill(2, skilltitle, testProfiles);
 
 
 
@@ -86,8 +88,8 @@ public class JobServiceTest {
 		testSkills.add(skill3);
 
 
-	Job testJob = new Job(0, jobtitle, description, testSkills, true, testProfiles);
-	Job testJob2 = new Job(2,jobtitle2, description2, testSkills, true, testProfiles);
+	Job testJob = new Job(0, jobtitle, description, testSkills, true);
+	Job testJob2 = new Job(2,jobtitle2, description2, testSkills, true);
 	js.insertJobInfo(testJob);
 	js.insertJobInfo(testJob2);
 	}
@@ -125,7 +127,7 @@ public class JobServiceTest {
 	
 	@Test
 	public void testGetTitle() {
-		assertEquals(testJob, js.findByTitle("Avenger"));
+		assertEquals(testJob, js.findByTitle(jobtitle));
 	}
 	
 	@Test

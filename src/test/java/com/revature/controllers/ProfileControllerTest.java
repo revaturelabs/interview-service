@@ -1,13 +1,16 @@
 
 package com.revature.controllers;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -40,14 +43,18 @@ public class ProfileControllerTest {
 	
 	@Autowired
 	ProfileController pc = new ProfileController();
-	Profile profile1 = new Profile(1, "Bruce", "Banner", new HashSet<Skill>(), new HashSet<Interview>(), "description");
-	Profile profile2 = new Profile(2, "Thor", "Odinson", new HashSet<Skill>(), new HashSet<Interview>(), "descrition");
-	Profile profile3 = new Profile(3, "Jean", "Grey", new HashSet<Skill>(), new HashSet<Interview>(), "description");
+
+	Profile profile1 = new Profile(1, "Bruce", "Banner", "description");
+	Profile profile2 = new Profile(2, "Thor", "Odinson", "descrition");
+	Profile profile3 = new Profile(3, "Jean", "Grey",  "description");
+
+	List<Profile> testProfile = new ArrayList<>();
 	
 	@Before
-	public void setupDb() {
+	public void setUp() {
 		pc.insertProfileInfo(profile1);
 		pc.insertProfileInfo(profile2);
+		
 	}
 	
 	@Test
@@ -57,7 +64,10 @@ public class ProfileControllerTest {
 	
 	@Test
 	public void testGetAll() {
-		List<Profile> profiles = (List<Profile>) pc.getAll();
-		assertTrue(profiles.contains(profile1));
+		// List<Profile> profiles = (List<Profile>) pc.getAll();
+		List<Profile> testProfile = new ArrayList<>();
+			testProfile.add(profile1);
+			testProfile.add(profile2);
+		assertEquals(testProfile.iterator().next().getId(), pc.getAll().iterator().next().getId());
 	}
 }

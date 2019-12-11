@@ -30,6 +30,7 @@ import com.revature.service.UserServiceImpl;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/interviews")
+
 public class InterviewController {
 	@Autowired
 	private InterviewService is;
