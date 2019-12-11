@@ -43,18 +43,6 @@ public class InterviewService {
 		}
 	}
 
-	public boolean insertCommentInInterview(int id, Comment c) {
-		try {
-			Interview i = ir.findById(id);
-			// i.getComments().add(c);
-			ir.save(i);
-			return true;
-		} catch (Exception e) {
-			System.out.println(e);
-			return false;
-		}
-	}
-
 	public List<Interview> getAllInterviews() {
 		return ir.findAll();
 	}
