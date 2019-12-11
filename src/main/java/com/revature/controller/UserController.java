@@ -51,7 +51,6 @@ public class UserController {
 	 */
 	@PostMapping(value = "/login")
 	public User login(@RequestBody User user) {
-		// System.out.println(user);
 		for (User u : repository.findAll()) {
 			if (user.getUsername().equals(u.getUsername())) {
 				if (u.getPassword().equals(DigestUtils.sha256Hex(user.getPassword()))) {

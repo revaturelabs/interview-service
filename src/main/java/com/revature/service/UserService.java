@@ -10,12 +10,10 @@ import com.revature.model.User;
 import com.revature.repository.UserRepository;
 
 @Service
-// @Component
-public class UserServiceImpl {
+public class UserService {
 
-	public UserServiceImpl() {
+	public UserService() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public List<User> getAllUsers() {
@@ -26,17 +24,7 @@ public class UserServiceImpl {
 		return ur.findById(id);
 	}
 
-	// @Autowired
-	// private RevatureFeignClient feignClient;
-
 	private UserRepository ur;
-
-	// @GetMapping("/create")
-	// public String bulkcreate(){
-	// // save a single Customer
-	// repository.save(new UserBean(1, "Rajesh", "Bhojwani"));
-	// return "Customers are created";
-	// }
 
 	public UserRepository getRepository() {
 		return ur;

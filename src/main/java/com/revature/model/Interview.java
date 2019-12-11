@@ -2,7 +2,6 @@ package com.revature.model;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -35,7 +33,6 @@ public class Interview {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "interview_profile")
-	// @JsonIgnore
 	private Profile profile;
 
 	@Column(name = "interview_date")
@@ -51,8 +48,6 @@ public class Interview {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "interviewer_users", joinColumns = { @JoinColumn(name = "interview_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "users_id") })
-	// @LazyCollection(LazyCollectionOption.FALSE)
-	// @JsonIgnore
 	private Set<User> users = new HashSet<>();
 
 	public Interview() {
@@ -119,32 +114,11 @@ public class Interview {
 		this.users = users;
 	}
 
-// 	@Override
-// 	public boolean equals(Object o) {
-// 		if (o == this)
-// 			return true;
-// 		if (!(o instanceof Interview)) {
-// 			return false;
-// 		}
-// 		Interview interview = (Interview) o;
-// 		return id == interview.id && Objects.equals(profile, interview.profile) && Objects.equals(date, interview.date) && isComplete == interview.isComplete && Objects.equals(job, interview.job) && Objects.equals(users, interview.users);
-// 	}
-
-// 	@Override
-// 	public int hashCode() {
-// 		return Objects.hash(id, profile, date, isComplete, job, users);
-// 	}
-
 	@Override
 	public String toString() {
-		return "{" +
-			" id='" + getId() + "'" +
-			", profile='" + getProfile() + "'" +
-			", date='" + getDate() + "'" +
-			", isComplete='" + isIsComplete() + "'" +
-			", job='" + getJob() + "'" +
-			", users='" + getUsers() + "'" +
-			"}";
+		return "{" + " id='" + getId() + "'" + ", profile='" + getProfile() + "'" + ", date='" + getDate() + "'"
+				+ ", isComplete='" + isIsComplete() + "'" + ", job='" + getJob() + "'" + ", users='" + getUsers() + "'"
+				+ "}";
 	}
 
 }

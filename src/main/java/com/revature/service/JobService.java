@@ -42,6 +42,7 @@ public class JobService {
 			jr.save(b);
 			return true;
 		} catch (Exception e) {
+			System.out.println(e);
 			return false;
 		}
 	}

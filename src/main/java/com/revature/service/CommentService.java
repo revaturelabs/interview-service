@@ -21,20 +21,16 @@ public class CommentService {
 
     public Comment insertCommentWithInterview(int id, Comment c) {
         try {
-            // Interview i = ir.findById(id);
-            // c.setInterviewId(i);
-            // cr.save(c);
             cr.insertComment(c.getDate(), c.getName(), c.getText(), id);
             return c;
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         }
     }
 
     public List<Comment> getCommentsByInterview(int id) {
-
         Interview i = ir.findById(id);
-
         if (i == null) {
             return null;
         } else {
@@ -42,8 +38,7 @@ public class CommentService {
         }
     }
 
-	public List<Comment> findAll() {
-		// TODO Auto-generated method stub
-		return cr.findAll();
-	}
+    public List<Comment> findAll() {
+        return cr.findAll();
+    }
 }

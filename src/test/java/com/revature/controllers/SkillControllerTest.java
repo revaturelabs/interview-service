@@ -2,7 +2,6 @@
 package com.revature.controllers;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -17,14 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.netflix.discovery.converters.Auto;
-import com.revature.controller.ProfileController;
 import com.revature.controller.SkillController;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
@@ -35,7 +31,6 @@ import com.revature.model.Skill;
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature.service")
 @EnableAutoConfiguration
-// @EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class SkillControllerTest {
 	/**
@@ -53,7 +48,7 @@ public class SkillControllerTest {
 	Profile profile2 = new Profile(1, "firstname", "lastname", "description");
 	Profile profile3 = new Profile(2, "firstname", "lastname", "description");
 
-	Set<Profile> testProfile= new HashSet<>();
+	Set<Profile> testProfile = new HashSet<>();
 	List<Skill> testSkills = new ArrayList<>();
 
 	Skill skill = new Skill(1, title, testProfile);
@@ -69,41 +64,32 @@ public class SkillControllerTest {
 		title1 = "title2";
 		title2 = "title3";
 
-		
 		testProfile.add(profile1);
 		testProfile.add(profile2);
 		testProfile.add(profile3);
 
-
 		testSkills.add(skill);
 		testSkills.add(skill2);
-		
+
 	}
-
-
 
 	@Test
 	public void testSkillSetUp() {
-		//also tests insertSkill method 
+		// also tests insertSkill method
 		assertTrue(sc.insertSkill(skill3));
-		
+
 	}
 
-
-
 	@Test
-	public void testgetBySkill(){
+	public void testgetBySkill() {
 		assertEquals(sc.getBySkill(2).getId(), skill2.getId());
 
 	}
-
-
 
 	@Test
 	public void testGetAll() {
 
 		assertEquals(sc.getSkills().iterator().next().getId(), testSkills.iterator().next().getId());
 	}
-
 
 }
