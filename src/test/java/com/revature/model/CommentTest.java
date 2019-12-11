@@ -10,10 +10,11 @@ import org.junit.Test;
 
 public class CommentTest {
 	Comment testComment = new Comment();
+	Interview testInterview = new Interview();
 	
 	@Test
 	public void testExistance() {
-		Comment comment = new Comment(0, Timestamp.valueOf(LocalDateTime.now()), "Something", "Other");
+		Comment comment = new Comment(0, Timestamp.valueOf(LocalDateTime.now()), "Something", "Other", testInterview);
 		assertNotNull(comment);
 	}
 	
