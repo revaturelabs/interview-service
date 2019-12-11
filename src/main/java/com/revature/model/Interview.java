@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -53,7 +54,6 @@ public class Interview {
 	// @LazyCollection(LazyCollectionOption.FALSE)
 	// @JsonIgnore
 	private Set<User> users = new HashSet<>();
-
 
 	public Interview() {
 	}
