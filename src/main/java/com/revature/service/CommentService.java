@@ -21,7 +21,8 @@ public class CommentService {
 
     public Comment insertCommentWithInterview(int id, Comment c) {
         try {
-            cr.insertComment(c.getDate(), c.getName(), c.getText(), id);
+            c.setInterviewId(ir.findById(id));
+            cr.mergeEntity(c);
             return c;
         } catch (Exception e) {
             System.out.println(e);
