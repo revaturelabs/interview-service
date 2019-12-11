@@ -26,21 +26,22 @@ public class InterviewTest {
 	Profile profile1;
 	Set<Profile> testProfiles = new HashSet();
 	Set<Skill> testSkills = new HashSet();
+	Set<Interview> testInterviewSet = new HashSet();
 
 
 
-	Skill skill1 = new Skill("title", testProfiles);
-	Skill skill2 = new Skill("title", testProfiles);
-	Skill skill3 = new Skill("title", testProfiles);
+	Skill skill1 = new Skill(0,"title", testProfiles);
+	Skill skill2 = new Skill(1, "title", testProfiles);
+	Skill skill3 = new Skill(2, "title", testProfiles);
 
 	Comment comment1 = new Comment(0, date, "name", "text", testInterview);
 	Comment comment2 = new Comment(0, date, "name", "text", testInterview);
 	Comment comment3 = new Comment(0, date, "name", "text", testInterview);
 
 
-	User user1 = new User("username", "password");
-	User user2 = new User("username", "password");
-	User user3 = new User("username", "password");
+	User user1 = new User(0, "username", "password", testInterviewSet);
+	User user2 = new User(1, "username", "password", testInterviewSet);
+	User user3 = new User(2, "username", "password", testInterviewSet);
 
 
 
@@ -75,7 +76,7 @@ public class InterviewTest {
 		
 
 		Job testJob = new Job(0, "title", "description", testSkills, true);
-		Interview testInterview = new Interview(0, profile1, testComment, date, true, testJob, testUser);
+		Interview testInterview = new Interview(0, profile1, date, true, testJob, testUser);
 
 	}
 
