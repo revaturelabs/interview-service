@@ -1,6 +1,6 @@
 package com.revature.model;
 
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +36,7 @@ public class Interview {
 	private Profile profile;
 
 	@Column(name = "interview_date")
-	private Timestamp date;
+	private Calendar date;
 
 	@Column(name = "interview_is_complete")
 	private boolean isComplete;
@@ -53,7 +53,7 @@ public class Interview {
 	public Interview() {
 	}
 
-	public Interview(int id, Profile profile, Timestamp date, boolean isComplete, Job job, Set<User> users) {
+	public Interview(int id, Profile profile, Calendar date, boolean isComplete, Job job, Set<User> users) {
 		this.id = id;
 		this.profile = profile;
 		this.date = date;
@@ -78,11 +78,11 @@ public class Interview {
 		this.profile = profile;
 	}
 
-	public Timestamp getDate() {
+	public Calendar getDate() {
 		return this.date;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 

@@ -1,6 +1,6 @@
 package com.revature.model;
 
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -36,7 +36,7 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private Timestamp date;
+	private Calendar date;
 	private String name;
 	private String text;
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -46,7 +46,7 @@ public class Comment {
 	public Comment() {
 	}
 
-	public Comment(int id, Timestamp date, String name, String text, Interview interviewId) {
+	public Comment(int id, Calendar date, String name, String text, Interview interviewId) {
 		this.id = id;
 		this.date = date;
 		this.name = name;
@@ -62,11 +62,11 @@ public class Comment {
 		this.id = id;
 	}
 
-	public Timestamp getDate() {
+	public Calendar getDate() {
 		return this.date;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 
@@ -99,7 +99,7 @@ public class Comment {
 		return this;
 	}
 
-	public Comment date(Timestamp date) {
+	public Comment date(Calendar date) {
 		this.date = date;
 		return this;
 	}
