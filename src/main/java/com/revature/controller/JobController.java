@@ -24,6 +24,7 @@ import com.revature.service.SkillService;
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/jobs")
 public class JobController {
+    
     @Autowired
     private JobService js;
     @Autowired

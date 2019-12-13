@@ -1,5 +1,12 @@
 package com.revature.controllers;
 
+
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test for Interview service methods, tests layer methods. There was some trouble with the custom repository here.
+ * Because it was the most complex entity relationship that we had. May need to instantiate a different kind of 
+ * context for the cusom repo.  
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -10,12 +17,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,8 +41,10 @@ import com.revature.model.Job;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
 import com.revature.model.User;
+import com.revature.service.InterviewService;
 
-@SpringBootTest(classes = { InterviewController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//Configures spring context 
+@SpringBootTest(classes = { InterviewController.class, InterviewService.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @EnableJpaRepositories("com.revature.repository")
 @EntityScan("com.revature.model")
@@ -44,6 +56,8 @@ public class InterviewControllerTest {
 	@Autowired
 	InterviewController ic;
 
+	@Autowired
+	InterviewService is;
 
 	Set<Skill> skillset = new HashSet<>();
 	Set<Profile> profileset = new HashSet<>();
@@ -70,7 +84,7 @@ public class InterviewControllerTest {
 	// Comment comment2 = new Comment(2, Timestamp.from(Instant.now()), "name", "text", interview2);
 		
 
-
+	//Sets up Interview objects 
 	@Before
 	public void setUp() {
 		User user1 = new User(0, "username", "passowrd", interviewset);
@@ -82,15 +96,16 @@ public class InterviewControllerTest {
 		
 		ic.saveInterview(interview1);
 		ic.saveInterview(interview2);
-
+		
+		
 		
 	}
 
+	
 	@Test
 	public void testSetup() {
-
-
-		assertEquals(true, ic.saveInterview(interview1));
+		//testing the set up 
+		assertEquals(true, ic.saveInterview(is.insertInterviewInfo(i));
 	}
 
 	@Test
@@ -100,6 +115,7 @@ public class InterviewControllerTest {
 		list.add(interview1);
 		list.add(interview2);
 
+		//Can't compare the objects 
 		assertEquals(list.iterator().next(), ic.getAll().iterator().next());
 	}
 

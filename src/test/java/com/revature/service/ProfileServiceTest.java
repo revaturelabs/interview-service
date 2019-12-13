@@ -1,5 +1,12 @@
 package com.revature.service;
 
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test for profile service methods, tests service methods in profile service layer. 
+ * Passed in actual values for cleaner tests. 
+ * Purposely didn't use assertnotnull because we wanted to make sure the appropriate values were
+ * being returned. Assertnotnull will only give us a vague sense. 
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -29,10 +36,7 @@ import com.revature.model.Skill;
 @EnableAutoConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class ProfileServiceTest {
-	/**
-	 * Unit tests for the Profile Service object
-	 * @author John Thaddeus Kelly
-	 */
+
 	@Autowired
 	ProfileService ps;
 

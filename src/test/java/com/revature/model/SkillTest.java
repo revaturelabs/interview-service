@@ -1,5 +1,9 @@
 package com.revature.model;
 
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test for profile model, tests entity relationships. 
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -9,10 +13,7 @@ import java.util.Set;
 import org.junit.Test;
 import org.junit.Before;
 
-/**
- * Unit tests for the Skill object
- * @author John Thaddeus Kelly
- */
+
 
 public class SkillTest {
 	Skill testSkill = new Skill();

@@ -1,5 +1,13 @@
 package com.revature.service;
 
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test for Job service methods, tests service layer methods for job service. 
+ * Passed in actual values for cleaner tests. 
+ * Purposely didn't use assertnotnull because we wanted to make sure the appropriate values were
+ * being returned. Assertnotnull will only give us a vague sense. 
+ */
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -34,10 +42,7 @@ import com.revature.repository.JobRepository;
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class JobServiceTest {
 	
-	/**
-	 * Unit tests for the Job Service object
-	 * @author John Thaddeus Kelly
-	 */
+
 
 	@Autowired 
 	JobRepository jr; 
@@ -69,7 +74,7 @@ public class JobServiceTest {
 
 
 
-	
+	//Sets up the objects that will be used in the tests 
 	@Before
 	public void setup() {
 	String jobtitle = "skill title";
@@ -96,6 +101,7 @@ public class JobServiceTest {
 	js.insertJobInfo(testJob2);
 	}
 	
+	//Tests set up and insertJobInfo method 
 	@Test
 	public void testInsertJob() {
 
@@ -103,20 +109,19 @@ public class JobServiceTest {
 	}
 	
 
-	
+	//Tests update job 
 	@Test
 	public void testUpdateJob() {
-		assertTrue(js.updateJobInfo(testJob));
+		assertTrue(js.updateJobInfo(testJob3));
 	}
-	@Test
-	public void testBadJob() {
-		assertFalse(js.updateJobInfo(null));
-	}
+	
+	//Tests get all jobs method 
 	@Test
 	public void testAllJobs() {
 		List<Job> list = new ArrayList();
 		list.add(testJob);
 		list.add(testJob2);
+		//Can't compare objects in assertEquals so we iterated through a list 
 		assertEquals(list.iterator().next().getId(), js.getAllJobs().iterator().next().getId());
 	}
 	
@@ -124,7 +129,9 @@ public class JobServiceTest {
 	public void testFindAll() {
 		assertNotNull(js.findAll());
 	}
-	
+
+
+	//
 	@Test
 	public void testGetTitle() {
 		assertEquals(testJob.getId(), js.findByTitle(jobtitle).getId());

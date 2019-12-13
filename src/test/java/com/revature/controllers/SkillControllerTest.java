@@ -1,6 +1,13 @@
 
 package com.revature.controllers;
 
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test Skill controller methods. 
+ * Passed in actual values for cleaner tests. 
+ * Purposely didn't use assertnotnull because we wanted to make sure the appropriate values were
+ * being returned. Assertnotnull will only give us a vague sense. 
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -38,11 +45,7 @@ import com.revature.model.Skill;
 // @EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class SkillControllerTest {
-	/**
-	 * JUnit testing for the Skill Controller object
-	 * 
-	 * @author John Thaddeus Kelly
-	 */
+
 	@Autowired
 	SkillController sc;;
 	String title;

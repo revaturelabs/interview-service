@@ -1,5 +1,9 @@
 package com.revature.model;
 
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test for Job model, tests entity relationships. 
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -22,10 +26,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/*
- * Unit tests for the Job object
- * @author John Thaddeus Kelly
- */
+
 // @SpringBootTest(classes = { Job.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 // @RunWith(SpringRunner.class)
 // @EnableJpaRepositories("com.revature.repository")

@@ -1,5 +1,13 @@
 package com.revature.service;
 
+
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test for skill service methods, tests the methods in the service layer. 
+ *  Passed in actual values for cleaner tests. 
+ * Purposely didn't use assertnotnull because we wanted to make sure the appropriate values were
+ * being returned. Assertnotnull will only give us a vague sense. 
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -33,10 +41,7 @@ import com.revature.model.Skill;
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class SkillServiceTest {
 	
-	/**
-	 * Unit tests for the Skill Service object
-	 * @author John Thaddeus Kelly
-	 */
+
 
 	@Autowired
 	SkillService ss;

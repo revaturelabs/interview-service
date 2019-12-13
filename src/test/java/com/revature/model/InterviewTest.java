@@ -1,5 +1,8 @@
 package com.revature.model;
-
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test for Interview model, tests entity relationships. 
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

@@ -1,5 +1,12 @@
 
 package com.revature.controllers;
+/**
+ * @author Janel Williams 12/12/2019
+ * Junit test Job controller methods. 
+ * Passed in actual values for cleaner tests. 
+ * Purposely didn't use assertnotnull because we wanted to make sure the appropriate values were
+ * being returned. Assertnotnull will only give us a vague sense. 
+ */
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -29,6 +36,7 @@ import com.revature.model.Job;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
 
+// Configuring spring context
 @SpringBootTest(classes = { JobController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @EnableJpaRepositories("com.revature.repository")
@@ -38,17 +46,15 @@ import com.revature.model.Skill;
 // @EnableFeignClients(clients = { AuthInterface.class })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class JobControllerTest {
-	/**
-	 * JUnit tests for the Job Controller object
-	 * @author John Thaddeus Kelly
-	 */
-	
+
+
 	@Autowired
 	JobController jc;
 
+	//Initializing values to be passed into tests. 
 	String skilltitle;
 
-	Set<Profile> testProfiles = new HashSet();
+	Set<Profile> testProfiles = new HashSet(); 
 	Set<Skill> testSkills = new HashSet();
 	List<Job> list = new ArrayList();
 	Profile profile1 = new Profile(0, "firstname", "lastname", "description");
@@ -63,11 +69,7 @@ public class JobControllerTest {
 	Job job2 = new Job(2, "Justice League", "Rescuing the World", testSkills, true);
 	Job job3 = new Job(3, "Villain", "Destroying the World", testSkills, true);
 	
-
-	
-
-	
-
+	//Setting up the controller, passing in Job values using the initialized classes above 
 	@Before
 	public void setup() {
 		jc.insertJobInfo(job1);
@@ -77,13 +79,14 @@ public class JobControllerTest {
 	
 
 	}
-	
+	//Testing the setup 
 	@Test
 	public void testSetup() {
-		//implicitly tests insertJobInfo
+		//implicitly tests insertJobInfo method 
 		assertTrue(jc.insertJobInfo(job3));
 	}
 	
+	//Tests get all method 
 	@Test
 	public void testGetAll() {
 		
@@ -92,15 +95,17 @@ public class JobControllerTest {
 		list.add(job2);
 		list.add(job3);
 
-		//can not compare non primitive values 
+		//can not compare non primitive values, so we iterate and get the id of the final node in the list
 		assertEquals(list.iterator().next().getId(), jc.getAll().iterator().next().getId());
 	}
 	
+	//Tests get title 
 	@Test
 	public void testGetTitle() {
 		assertEquals(job1.getId(), jc.getByTitle("Avenger").getId());
 	}
 	
+	//Tests update job method 
 	@Test
 	public void testUpdate() {
 		assertTrue(jc.updateJobInfo(new Job(1, "Avenger", "Defending the World", testSkills, true)));
