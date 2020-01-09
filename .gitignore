@@ -32,3 +32,4 @@ build/
 /.metadata/
 
 .DS_Store
+Interview_ServiceDB.trace.db
