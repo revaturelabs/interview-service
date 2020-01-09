@@ -10,50 +10,45 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * An object representation of our User model.
- * This model is considered our "Interviewer".
+ * An object representation of our User model. This model is considered our
+ * "Interviewer".
  * 
  * @author John Thaddeus Kelly
  */
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 	@Id
-	@Column(name="user_id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column
+
+	@Column()
 	private String username;
-	
+
 	@Column
 	private String password;
-	
-	@ManyToMany(fetch=FetchType.EAGER,
-			cascade= {
-					CascadeType.ALL},
-	mappedBy= "users")
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "users")
 	@JsonIgnore
 	private Set<Interview> interviews = new HashSet<>();
-	
+
 	public User() {
 		super();
 	}
 
-	public User(int id, String username, String password) {
+	public User(int id, String username, String password, Set<Interview> interviews) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.interviews = new HashSet<Interview>();
+		this.interviews = interviews;
 	}
 
 	public int getId() {
@@ -80,19 +75,18 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Interview> getUserInterviews() {
+	public Set<Interview> getInterviews() {
 		return interviews;
 	}
 
-	public void setUserInterviews(Set<Interview> userInterviews) {
-		this.interviews = userInterviews;
+	public void setInterviews(Set<Interview> Interviews) {
+		this.interviews = Interviews;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", userInterviews="
-				+ interviews + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", interviews=" + interviews
+				+ "]";
 	}
 
-		
 }

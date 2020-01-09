@@ -60,8 +60,8 @@ public class ProfileServiceTest {
 	
 	@Test
 	public void testFindId() {
-		Profile profile1 = new Profile(1, "Bruce", "Banner", new HashSet<Skill>(), new HashSet<Interview>(), "description");
+		Profile profile1 = new Profile(1, "Bruce", "Banner", "description");
 		ps.insertProfileInfo(profile1);
-		assertEquals(profile1, ps.findById(1));
+		assertEquals(profile1.getId(), ps.findById(1).getId());
 	}
 }
