@@ -1,0 +1,36 @@
+#spring.datasource.url=${JDBC_URL}?currentSchema=interview_service
+#spring.datasource.username=${JDBC_USERNAME}
+#spring.datasource.password=${JDBC_PASSWORD}
+
+#server.port 9001 used for development purposes
+#change port to 0 when service can be linked to Zuul
+server:
+  port: 50222
+
+#TODO: Update DB info to point to H2.
+spring:  application:    name: interview-service
+  jpa:    database: POSTGRESQL
+    show-sql: false
+    open-in-view: false
+    hibernate:      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: false
+        temp:
+          use_jdbc_metadata_defaults: false    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:    platform: postgres
+    url: jdbc:postgresql://postgresql-class.cks98gmxels6.us-west-1.rds.amazonaws.com:5432/interview_tracker_db?currentSchema=interview_service
+    username: sep1909
+    password: interview123
+    hikari:
+      maximum-pool-size: 5
+      idle-timeout: 30000
+      connection-timeout: 30000
+    driver-class-name: org.postgresql.Driver
+  main:    allow-bean-definition-overriding: true
+
+#Make both of these true when linking with eureka server
+eureka:  client:    register-with-eureka: false
+    fetch-registry: false
