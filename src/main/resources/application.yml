@@ -1,0 +1,46 @@
+#AUTHOR: redc
+#UPDATE: 09JAN2020 - Changed datasource to point to H2 Console from new
+#app.props updates.
+
+#spring.datasource.url=${JDBC_URL}?currentSchema=interview_service
+#spring.datasource.username=${JDBC_USERNAME}
+#spring.datasource.password=${JDBC_PASSWORD}
+
+#server.port 9001 used for development purposes
+#change port to 0 when service can be linked to Zuul
+server:
+  port: 50222
+
+#Updated to point to H2 Console.
+spring:  application:    name: interview-service
+  jpa:    database: POSTGRESQL
+    show-sql: false
+    open-in-view: false
+    hibernate:      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: false
+        temp:
+          use_jdbc_metadata_defaults: false    database-platform: org.hibernate.dialect.H2Dialect
+  datasource:
+    name: Interview_ServiceDB
+    # initialize is deprecated. Updating to use initilization-mode.
+    initialization-mode: NEVER    platform: postgres
+    # add IFEXISTS=TRUE;  if we want to stop creation of local DB
+    url: jdbc:h2:./Interview_ServiceDB;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;
+    username: sa
+    password: sa
+    hikari:
+      maximum-pool-size: 5
+      idle-timeout: 30000
+      connection-timeout: 30000
+    driver-class-name: org.h2.Driver
+  main:    allow-bean-definition-overriding: true
+  h2:    console:      enabled: true
+
+#Make both of these true when linking with eureka server
+eureka:  client:    register-with-eureka: true
+    fetch-registry: true
+  instance:    instance-id: ${spring.application.name}:${random.value}
