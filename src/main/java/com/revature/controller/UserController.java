@@ -19,7 +19,7 @@ import com.revature.repository.UserRepository;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/interview")
 public class UserController {
 	@Autowired
 	private UserRepository repository;

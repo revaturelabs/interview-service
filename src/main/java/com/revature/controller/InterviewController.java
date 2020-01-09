@@ -26,7 +26,7 @@ import com.revature.service.UserService;
  * @author Adriana Long
  */
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RequestMapping(value = "/interviews")
 
 public class InterviewController {
