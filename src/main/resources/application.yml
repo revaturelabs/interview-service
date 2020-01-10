@@ -16,7 +16,7 @@ spring:  application:    name: interview-service
   jpa:    database: POSTGRESQL
     show-sql: false
     open-in-view: false
-    hibernate:      ddl-auto: update
+    hibernate:      ddl-auto: create
     properties:
       hibernate:
         jdbc:

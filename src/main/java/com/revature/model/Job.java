@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -45,6 +46,10 @@ public class Job {
 
 	@Column(name = "job_isFilled")
 	private boolean isFilled;
+	
+	@OneToOne
+	@JoinColumn(name = "filled_by_profile_id")
+	private Profile profile;
 
 	public Job() {
 		super();
@@ -108,9 +113,17 @@ public class Job {
 		this.location = location;
 	}
 
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 	@Override
 	public String toString() {
 		return "Job [id=" + id + ", title=" + title + ", description=" + description + ", location=" + location
-				+ ", skills=" + skills + ", isFilled=" + isFilled + "]";
+				+ ", skills=" + skills + ", isFilled=" + isFilled + ", profile=" + profile + "]";
 	}
 }
