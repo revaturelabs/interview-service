@@ -34,6 +34,9 @@ public class Job {
 
 	@Column(name = "job_description")
 	private String description;
+	
+	@Column(name = "job_location")
+	private String location;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "job_skills", joinColumns = { @JoinColumn(name = "job_id") }, inverseJoinColumns = {
@@ -47,11 +50,12 @@ public class Job {
 		super();
 	}
 
-	public Job(int id, String title, String description, Set<Skill> skills, boolean isFilled) {
+	public Job(int id, String title, String description, String location, Set<Skill> skills, boolean isFilled) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
+		this.location = location;
 		this.skills = skills;
 		this.isFilled = isFilled;
 	}
@@ -96,9 +100,17 @@ public class Job {
 		this.isFilled = isFilled;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	@Override
 	public String toString() {
-		return "Job [id=" + id + ", title=" + title + ", description=" + description + ", skills=" + skills
-				+ ", isFilled=" + isFilled + "]";
+		return "Job [id=" + id + ", title=" + title + ", description=" + description + ", location=" + location
+				+ ", skills=" + skills + ", isFilled=" + isFilled + "]";
 	}
 }
