@@ -12,8 +12,15 @@ import com.revature.repository.UserRepository;
 @Service
 public class UserService {
 
+	private UserRepository ur;
+	
 	public UserService() {
+	}
+
+	@Autowired
+	public UserService(UserRepository ur) {
 		super();
+		this.ur = ur;
 	}
 
 	public List<User> getAllUsers() {
@@ -22,17 +29,6 @@ public class UserService {
 
 	public User findById(int id) {
 		return ur.findById(id);
-	}
-
-	private UserRepository ur;
-
-	public UserRepository getRepository() {
-		return ur;
-	}
-
-	@Autowired
-	public void setRepository(UserRepository ur) {
-		this.ur = ur;
 	}
 
 }

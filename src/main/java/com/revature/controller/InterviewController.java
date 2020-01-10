@@ -30,10 +30,23 @@ import com.revature.service.UserService;
 @RequestMapping(value = "/interviews")
 
 public class InterviewController {
-	@Autowired
+
 	private InterviewService is;
-	@Autowired
+
 	private UserService us;
+
+	public InterviewController() {
+	}
+
+	
+	@Autowired
+	public InterviewController(InterviewService is, UserService us) {
+		super();
+		this.is = is;
+		this.us = us;
+	}
+
+
 
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {

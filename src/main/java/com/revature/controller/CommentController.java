@@ -19,10 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/comment")
 public class CommentController {
-    @Autowired
     private CommentService cs;
 
-    @PostMapping("/insert")
+    public CommentController() {
+	}
+    
+    @Autowired
+    public CommentController(CommentService cs) {
+		super();
+		this.cs = cs;
+	}
+
+
+
+	@PostMapping("/insert")
 	public Comment insertComment(@RequestParam int id, @RequestBody Comment comment) {
 			return cs.insertCommentWithInterview(id, comment);
     }

@@ -24,10 +24,10 @@ import com.revature.service.SkillService;
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/jobs")
 public class JobController {
-    @Autowired
-    private JobService js;
-    @Autowired
-    private SkillService ss;
+
+	private JobService js;
+
+	private SkillService ss;
 
     /**
      * Add jobs to the database
@@ -36,7 +36,20 @@ public class JobController {
      * @author John Thaddeus Kelly
      * @author Adriana Long
      */
-    @PostMapping("/saveJob")
+    
+    public JobController() {
+	}
+
+    @Autowired
+    public JobController(JobService js, SkillService ss) {
+		super();
+		this.js = js;
+		this.ss = ss;
+	}
+
+
+
+	@PostMapping("/saveJob")
     @Transactional
     public boolean insertJobInfo(@RequestBody Job job) {
         Set<Skill> skills = new HashSet<Skill>();
