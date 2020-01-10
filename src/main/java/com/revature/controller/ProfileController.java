@@ -25,10 +25,23 @@ import com.revature.service.ProfileService;
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/profiles")
 public class ProfileController {
-    @Autowired
-    private ProfileService ps;
 
-    @PostMapping("/saveProfile")
+    private ProfileService ps;
+    
+    public ProfileController() {
+	}
+    
+    
+
+    @Autowired
+    public ProfileController(ProfileService ps) {
+		super();
+		this.ps = ps;
+	}
+
+
+
+	@PostMapping("/saveProfile")
     @Transactional
     public boolean insertProfileInfo(@RequestBody Profile profile) {
         return ps.insertProfileInfo(profile);

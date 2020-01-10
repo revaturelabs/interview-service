@@ -16,9 +16,13 @@ import com.revature.repository.ProfileRepository;
  */
 @Service
 public class ProfileService {
-    @Autowired
+   
     private ProfileRepository pr;
 
+    public ProfileService() {
+	}
+    
+    @Autowired
     public ProfileService(ProfileRepository pr) {
         this.pr = pr;
     }

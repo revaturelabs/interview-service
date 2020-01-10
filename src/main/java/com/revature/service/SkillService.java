@@ -14,8 +14,18 @@ import com.revature.repository.SkillRepository;
  */
 @Service
 public class SkillService {
-	@Autowired
+
 	SkillRepository sr;
+
+	public SkillService() {
+	}
+	
+	@Autowired
+	public SkillService(SkillRepository sr) {
+		super();
+		this.sr = sr;
+	}
+
 
 	public Iterable<Skill> getAll() {
 		return sr.findAll();
