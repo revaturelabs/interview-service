@@ -38,6 +38,12 @@ public class Profile {
 
 	@Column(name = "profile_lastName")
 	private String lastName;
+	
+	@Column(name = "profile_location")
+	private String location;
+	
+	@Column(name = "profile_email_address")
+	private String emailAddress;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "profile_skills", joinColumns = { @JoinColumn(name = "profile_id") }, inverseJoinColumns = {
@@ -55,11 +61,13 @@ public class Profile {
 		super();
 	}
 
-	public Profile(int id, String firstName, String lastName, String description) {
+	public Profile(int id, String firstName, String lastName, String location, String emailAddress, String description) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.location = location;
+		this.emailAddress = emailAddress;
 		this.skills = new HashSet<Skill>();
 		this.interviews = new HashSet<Interview>();
 		this.description = description;
@@ -113,9 +121,28 @@ public class Profile {
 		this.description = description;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	
+	
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
 	@Override
 	public String toString() {
-		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", skills=" + skills
-				+ ", interviews=" + interviews + ", description=" + description + "]";
+		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", location=" + location
+				+ ", emailAddress=" + emailAddress + ", skills=" + skills + ", interviews=" + interviews
+				+ ", description=" + description + "]";
 	}
 }
