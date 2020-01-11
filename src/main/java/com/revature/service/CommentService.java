@@ -13,13 +13,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentService {
 
-    @Autowired
     private CommentRepository cr;
 
-    @Autowired
     private InterviewRepository ir;
 
-    public Comment insertCommentWithInterview(int id, Comment c) {
+    public CommentService() {
+	}
+    
+    @Autowired
+    public CommentService(CommentRepository cr, InterviewRepository ir) {
+		super();
+		this.cr = cr;
+		this.ir = ir;
+	}
+
+
+
+	public Comment insertCommentWithInterview(int id, Comment c) {
         try {
             c.setInterviewId(ir.findById(id));
             cr.mergeEntity(c);

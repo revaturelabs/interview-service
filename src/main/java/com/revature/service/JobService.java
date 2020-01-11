@@ -15,9 +15,13 @@ import com.revature.repository.JobRepository;
  */
 @Service
 public class JobService {
-	@Autowired
+	
 	private JobRepository jr;
 
+	public JobService() {
+	}
+	
+	@Autowired
 	public JobService(JobRepository jr) {
 		this.jr = jr;
 	}

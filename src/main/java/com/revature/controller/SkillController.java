@@ -22,11 +22,21 @@ import com.revature.service.SkillService;
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/skills")
 public class SkillController {
-	@Autowired
+
 	private SkillRepository sr;
 
-	@Autowired
 	private SkillService sk;
+
+	public SkillController() {
+	}
+	
+	@Autowired
+	public SkillController(SkillRepository sr, SkillService sk) {
+		super();
+		this.sr = sr;
+		this.sk = sk;
+	}
+
 
 	/**
 	 * Retrieve all skills

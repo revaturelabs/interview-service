@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +35,9 @@ public class Job {
 
 	@Column(name = "job_description")
 	private String description;
+	
+	@Column(name = "job_location")
+	private String location;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "job_skills", joinColumns = { @JoinColumn(name = "job_id") }, inverseJoinColumns = {
@@ -42,16 +46,21 @@ public class Job {
 
 	@Column(name = "job_isFilled")
 	private boolean isFilled;
+	
+	@OneToOne
+	@JoinColumn(name = "filled_by_profile_id")
+	private Profile profile;
 
 	public Job() {
 		super();
 	}
 
-	public Job(int id, String title, String description, Set<Skill> skills, boolean isFilled) {
+	public Job(int id, String title, String description, String location, Set<Skill> skills, boolean isFilled) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
+		this.location = location;
 		this.skills = skills;
 		this.isFilled = isFilled;
 	}
@@ -96,9 +105,25 @@ public class Job {
 		this.isFilled = isFilled;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 	@Override
 	public String toString() {
-		return "Job [id=" + id + ", title=" + title + ", description=" + description + ", skills=" + skills
-				+ ", isFilled=" + isFilled + "]";
+		return "Job [id=" + id + ", title=" + title + ", description=" + description + ", location=" + location
+				+ ", skills=" + skills + ", isFilled=" + isFilled + ", profile=" + profile + "]";
 	}
 }

@@ -15,9 +15,13 @@ import com.revature.repository.InterviewRepository;
  */
 @Service
 public class InterviewService {
-	@Autowired
+
 	private InterviewRepository ir;
 
+	public InterviewService() {
+	}
+	
+	@Autowired
 	public InterviewService(InterviewRepository interviewrepo) {
 		this.ir = interviewrepo;
 	}

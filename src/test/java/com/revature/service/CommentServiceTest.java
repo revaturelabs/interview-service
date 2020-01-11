@@ -76,14 +76,16 @@
 //    //1, profile, Timestamp.from(Instant.now()), true, job, userset);
 //    Comment comment1 = new Comment();
 //    //(2, Timestamp.from(Instant.now()), "name", "text", interview1);
-//    Interview interview2 = new Interview(2, profile, Timestamp.from(Instant.now()), true, 
-//    job, userset);
+//	/*
+//	 * Interview interview2 = new Interview(2, profile,
+//	 * Timestamp.from(Instant.now()), true, job, userset);
+//	 */
 //
 //    @Before
 //    public void init(){
 //
 //        tem.merge(interview1);
-//        tem.merge(interview2);
+//        //tem.merge(interview2);
 //
 //        // is.insertInterviewInfo(interview1);
 //        // cs.insertCommentWithInterview(interview1.getId(), comment1);
@@ -98,8 +100,11 @@
 //    @Test
 //    public void testInsertCommentWithInterview(){
 //        
-//        Comment comment2 = new Comment(1, Timestamp.from(Instant.now()), "name", "text", interview2);
-//        assertEquals(comment2, cs.insertCommentWithInterview(interview2.getId(), comment2));
+//		/*
+//		 * Comment comment2 = new Comment(1, Timestamp.from(Instant.now()), "name",
+//		 * "text", interview2); assertEquals(comment2,
+//		 * cs.insertCommentWithInterview(interview2.getId(), comment2));
+//		 */
 //    }
 //
 //}
