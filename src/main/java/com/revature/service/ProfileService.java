@@ -3,6 +3,7 @@ package com.revature.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Profile;
@@ -19,6 +20,8 @@ public class ProfileService {
    
     private ProfileRepository profileRepository;
 
+    private int pageReturnSize = 10;
+    
     public ProfileService() {
 	}
     
@@ -49,4 +52,15 @@ public class ProfileService {
     public List<Profile> getAllProfiles() {
         return profileRepository.findAll();
     }
+
+    public List<Profile> getAllProfilesPaged(int page) {
+		return profileRepository.findAll(PageRequest.of(page, this.pageReturnSize)).getContent();
+	}
+	
+		//put a % if you want something blank
+	public List<Profile> findAllByFullNamePaged(String firstName, String lastName, int page) {
+		return profileRepository.findByFirstNameStartsWithIgnoreCaseAndLastNameStartsWithIgnoreCase(firstName, lastName,
+				PageRequest.of(page, this.pageReturnSize));
+	}
+
 }
