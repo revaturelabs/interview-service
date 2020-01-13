@@ -33,13 +33,17 @@ import com.revature.model.User;
 import com.revature.service.InterviewService;
 import com.revature.service.UserService;
 
-@SpringBootTest(classes = { InterviewController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@RunWith(SpringRunner.class)
-@EnableJpaRepositories("com.revature.repository")
-@EntityScan("com.revature.model")
-@ComponentScan("com.revature.service")
-@EnableAutoConfiguration
-@TestPropertySource(locations = "classpath:application-test.properties")
+/**
+ * Below annotations (above the class) is useful for integration-testing
+ * @author ryank
+ */
+//@SpringBootTest(classes = { InterviewController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@RunWith(SpringRunner.class)
+//@EnableJpaRepositories("com.revature.repository")
+//@EntityScan("com.revature.model")
+//@ComponentScan("com.revature.service")
+//@EnableAutoConfiguration
+//@TestPropertySource(locations = "classpath:application-test.properties")
 
 public class InterviewControllerTest {
 	
@@ -59,12 +63,13 @@ public class InterviewControllerTest {
 	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3, new HashSet<User>());
 
 	
+	
 	private InterviewService is = Mockito.mock(InterviewService.class);
 	private UserService us = Mockito.mock(UserService.class);
 		
 	InterviewController ic;
 	
-	@Autowired
+	
 	public InterviewControllerTest() {
 	}
 	
