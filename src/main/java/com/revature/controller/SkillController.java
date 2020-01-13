@@ -59,7 +59,7 @@ public class SkillController {
 	 * @return The skill that matches the id
 	 * @author Seacriest Brown
 	 */
-	@GetMapping(value = "/skill/{id}")
+	@GetMapping(value = "/getskill/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {
 		for (Skill skill : skillRepository.findAll()) {
 			if (skill.getId() == id) {
@@ -82,10 +82,11 @@ public class SkillController {
 	 * @author Joseph F Davis
 	 * @return All skills through the service layer
 	 */
-	@GetMapping(value = "/getSkills")
-	public Iterable<Skill> getSkills() {
-		return skillService.getAll();
-	}
+  
+	/*
+	 * @GetMapping(value = "/getSkills") public Iterable<Skill> getSkills() { return
+	 * sk.getAll(); }
+	 */
 
 	/**
 	 * @author Joseph F Davis
