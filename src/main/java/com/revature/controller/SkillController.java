@@ -82,10 +82,10 @@ public class SkillController {
 	 * @author Joseph F Davis
 	 * @return All skills through the service layer
 	 */
-	/*
-	 * @GetMapping(value = "/getSkills") public Iterable<Skill> getSkills() { return
-	 * sk.getAll(); }
-	 */
+	
+	  @GetMapping(value = "/getSkills") public Iterable<Skill> getSkills() { return
+	  sk.getAll(); }
+	 
 
 	/**
 	 * @author Joseph F Davis
