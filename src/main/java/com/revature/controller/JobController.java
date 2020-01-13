@@ -1,5 +1,11 @@
 package com.revature.controller;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.transaction.Transactional;
 
 import com.revature.model.Job;
 import com.revature.model.Skill;
@@ -25,9 +26,9 @@ import com.revature.service.SkillService;
 @RequestMapping(value = "/jobs")
 public class JobController {
 
-	private JobService js;
+	private JobService jobService;
 
-	private SkillService ss;
+	private SkillService skillService;
 
     /**
      * Add jobs to the database
@@ -41,10 +42,10 @@ public class JobController {
 	}
 
     @Autowired
-    public JobController(JobService js, SkillService ss) {
+    public JobController(JobService jobService, SkillService skillService) {
 		super();
-		this.js = js;
-		this.ss = ss;
+		this.jobService = jobService;
+		this.skillService = skillService;
 	}
 
 
@@ -53,12 +54,12 @@ public class JobController {
     @Transactional
     public boolean insertJobInfo(@RequestBody Job job) {
         Set<Skill> skills = new HashSet<Skill>();
-        for (Skill s : job.getSkills()) {
-            Skill tempSkill = ss.findSkill(s.getTitle());
+        for (Skill skill : job.getSkills()) {
+            Skill tempSkill = skillService.findSkill(skill.getTitle());
             skills.add(tempSkill);
         }
         job.setSkills(skills);
-        return js.insertJobInfo(job);
+        return jobService.insertJobInfo(job);
     }
 
     /**
@@ -68,8 +69,8 @@ public class JobController {
      * @author william liederer
      */
     @PatchMapping("/updateJob")
-    public boolean updateJobInfo(@RequestBody Job b) {
-        return js.updateJobInfo(b);
+    public boolean updateJobInfo(@RequestBody Job job) {
+        return jobService.updateJobInfo(job);
     }
 
     /**
@@ -81,7 +82,12 @@ public class JobController {
      */
     @GetMapping("/allJobs")
     public Iterable<Job> getAll() {
-        return js.findAll();
+        return jobService.findAll();
+    }
+
+    @GetMapping("/allJobs/{page}")
+    public List<Job> getAllPaged(@PathVariable int page){
+    	return jobService.getAllJobsPaged(page);
     }
 
     /**
@@ -91,6 +97,14 @@ public class JobController {
      */
     @GetMapping("/jobTitle/{title}")
     public Job getByTitle(@PathVariable String title) {
-        return js.findByTitle(title);
+        return jobService.findByTitle(title);
     }
+    
+	
+	    @GetMapping("/jobTitle/{title}/{page}")
+    public List<Job> getByTitle(@PathVariable String title, @PathVariable int page) {
+        return jobService.findByTitlePaged(title, page);
+    }
+    
+    
 }

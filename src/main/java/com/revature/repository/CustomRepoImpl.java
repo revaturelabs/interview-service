@@ -6,12 +6,12 @@ import javax.transaction.Transactional;
 
 public class CustomRepoImpl implements CustomRepo {
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
     @Override
     @Transactional
     public void mergeEntity(Object o) {
-        em.merge(o);
+        entityManager.merge(o);
 
     }
 

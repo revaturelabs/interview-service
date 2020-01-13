@@ -34,6 +34,12 @@ public class User {
 
 	@Column
 	private String password;
+	
+	@Column(name = "firstName")
+	private String firstName;
+	
+	@Column(name = "lastName")
+	private String lastName; 
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "users")
 	@JsonIgnore
@@ -43,11 +49,13 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, Set<Interview> interviews) {
+	public User(int id, String username, String password, String firstName, String lastName, Set<Interview> interviews) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.interviews = interviews;
 	}
 
@@ -75,6 +83,22 @@ public class User {
 		this.password = password;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public Set<Interview> getInterviews() {
 		return interviews;
 	}
@@ -85,8 +109,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", interviews=" + interviews
-				+ "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", interviews=" + interviews + "]";
 	}
 
 }
