@@ -92,5 +92,6 @@ public class JobController {
     @GetMapping("/jobTitle/{title}")
     public Job getByTitle(@PathVariable String title) {
         return js.findByTitle(title);
+        
     }
 }
