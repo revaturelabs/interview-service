@@ -1,9 +1,12 @@
 package com.revature.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import com.revature.model.Job;
 import com.revature.repository.JobRepository;
@@ -18,6 +21,8 @@ public class JobService {
 	
 	private JobRepository jr;
 
+	private int pageReturnSize = 10;
+	
 	public JobService() {
 	}
 	
@@ -63,7 +68,16 @@ public class JobService {
 		return jr.findByTitle(title);
 	}
 
+	public List<Job> findByTitlePaged(String title,int page){
+		return jr.findByTitle(title, PageRequest.of(page, this.pageReturnSize));
+	}
+
 	public Iterable<Job> findAll() {
 		return jr.findAll();
 	}
+	
+	public List<Job> getAllJobsPaged(int page){
+		return jr.findAll(PageRequest.of(page, this.pageReturnSize)).getContent();
+	}
+		
 }

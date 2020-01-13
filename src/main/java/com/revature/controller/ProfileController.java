@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,4 +52,16 @@ public class ProfileController {
     public List<Profile> getAll() {
         return ps.getAllProfiles();
     }
+
+    @GetMapping("/allProfiles/{page}")
+	public List<Profile> getAllPaged(@PathVariable int page) {
+		return ps.getAllProfilesPaged(page);
+	}
+
+	@GetMapping("/searchProfiles/{firstName}/{lastName}/{page}")
+	public List<Profile> searchByFullNamePaged(@PathVariable String firstName, @PathVariable String lastName,
+			@PathVariable int page) {
+		return ps.findAllByFullNamePaged(firstName, lastName, page);
+	}
+
 }

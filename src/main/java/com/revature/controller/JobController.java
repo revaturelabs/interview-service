@@ -1,5 +1,11 @@
 package com.revature.controller;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.transaction.Transactional;
 
 import com.revature.model.Job;
 import com.revature.model.Skill;
@@ -83,6 +84,11 @@ public class JobController {
     public Iterable<Job> getAll() {
         return js.findAll();
     }
+  
+    @GetMapping("/allJobs/{page}")
+    public List<Job> getAllPaged(@PathVariable int page){
+    	return js.getAllJobsPaged(page);
+    }
 
     /**
      * @author Adriana Long
@@ -94,4 +100,11 @@ public class JobController {
         return js.findByTitle(title);
         
     }
+    
+	
+	    @GetMapping("/jobTitle/{title}/{page}")
+    public List<Job> getByTitle(@PathVariable String title, @PathVariable int page) {
+        return js.findByTitlePaged(title, page);
+    }
+    
 }

@@ -2,6 +2,7 @@ package com.revature.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +24,7 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer>, Cust
     Profile findById(int id);
 
     List<Profile> findByLastNameOrderByLastNameAsc(String lastName);
+    
+    List<Profile> findByFirstNameStartsWithIgnoreCaseAndLastNameStartsWithIgnoreCase(String firstName, String lastName, Pageable page);
 
 }
