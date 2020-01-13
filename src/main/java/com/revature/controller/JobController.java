@@ -25,9 +25,9 @@ import com.revature.service.SkillService;
 @RequestMapping(value = "/jobs")
 public class JobController {
 
-	private JobService js;
+	private JobService jobService;
 
-	private SkillService ss;
+	private SkillService skillService;
 
     /**
      * Add jobs to the database
@@ -41,10 +41,10 @@ public class JobController {
 	}
 
     @Autowired
-    public JobController(JobService js, SkillService ss) {
+    public JobController(JobService jobService, SkillService skillService) {
 		super();
-		this.js = js;
-		this.ss = ss;
+		this.jobService = jobService;
+		this.skillService = skillService;
 	}
 
 
@@ -53,12 +53,12 @@ public class JobController {
     @Transactional
     public boolean insertJobInfo(@RequestBody Job job) {
         Set<Skill> skills = new HashSet<Skill>();
-        for (Skill s : job.getSkills()) {
-            Skill tempSkill = ss.findSkill(s.getTitle());
+        for (Skill skill : job.getSkills()) {
+            Skill tempSkill = skillService.findSkill(skill.getTitle());
             skills.add(tempSkill);
         }
         job.setSkills(skills);
-        return js.insertJobInfo(job);
+        return jobService.insertJobInfo(job);
     }
 
     /**
@@ -68,8 +68,8 @@ public class JobController {
      * @author william liederer
      */
     @PatchMapping("/updateJob")
-    public boolean updateJobInfo(@RequestBody Job b) {
-        return js.updateJobInfo(b);
+    public boolean updateJobInfo(@RequestBody Job job) {
+        return jobService.updateJobInfo(job);
     }
 
     /**
@@ -81,7 +81,7 @@ public class JobController {
      */
     @GetMapping("/allJobs")
     public Iterable<Job> getAll() {
-        return js.findAll();
+        return jobService.findAll();
     }
 
     /**
@@ -91,6 +91,6 @@ public class JobController {
      */
     @GetMapping("/jobTitle/{title}")
     public Job getByTitle(@PathVariable String title) {
-        return js.findByTitle(title);
+        return jobService.findByTitle(title);
     }
 }

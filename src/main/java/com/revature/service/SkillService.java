@@ -15,25 +15,25 @@ import com.revature.repository.SkillRepository;
 @Service
 public class SkillService {
 
-	SkillRepository sr;
+	SkillRepository skillRepository;
 
 	public SkillService() {
 	}
 	
 	@Autowired
-	public SkillService(SkillRepository sr) {
+	public SkillService(SkillRepository skillRepository) {
 		super();
-		this.sr = sr;
+		this.skillRepository = skillRepository;
 	}
 
 
 	public Iterable<Skill> getAll() {
-		return sr.findAll();
+		return skillRepository.findAll();
 	}
 
-	public boolean insertSkill(Skill s) {
+	public boolean insertSkill(Skill skill) {
 		try {
-			sr.save(s);
+			skillRepository.save(skill);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -41,7 +41,7 @@ public class SkillService {
 		}
 	}
 
-	public Skill findSkill(String s) {
-		return sr.findByTitle(s);
+	public Skill findSkill(String title) {
+		return skillRepository.findByTitle(title);
 	}
 }
