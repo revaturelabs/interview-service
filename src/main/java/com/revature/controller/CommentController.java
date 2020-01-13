@@ -19,31 +19,31 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/comment")
 public class CommentController {
-    private CommentService cs;
+    private CommentService commentService;
 
     public CommentController() {
 	}
     
     @Autowired
-    public CommentController(CommentService cs) {
+    public CommentController(CommentService commentService) {
 		super();
-		this.cs = cs;
+		this.commentService = commentService;
 	}
 
 
 
 	@PostMapping("/insert")
 	public Comment insertComment(@RequestParam int id, @RequestBody Comment comment) {
-			return cs.insertCommentWithInterview(id, comment);
+			return commentService.insertCommentWithInterview(id, comment);
     }
     
     @GetMapping("/getByInterview/{id}")
     public List<Comment> findByInterviewId(@PathVariable int id){
-        return cs.getCommentsByInterview(id);
+        return commentService.getCommentsByInterview(id);
     }
     
     @GetMapping("/getAllComments")
     public List<Comment> findAll(){
-    	return cs.findAll();
+    	return commentService.findAll();
     }
 }

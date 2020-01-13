@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ import com.revature.service.ProfileService;
 @RequestMapping(value = "/profiles")
 public class ProfileController {
 
-    private ProfileService ps;
+    private ProfileService profileService;
     
     public ProfileController() {
 	}
@@ -34,9 +35,9 @@ public class ProfileController {
     
 
     @Autowired
-    public ProfileController(ProfileService ps) {
+    public ProfileController(ProfileService profileService) {
 		super();
-		this.ps = ps;
+		this.profileService = profileService;
 	}
 
 
@@ -44,11 +45,23 @@ public class ProfileController {
 	@PostMapping("/saveProfile")
     @Transactional
     public boolean insertProfileInfo(@RequestBody Profile profile) {
-        return ps.insertProfileInfo(profile);
+        return profileService.insertProfileInfo(profile);
     }
 
     @GetMapping("/allProfiles")
     public List<Profile> getAll() {
-        return ps.getAllProfiles();
+        return profileService.getAllProfiles();
     }
+    
+    
+ 	@GetMapping("/allProfiles/{page}")
+	public List<Profile> getAllPaged(@PathVariable int page) {
+		return profileService.getAllProfilesPaged(page);
+	}
+
+	@GetMapping("/searchProfiles/{firstName}/{lastName}/{page}")
+	public List<Profile> searchByFullNamePaged(@PathVariable String firstName, @PathVariable String lastName,
+			@PathVariable int page) {
+		return profileService.findAllByFullNamePaged(firstName, lastName, page);
+	}
 }

@@ -1,120 +1,109 @@
-//package com.revature.controllers;
-//
-//import static org.junit.Assert.assertEquals;
-//
-//import java.sql.Timestamp;
-//import java.time.Instant;
-//import java.util.HashSet;
-//import java.util.Set;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//import org.junit.Before;
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-//import org.springframework.boot.autoconfigure.domain.EntityScan;
-//import org.springframework.boot.test.context.SpringBootTest;
-////import org.springframework.cloud.openfeign.EnableFeignClients;
-//import org.springframework.context.annotation.ComponentScan;
-//import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-//import org.springframework.test.context.TestPropertySource;
-//import org.springframework.test.context.junit4.SpringRunner;
-//
-//import com.revature.controller.CommentController;
-//import com.revature.model.Comment;
-//import com.revature.model.Interview;
-//import com.revature.model.Job;
-//import com.revature.model.Profile;
-//import com.revature.model.Skill;
-//import com.revature.model.User;
-//import com.revature.service.CommentService;
-//import com.revature.service.InterviewService;
-//
-//@SpringBootTest(classes = { CommentController.class, CommentService.class,
-//        InterviewService.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@RunWith(SpringRunner.class)
-//@EnableJpaRepositories("com.revature.repository")
-//@EntityScan("com.revature.model")
-//@ComponentScan("com.revature.service")
-//@EnableAutoConfiguration
-//@TestPropertySource(locations = "classpath:application-test.properties")
-//public class CommentControllerTest {
-//
-//    // Controllers
-//    @InjectMocks
-//    @Autowired
-//    CommentController cc;
-//
-//    //Services
-//    @Autowired
-//    CommentService cs;
-//    @Autowired
-//    InterviewService is;
-//
-//    //Mock Calls
-//    @Mock
-//    HttpServletRequest request;
-//    @Mock
-//    HttpServletResponse response;
-//
-//    //Intializations
-//    Set<Skill> skillset = new HashSet<>();
-//    Set<Profile> profileset = new HashSet<>();
-//    Set<User> userset = new HashSet<>();
-//    Job job = new Job(1, "title", "description", skillset, true);
-//    Profile profile = new Profile(1, "Fred", "Jenkins", "description");
-//
-//	/*
-//	 * Interview interview1 = new Interview(1, profile,
-//	 * Timestamp.from(Instant.now()), true, job, userset); Interview interview2 =
-//	 * new Interview(2, profile, Timestamp.from(Instant.now()), true, job, userset);
-//	 * Comment comment1 = new Comment(1, Timestamp.from(Instant.now()), "name",
-//	 * "text", interview1); Comment comment2 = new Comment(2,
-//	 * Timestamp.from(Instant.now()), "name", "text", interview2);
-//	 */
-//    @Before
-//    public void init(){
-//
-//		/*
-//		 * Comment comment1 = this.comment1; Interview interview1 = this.interview1;
-//		 */
-//   
-//		/*
-//		 * is.insertInterviewInfo(interview1);
-//		 * cs.insertCommentWithInterview(interview1.getId(), comment1);
-//		 */
-//    }
-//
-//    //public List<Comment> findByInterviewId(@PathVariable int id)
-//    @Test
-//    public void testFindByInterviewId(){
-//
-//        //Comment comment = this.comment1;
-//
-//       // assertEquals(comment.getId(), cc.findByInterviewId(1).iterator().next().getId());
-//    }
-//
-//    //public Comment insertComment(@RequestParam int id, @RequestBody Comment comment)
-//    @Test
-//    public void testInsertComment(){
-//
-//        //MockHttpServletRequest request = new MockHttpServletRequest();
-//        //RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-//        //when(cs.insertCommentWithInterview(any(Comment.class))).thenReturn(true);
-//        //Comment comment = new Comment(1, Timestamp.from(Instant.now()), "name", "text", interview1);
-//        //ResponseEntity<Comment> responseEntity = cc.insertComment(comment);
-//        
-//		/*
-//		 * Comment comment3 = new Comment(3, Timestamp.from(Instant.now()), "name",
-//		 * "text", interview1); Comment comment4 = cc.insertComment(interview1.getId(),
-//		 * comment3);
-//		 */    
-//       // assertEquals(3, comment4.getId());
-//    }
-//   
-//}
+package com.revature.controllers;
+
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import com.revature.controller.CommentController;
+import com.revature.model.Comment;
+import com.revature.service.CommentService;
+
+/** A class to test the methods of the CommentController class. These methods are insertComment, 
+ findInterviewById and findAll.  
+ @author Miranda Brawner */
+public class CommentControllerTest {
+	
+	private CommentController ctrl;
+	private int interviewId = 7;
+	
+	private Comment commentOne = new Comment(1, new GregorianCalendar(2005, 3, 21), "Not a good interview.",
+			"We can probably find a better candidate.", null);
+	private Comment commentTwo = new Comment(2, new GregorianCalendar(2002, 4, 5), "Pretty good interview.",
+			"Seems like an acceptable candidate.", null);
+	private Comment commentThree = new Comment(3, new GregorianCalendar(2008, 8, 1), "Great interview!",
+			"Definitely the best of the candidates so far.", null);
+	
+	private List<Comment> fullList = new ArrayList<>();
+	private List<Comment> smallList = new ArrayList<>();
+
+	private CommentService service;
+	
+	@Before
+	public void setup() {
+		service = Mockito.mock(CommentService.class);
+		smallList.add(commentOne);
+		fullList.add(commentOne);
+		fullList.add(commentTwo);
+		fullList.add(commentThree);
+		Mockito.when(service.insertCommentWithInterview(interviewId, commentThree)).thenReturn(commentThree);
+		Mockito.when(service.findAll()).thenReturn(fullList);
+		Mockito.when(service.getCommentsByInterview(interviewId)).thenReturn(smallList);
+		ctrl = new CommentController(service);
+	}
+	
+	@Test
+	/** Tests that the insertComment method returns the same method that was inserted and that the
+	 corresponding service method was called. */
+	public void testInsert() {
+		System.out.println("Testing insertComment.");
+		Comment returnedComment = ctrl.insertComment(interviewId, commentThree);
+		Mockito.verify(service, Mockito.times(1)).insertCommentWithInterview(interviewId, commentThree);
+		System.out.println("Success: The correct method in the service class was called exactly once.");
+		String success = commentThree == returnedComment ? "Success" : "Failure";
+		System.out.printf("%s: Return value of insertComment was %s. Expected value was %s.\n", 
+				success, returnedComment, commentThree);
+		Assert.assertEquals(commentThree, returnedComment);
+		System.out.println("Insert test is complete.");
+	}
+	
+	@Test
+	/** Tests that the findAll method returns the list of commments provided by the service method, and that the
+	 corresponding service method was called. */
+	public void testFindAll() {
+		System.out.println("Testing findAll.");
+		List<Comment> returnedList = ctrl.findAll();
+		Mockito.verify(service, Mockito.times(1)).findAll();
+		System.out.println("Success: The correct method in the service class was called exactly once.");
+		String success = fullList.size() == returnedList.size() ? "Success" : "Failure";
+		System.out.printf("%s: Length of returned list was %d. Expected length was %d.\n", 
+				success, returnedList.size(), fullList.size());
+		Assert.assertEquals(fullList.size(), returnedList.size());
+		for (int index = 0; index < fullList.size() && index < returnedList.size(); index++) {
+			Comment initialComment = fullList.get(index);
+			Comment returnedComment = returnedList.get(index);
+			success = initialComment == returnedComment ? "Success" : "Failure";
+			String doNot = initialComment == returnedComment ? "matched" : "did not match";
+			System.out.printf("%s: At index %d, the expected and returned comments %s.\n", success, index, doNot);
+			Assert.assertEquals(success, "Success");
+		}
+		System.out.println("Find all test is complete.");
+	}
+	
+	@Test
+	/** Tests that the findByInterviewId method returns the list of commments provided by the service method, 
+	 and that the corresponding service method was called. */
+	public void testFindByInterview() {
+		System.out.println("Testing findByInterviewId.");
+		List<Comment> returnedList = ctrl.findByInterviewId(interviewId);
+		Mockito.verify(service, Mockito.times(1)).getCommentsByInterview(interviewId);
+		System.out.println("Success: The correct method in the service class was called exactly once.");
+		String success = smallList.size() == returnedList.size() ? "Success" : "Failure";
+		System.out.printf("%s: Length of returned list was %d. Expected length was %d.\n", 
+				success, returnedList.size(), smallList.size());
+		Assert.assertEquals(smallList.size(), returnedList.size());
+		for (int index = 0; index < smallList.size() && index < returnedList.size(); index++) {
+			Comment initialComment = smallList.get(index);
+			Comment returnedComment = returnedList.get(index);
+			success = initialComment == returnedComment ? "Success" : "Failure";
+			String doNot = initialComment == returnedComment ? "matched" : "did not match";
+			System.out.printf("%s: At index %d, the expected and returned comments %s.\n", success, index, doNot);
+			Assert.assertEquals(success, "Success");
+		}
+		System.out.println("Find by interview test is complete.");
+	}
+}

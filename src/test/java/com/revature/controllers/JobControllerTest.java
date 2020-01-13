@@ -1,68 +1,88 @@
-/*
- * package com.revature.controllers;
+package com.revature.controllers;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
+import com.revature.controller.JobController;
+import com.revature.controller.SkillController;
+import com.revature.model.Job;
+import com.revature.model.Skill;
+import com.revature.service.JobService;
+import com.revature.service.SkillService;
+
+/**
+ * Tests that the JobController Methods are calling their respective services
  * 
- * import static org.junit.Assert.assertEquals; import static
- * org.junit.Assert.assertTrue;
- * 
- * import java.util.ArrayList; import java.util.List;
- * 
- * import org.junit.Before; import org.junit.Test; import
- * org.junit.runner.RunWith; import
- * org.springframework.beans.factory.annotation.Autowired; import
- * org.springframework.boot.autoconfigure.EnableAutoConfiguration; import
- * org.springframework.boot.autoconfigure.domain.EntityScan; import
- * org.springframework.boot.test.context.SpringBootTest; //import
- * org.springframework.cloud.openfeign.EnableFeignClients; import
- * org.springframework.context.annotation.ComponentScan; import
- * org.springframework.data.jpa.repository.config.EnableJpaRepositories; import
- * org.springframework.test.context.TestPropertySource; import
- * org.springframework.test.context.junit4.SpringRunner;
- * 
- * import com.revature.controller.JobController; import com.revature.model.Job;
- * import com.revature.model.Profile; import com.revature.model.Skill;
- * 
- * @SpringBootTest(classes = { JobController.class }, webEnvironment =
- * SpringBootTest.WebEnvironment.RANDOM_PORT)
- * 
- * @RunWith(SpringRunner.class)
- * 
- * @EnableJpaRepositories("com.revature.repository")
- * 
- * @EntityScan("com.revature.model")
- * 
- * @ComponentScan("com.revature.service")
- * 
- * @EnableAutoConfiguration // @EnableFeignClients(clients = {
- * AuthInterface.class })
- * 
- * @TestPropertySource(locations = "classpath:application-test.properties")
- * public class JobControllerTest {
- *//**
-	 * JUnit tests for the Job Controller object
-	 * 
-	 * @author John Thaddeus Kelly
-	 *//*
-		 * 
-		 * @Autowired JobController jc; Job job1 = new Job(1, "Avenger",
-		 * "Saving the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
-		 * Job job2 = new Job(2, "Justice League", "Rescuing the World", new
-		 * ArrayList<Skill>(), true, new ArrayList<Profile>()); Job job3 = new Job(3,
-		 * "Villain", "Destroying the World", new ArrayList<Skill>(), true, new
-		 * ArrayList<Profile>());
-		 * 
-		 * @Before public void setup() { jc.insertJobInfo(job1); jc.insertJobInfo(job2);
-		 * jc.insertJobInfo(job3); }
-		 * 
-		 * @Test public void testSetup() { assertTrue(jc.insertJobInfo(job3)); }
-		 * 
-		 * @Test public void testGetAll() { List<Job> list = new ArrayList<Job>();
-		 * list.add(job1); list.add(job2); list.add(job3); assertEquals(list,
-		 * jc.getAll()); // assertTrue(list.contains(job2)); }
-		 * 
-		 * @Test public void testGetTitle() { assertEquals(job1,
-		 * jc.getByTitle("Avenger")); }
-		 * 
-		 * @Test public void testUpdate() { assertTrue(jc.updateJobInfo(new Job(1,
-		 * "Avenger", "Defending the World", new ArrayList<Skill>(), true, new
-		 * ArrayList<Profile>()))); } }
-		 */
+ * @return test results in the Junit console that verify that JobService methods are being called
+ * @author King David
+ *
+ */
+
+public class JobControllerTest {
+	JobController jc;
+	SkillController sc;
+	Set<Skill> skills;
+//	JobService jobServ = Mockito.mock(JobService.class);
+//	SkillService skillServ = Mockito.mock(SkillService.class);
+	@Rule 
+	public MockitoRule mockRule = MockitoJUnit.rule();
+	@Mock
+	private JobService jobServ;
+	@Mock
+	private SkillService skillServ;
+	
+	
+	@Before
+	public void setUp() throws Exception {
+		//JobController jc = Mockito.mock(JobController.class);
+		jc = new JobController(jobServ, skillServ);
+		System.out.println(jc);
+		
+	}
+	
+	@Test
+	public void testGetByTitle() {
+		Job jb = new Job(1,"head","it me","here", skills, true);
+		Mockito.when(jobServ.findByTitle("head")).thenReturn(jb);
+		System.out.println("called");
+		System.out.println(jb);
+		assertEquals(jb, jc.getByTitle("head"));
+		Mockito.verify(jobServ).findByTitle("head");
+		
+	}
+	
+	@Test
+	public void testUpdateJob() {
+		Job jb1 = new Job();
+		Mockito.when(jobServ.updateJobInfo(jb1)).thenReturn(true);
+		assertEquals(true, jc.updateJobInfo(jb1));
+		Mockito.verify(jobServ).updateJobInfo(jb1);
+	}
+	@Test
+	public void testInsertJob() {
+		Job jb2 = new Job();
+		Mockito.when(jobServ.insertJobInfo(jb2)).thenReturn(true);
+		assertEquals(true, jc.insertJobInfo(jb2));
+		Mockito.verify(jobServ).insertJobInfo(jb2);
+	}
+	
+	@Test 
+	public void testGetAll() {
+		List<Job> jobs = new ArrayList<Job>();
+		Mockito.when(jobServ.findAll()).thenReturn(jobs);
+		assertEquals(jobs, jc.getAll());
+		Mockito.verify(jobServ).findAll();
+	}
+	
+}

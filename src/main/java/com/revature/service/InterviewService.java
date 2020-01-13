@@ -16,19 +16,19 @@ import com.revature.repository.InterviewRepository;
 @Service
 public class InterviewService {
 
-	private InterviewRepository ir;
+	private InterviewRepository interviewRepository;
 
 	public InterviewService() {
 	}
 	
 	@Autowired
 	public InterviewService(InterviewRepository interviewrepo) {
-		this.ir = interviewrepo;
+		this.interviewRepository = interviewrepo;
 	}
 
-	public boolean insertInterviewInfo(Interview i) {
+	public boolean insertInterviewInfo(Interview interview) {
 		try {
-			ir.mergeEntity(i);
+			interviewRepository.mergeEntity(interview);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -37,11 +37,11 @@ public class InterviewService {
 	}
 
 	public List<Interview> getAllInterviews() {
-		return ir.findAll();
+		return interviewRepository.findAll();
 	}
 
 	public Interview getById(int id) {
-		return ir.findById(id);
+		return interviewRepository.findById(id);
 	}
 
 }
