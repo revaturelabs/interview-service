@@ -23,18 +23,18 @@ import com.revature.service.SkillService;
 @RequestMapping(value = "/skills")
 public class SkillController {
 
-	private SkillRepository sr;
+	private SkillRepository skillRepository;
 
-	private SkillService sk;
+	private SkillService skillService;
 
 	public SkillController() {
 	}
 	
 	@Autowired
-	public SkillController(SkillRepository sr, SkillService sk) {
+	public SkillController(SkillRepository skillRepository, SkillService skillService) {
 		super();
-		this.sr = sr;
-		this.sk = sk;
+		this.skillRepository = skillRepository;
+		this.skillService = skillService;
 	}
 
 
@@ -47,8 +47,8 @@ public class SkillController {
 	@GetMapping(value = "/allSkills")
 	public @ResponseBody List<Skill> allSkills() {
 		List<Skill> list = new ArrayList<>();
-		for (Skill sk : sr.findAll()) {
-			list.add(sk);
+		for (Skill skill : skillRepository.findAll()) {
+			list.add(skill);
 		}
 		return list;
 	}
@@ -61,9 +61,9 @@ public class SkillController {
 	 */
 	@GetMapping(value = "/skill/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {
-		for (Skill sk : sr.findAll()) {
-			if (sk.getId() == id) {
-				return sk;
+		for (Skill skill : skillRepository.findAll()) {
+			if (skill.getId() == id) {
+				return skill;
 			}
 		}
 		return null;
@@ -71,11 +71,11 @@ public class SkillController {
 
 	/**
 	 * @author Joseph F Davis
-	 * @param s The skill to insert
+	 * @param skill The skill to insert
 	 */
 	@PostMapping(value = "/insertSkill")
-	public boolean insertSkill(@RequestBody Skill s) {
-		return sk.insertSkill(s);
+	public boolean insertSkill(@RequestBody Skill skill) {
+		return skillService.insertSkill(skill);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class SkillController {
 	 */
 	@GetMapping(value = "/getSkills")
 	public Iterable<Skill> getSkills() {
-		return sk.getAll();
+		return skillService.getAll();
 	}
 
 	/**
@@ -94,6 +94,6 @@ public class SkillController {
 	 */
 	@GetMapping(value = "/getskill/{Title}")
 	public Skill getSkills(@PathVariable("Title") String title) {
-		return sk.findSkill(title);
+		return skillService.findSkill(title);
 	}
 }

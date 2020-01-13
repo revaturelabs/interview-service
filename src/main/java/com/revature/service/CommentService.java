@@ -10,30 +10,31 @@ import com.revature.repository.InterviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class CommentService {
 
-    private CommentRepository cr;
+    private CommentRepository commentRepository;
 
-    private InterviewRepository ir;
+    private InterviewRepository interviewRepository;
 
     public CommentService() {
 	}
     
     @Autowired
-    public CommentService(CommentRepository cr, InterviewRepository ir) {
+    public CommentService(CommentRepository commentRepository, InterviewRepository interviewRepository) {
 		super();
-		this.cr = cr;
-		this.ir = ir;
+		this.commentRepository = commentRepository;
+		this.interviewRepository = interviewRepository;
 	}
 
 
 
-	public Comment insertCommentWithInterview(int id, Comment c) {
+	public Comment insertCommentWithInterview(int id, Comment comment) {
         try {
-            c.setInterviewId(ir.findById(id));
-            cr.mergeEntity(c);
-            return c;
+            comment.setInterviewId(interviewRepository.findById(id));
+            commentRepository.mergeEntity(comment);
+            return comment;
         } catch (Exception e) {
             System.out.println(e);
             return null;
@@ -41,15 +42,15 @@ public class CommentService {
     }
 
     public List<Comment> getCommentsByInterview(int id) {
-        Interview i = ir.findById(id);
-        if (i == null) {
+        Interview interview = interviewRepository.findById(id);
+        if (interview == null) {
             return null;
         } else {
-            return cr.findAllByInterviewId(i);
+            return commentRepository.findAllByInterviewId(interview);
         }
     }
 
     public List<Comment> findAll() {
-        return cr.findAll();
+        return commentRepository.findAll();
     }
 }
