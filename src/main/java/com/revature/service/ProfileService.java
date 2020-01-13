@@ -18,7 +18,7 @@ import com.revature.repository.ProfileRepository;
 @Service
 public class ProfileService {
    
-    private ProfileRepository pr;
+    private ProfileRepository profileRepository;
 
     private int pageReturnSize = 10;
     
@@ -26,22 +26,22 @@ public class ProfileService {
 	}
     
     @Autowired
-    public ProfileService(ProfileRepository pr) {
-        this.pr = pr;
+    public ProfileService(ProfileRepository jobRepository) {
+        this.profileRepository = jobRepository;
     }
 
     public Profile findAllByLastName(String lastName) {
-        return pr.findByLastName(lastName);
+        return profileRepository.findByLastName(lastName);
     }
 
     public Profile findById(int id) {
-        return pr.findById(id);
+        return profileRepository.findById(id);
     }
 
-    public boolean insertProfileInfo(Profile p) {
+    public boolean insertProfileInfo(Profile profile) {
 
         try {
-            pr.mergeEntity(p);
+            profileRepository.mergeEntity(profile);
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -50,7 +50,7 @@ public class ProfileService {
     }
 
     public List<Profile> getAllProfiles() {
-        return pr.findAll();
+        return profileRepository.findAll();
     }
     
     

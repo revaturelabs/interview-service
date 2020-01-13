@@ -31,19 +31,19 @@ import com.revature.service.UserService;
 
 public class InterviewController {
 
-	private InterviewService is;
+	private InterviewService interviewService;
 
-	private UserService us;
+	private UserService userService;
 
 	public InterviewController() {
 	}
 
 	
 	@Autowired
-	public InterviewController(InterviewService is, UserService us) {
+	public InterviewController(InterviewService interviewService, UserService userService) {
 		super();
-		this.is = is;
-		this.us = us;
+		this.interviewService = interviewService;
+		this.userService = userService;
 	}
 
 
@@ -52,20 +52,20 @@ public class InterviewController {
 	public boolean saveInterview(@RequestBody Interview interview) {
 		Set<User> users = new HashSet<User>();
 		for (User u : interview.getUsers()) {
-			User tempUser = us.findById(u.getId());
+			User tempUser = userService.findById(u.getId());
 			users.add(tempUser);
 		}
 		interview.setUsers(users);
-		return is.insertInterviewInfo(interview);
+		return interviewService.insertInterviewInfo(interview);
 	}
 
 	@GetMapping("/allInterviews")
 	public List<Interview> getAll() {
-		return is.getAllInterviews();
+		return interviewService.getAllInterviews();
 	}
 
 	@GetMapping("/id/{id}")
 	public Interview getById(@PathVariable int id) {
-		return is.getById(id);
+		return interviewService.getById(id);
 	}
 }

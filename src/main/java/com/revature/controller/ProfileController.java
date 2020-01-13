@@ -27,7 +27,7 @@ import com.revature.service.ProfileService;
 @RequestMapping(value = "/profiles")
 public class ProfileController {
 
-    private ProfileService ps;
+    private ProfileService profileService;
     
     public ProfileController() {
 	}
@@ -35,9 +35,9 @@ public class ProfileController {
     
 
     @Autowired
-    public ProfileController(ProfileService ps) {
+    public ProfileController(ProfileService profileService) {
 		super();
-		this.ps = ps;
+		this.profileService = profileService;
 	}
 
 
@@ -45,12 +45,12 @@ public class ProfileController {
 	@PostMapping("/saveProfile")
     @Transactional
     public boolean insertProfileInfo(@RequestBody Profile profile) {
-        return ps.insertProfileInfo(profile);
+        return profileService.insertProfileInfo(profile);
     }
 
     @GetMapping("/allProfiles")
     public List<Profile> getAll() {
-        return ps.getAllProfiles();
+        return profileService.getAllProfiles();
     }
 
     @GetMapping("/allProfiles/{page}")

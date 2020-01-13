@@ -19,7 +19,7 @@ import com.revature.repository.JobRepository;
 @Service
 public class JobService {
 	
-	private JobRepository jr;
+	private JobRepository jobRepository;
 
 	private int pageReturnSize = 10;
 	
@@ -27,14 +27,14 @@ public class JobService {
 	}
 	
 	@Autowired
-	public JobService(JobRepository jr) {
-		this.jr = jr;
+	public JobService(JobRepository jobRepository) {
+		this.jobRepository = jobRepository;
 	}
 
 	@Transactional
-	public boolean insertJobInfo(Job j) {
+	public boolean insertJobInfo(Job job) {
 		try {
-			jr.mergeEntity(j);
+			jobRepository.mergeEntity(job);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -42,13 +42,13 @@ public class JobService {
 		}
 	}
 
-	public boolean updateJobInfo(Job p) {
+	public boolean updateJobInfo(Job job) {
 		try {
-			Job b;
-			int id = p.getId();
-			b = jr.findById(id);
-			b.setFilled(true);
-			jr.save(b);
+			Job job2;
+			int id = job.getId();
+			job2 = jobRepository.findById(id);
+			job2.setFilled(true);
+			jobRepository.save(job2);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -57,15 +57,15 @@ public class JobService {
 	}
 
 	public Iterable<Job> getAllJobs() {
-		return jr.findAll();
+		return jobRepository.findAll();
 	}
 
 	public Job findById(int id) {
-		return jr.findById(id);
+		return jobRepository.findById(id);
 	}
 
 	public Job findByTitle(String title) {
-		return jr.findByTitle(title);
+		return jobRepository.findByTitle(title);
 	}
 
 	public List<Job> findByTitlePaged(String title,int page){
@@ -73,7 +73,7 @@ public class JobService {
 	}
 
 	public Iterable<Job> findAll() {
-		return jr.findAll();
+		return jobRepository.findAll();
 	}
 	
 	public List<Job> getAllJobsPaged(int page){
