@@ -122,11 +122,11 @@ public class SkillControllerTest {
 		Skill testSkill = Mockito.mock(Skill.class);
 		testSkill.setId(3);
 		testSkill.setTitle("Assembly");
-		Mockito.when(skillRep.save(testSkill)).thenReturn(testSkill);
+		Mockito.when(skillServ.insertSkill(testSkill)).thenReturn(true);
 		
 		//Tester
 		skillCon.insertSkill(testSkill);
-		verify(skillRep, times(1)).save(testSkill);
+		verify(skillServ, times(1)).insertSkill(testSkill);
 		
 	}
 
@@ -147,11 +147,11 @@ public class SkillControllerTest {
 		testSkill.setId(1);
 		testSkill.setTitle("Java");
 		
-		when(skillRep.findByTitle("Java")).thenReturn(testSkill);
+		when(skillServ.findSkill("Java")).thenReturn(testSkill);
 		
 		//Tester
 		Skill reqSkill = skillCon.getSkills("Java");
-		assertEquals(reqSkill.getClass(), testSkill.getClass());
-		verify(skillRep, times(1)).findByTitle("Java");
+		assertEquals(reqSkill, testSkill);
+		verify(skillServ, times(1)).findSkill("Java");
 	}
 }
