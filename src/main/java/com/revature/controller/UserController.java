@@ -22,15 +22,15 @@ import com.revature.repository.UserRepository;
 @RequestMapping(value = "/users")
 public class UserController {
 
-	private UserRepository repository;
+	private UserRepository userRepository;
 
 	public UserController() {
 	}
 	
 	@Autowired
-	public UserController(UserRepository repository) {
+	public UserController(UserRepository userRepository) {
 		super();
-		this.repository = repository;
+		this.userRepository = userRepository;
 	}
 
 
@@ -46,7 +46,7 @@ public class UserController {
 	public User register(@RequestBody User user) {
 		String password = user.getPassword(); // get password
 		user.setPassword(DigestUtils.sha256Hex(password)); // hash password
-		repository.save(user); // persist the change to the DB
+		userRepository.save(user); // persist the change to the DB
 		return user;
 	}
 
@@ -61,7 +61,7 @@ public class UserController {
 	 */
 	@PostMapping(value = "/login")
 	public User login(@RequestBody User user) {
-		for (User u : repository.findAll()) {
+		for (User u : userRepository.findAll()) {
 			if (user.getUsername().equals(u.getUsername())) {
 				if (u.getPassword().equals(DigestUtils.sha256Hex(user.getPassword()))) {
 					return u;
@@ -81,13 +81,13 @@ public class UserController {
 	 */
 	@GetMapping(value = "/allusers")
 	public List<User> findAll() {
-		return repository.findAll();
+		return userRepository.findAll();
 	}
 
 	@PostMapping(value = "/authorize")
 	public boolean authorizeUser(@RequestHeader(name = "auth") String token) {
-		User u = repository.findByUsername(token);
-		if (u == null) {
+		User user = userRepository.findByUsername(token);
+		if (user == null) {
 			throw new UnauthorizedException();
 		} else {
 			return true;
