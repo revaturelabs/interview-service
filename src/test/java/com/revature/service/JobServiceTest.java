@@ -1,65 +1,113 @@
+package com.revature.service;
+
+import static org.junit.Assert.fail;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
+import com.revature.model.Job;
+import com.revature.repository.JobRepository;
+
 /*
- * package com.revature.service;
- * 
- * import static org.junit.Assert.assertEquals; import static
- * org.junit.Assert.assertFalse; import static org.junit.Assert.assertNotNull;
- * import static org.junit.Assert.assertTrue;
- * 
- * import java.util.ArrayList;
- * 
- * import org.junit.Before; import org.junit.Test; import
- * org.junit.runner.RunWith; import
- * org.springframework.beans.factory.annotation.Autowired; import
- * org.springframework.boot.autoconfigure.EnableAutoConfiguration; import
- * org.springframework.boot.autoconfigure.domain.EntityScan; import
- * org.springframework.boot.test.context.SpringBootTest; import
- * org.springframework.data.jpa.repository.config.EnableJpaRepositories; import
- * org.springframework.test.context.TestPropertySource; import
- * org.springframework.test.context.junit4.SpringRunner;
- * 
- * import com.revature.model.Job; import com.revature.model.Profile; import
- * com.revature.model.Skill;
- * 
- * @SpringBootTest(classes = {JobService.class}, webEnvironment =
- * SpringBootTest.WebEnvironment.RANDOM_PORT)
- * 
- * @EnableJpaRepositories("com.revature.repository")
- * 
- * @EntityScan("com.revature.model")
- * 
- * @RunWith(SpringRunner.class)
- * 
- * @EnableAutoConfiguration
- * 
- * @TestPropertySource(locations = "classpath:application-test.properties")
- * public class JobServiceTest {
- * 
- *//**
-	 * Unit tests for the Job Service object
-	 * 
-	 * @author John Thaddeus Kelly
-	 *//*
-		 * 
-		 * @Autowired private JobService js; Job job1 = new Job(1, "Avenger",
-		 * "Saving the World", new ArrayList<Skill>(), true, new ArrayList<Profile>());
-		 * 
-		 * @Before public void setup() { js.insertJobInfo(job1); }
-		 * 
-		 * @Test public void testInsertJob() { Job job = new Job();
-		 * assertTrue(js.insertJobInfo(job)); }
-		 * 
-		 * @Test public void testBadInsertJob() { assertFalse(js.insertJobInfo(null)); }
-		 * 
-		 * @Test public void testUpdateJob() { assertTrue(js.updateJobInfo(job1)); }
-		 * 
-		 * @Test public void testBadJob() { assertFalse(js.updateJobInfo(null)); }
-		 * 
-		 * @Test public void testAllJobs() { assertNotNull(js.getAllJobs()); }
-		 * 
-		 * @Test public void testFindAll() { assertNotNull(js.findAll()); }
-		 * 
-		 * @Test public void testGetTitle() { assertEquals(job1,
-		 * js.findByTitle("Avenger")); }
-		 * 
-		 * @Test public void testGetId() { assertEquals(job1, js.findById(1)); } }
-		 */
+ * Test class for JobService. Rewritten to utilize Mockito. This one has JORBS.
+ * @author: redc
+ * @created: 13JAN2020
+ */
+
+public class JobServiceTest {
+	
+	//Mockito starter stuff.
+	@Rule
+	public MockitoRule mockRule = MockitoJUnit.rule();
+	
+	@Mock
+	JobRepository jobRep;
+	
+	@InjectMocks
+	JobService jobServ;
+
+	@Before
+	public void setUp() throws Exception {
+		
+		MockitoAnnotations.initMocks(this);
+		
+	}
+
+	//CONSTRUCTORS
+	
+	@Test
+	public void testJobService() {
+		System.out.println("in JobService()");
+		
+		JobService testServ = new JobService();
+		if (testServ.getClass() != JobService.class)
+		{
+			fail("Constructor not working.");
+		}	
+	}
+
+	@Test
+	public void testJobServiceJobRepository() {
+		System.out.println("in JobService(JobRepository)");
+		
+		JobService testServ = new JobService(jobRep);
+		if (testServ.getClass() != JobService.class)
+		{
+			fail("POR QUE?!");
+		}	
+	}
+
+	//METHODS
+	
+	@Test
+	public void testInsertJobInfo() {
+		Job testJob = new Job();
+		
+		testJob.setTitle("Senior Custodial Manager");
+		testJob.setDescription("You clean up things.");
+		
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateJobInfo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetAllJobs() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetAllJobsPaged() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFindById() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFindByTitle() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFindAll() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFindByTitlePaged() {
+		fail("Not yet implemented");
+	}
+
+}
