@@ -23,22 +23,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.revature.controller.SkillController;
 import com.revature.model.Skill;
 
-@SpringBootTest(classes = { SkillController.class }, webEnvironment =
-  SpringBootTest.WebEnvironment.RANDOM_PORT)
+/*
+ * @SpringBootTest(classes = { SkillController.class }, webEnvironment =
+ * SpringBootTest.WebEnvironment.RANDOM_PORT)
+ * 
+ * @RunWith(SpringRunner.class)
+ * 
+ * @EnableJpaRepositories("com.revature.repository")
+ * 
+ * @EntityScan("com.revature.model")
+ * 
+ * @ComponentScan("com.revature.service")
+ */
   
-  @RunWith(SpringRunner.class)
+ /* @EnableAutoConfiguration // @EnableFeignClients(clients = {
+  AuthInterface.class })*/
   
-  @EnableJpaRepositories("com.revature.repository")
-  
-  @EntityScan("com.revature.model")
-  
-  @ComponentScan("com.revature.service")
-  
-  @EnableAutoConfiguration // @EnableFeignClients(clients = {
-  AuthInterface.class })
-  
-  @TestPropertySource(locations = "classpath:application-test.properties")
-  public class SkillControllerTest_OLD {
+/*  @TestPropertySource(locations = "classpath:application-test.properties")
+  public class SkillControllerTest_OLD {*/
  
 
 /**
@@ -46,7 +48,7 @@ import com.revature.model.Skill;
 	 * 
 	 * @author John Thaddeus Kelly
 	 */
-		  @Autowired SkillController sc = new SkillController(); Skill skill = new
+		 /* @Autowired SkillController sc = new SkillController(); Skill skill = new
 		  Skill(1, "Spring Boot Test"); Skill skill2 = new Skill(2, "Java"); Skill
 		  skill3 = new Skill(3, "SQL");
 		  
@@ -66,3 +68,4 @@ import com.revature.model.Skill;
 		  
 		  @Test public void testGetOne() { assertEquals(skill,
 		  sc.getSkills("Spring Boot Test")); } }
+*/
