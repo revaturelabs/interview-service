@@ -85,4 +85,47 @@ public class JobControllerTest {
 		Mockito.verify(jobServ).findAll();
 	}
 	
+	@Test
+	public void testPagingGetAll() {
+		List<Job> jobs= new ArrayList<>();
+		for(int i = 0; i < 500; i++)
+		{
+			String titleBuilder= "";
+			titleBuilder += (char)('k' + (i+39)%128);
+			titleBuilder += (char)('e' + (i-4)%128);
+			titleBuilder += (char)('O' + (i+7)%128);
+			titleBuilder += (char)('n' + (i)%128);
+			
+			jobs.add(new Job(i, titleBuilder,"test","testland",skills,false));
+		}
+			
+		Mockito.when(jobServ.getAllJobsPaged(0)).thenReturn(jobs.subList(0, 10));
+		
+		assertEquals(10, jc.getAllPaged(0).size());
+		
+		Mockito.verify(jobServ).getAllJobsPaged(0);
+				
+	}
+
+	@Test
+	public void testPagingGetbyTitle() {
+		List<Job> returnjobs= new ArrayList<>();
+		List<Job> jobs= new ArrayList<>();
+		jobs.add(new Job(1, "Tery","test","testland",skills,false));
+		jobs.add(new Job(2, "Tonny","test","testland",skills,false));
+		jobs.add(new Job(0, "Bob","test","testland",skills,false));
+		jobs.add(new Job(3, "James","test","testland",skills,false));
+		jobs.add(new Job(5, "David","test","testland",skills,false));
+		jobs.add(new Job(4, "Tret","test","testland",skills,false));
+		returnjobs.add(new Job(4, "Tret","test","testland",skills,false));
+		returnjobs.add(new Job(1, "Tery","test","testland",skills,false));
+		returnjobs.add(new Job(2, "Tonny","test","testland",skills,false));
+		
+		Mockito.when(jobServ.findByTitlePaged("T", 0)).thenReturn(returnjobs);
+		
+		assertEquals(returnjobs, jc.getByTitle("T", 0));
+		
+		Mockito.verify(jobServ).findByTitlePaged("T", 0);
+		
+	}
 }
