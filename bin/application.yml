@@ -1,0 +1,10 @@
+message: Routing through application.yml 
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
