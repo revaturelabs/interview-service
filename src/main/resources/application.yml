@@ -45,3 +45,14 @@ spring:  application:    name: interview-service
 eureka:  client:    register-with-eureka: true
     fetch-registry: true
   instance:    instance-id: ${spring.application.name}:${random.value}
+
+message: Routing through application.yml 
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
