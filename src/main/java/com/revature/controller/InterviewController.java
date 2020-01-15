@@ -68,4 +68,24 @@ public class InterviewController {
 	public Interview getById(@PathVariable int id) {
 		return interviewService.getById(id);
 	}
+	
+	@GetMapping("/profile/{id}")
+	public List<Interview> getByProfileId(@PathVariable int id) {
+		return interviewService.getInterviewsByProfileId(id);
+	}
+	
+	@GetMapping("/date/{year}")
+	public List<Interview> getByDate(@PathVariable("year") int year) {
+		return interviewService.getInterviewsByDate(year);
+	}
+	
+	@GetMapping("/date/{year}/{month}")
+	public List<Interview> getByDate(@PathVariable("year") int year, @PathVariable("month") int month) {
+		return interviewService.getInterviewsByDate(year, month);
+	}
+	
+	@GetMapping("/date/{year}/{month}/{day}")
+	public List<Interview> getByDate(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day") int day) {
+		return interviewService.getInterviewsByDate(year, month, day);
+	}
 }
