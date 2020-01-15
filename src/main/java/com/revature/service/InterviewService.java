@@ -48,7 +48,15 @@ public class InterviewService {
 		return interviewRepository.findByProfile_id(id);
 	}
 	
-	public List<Interview> getInterviewsByYearAndMonth(int year, int month) {
+	public List<Interview> getInterviewsByDate(int year) {
+		return interviewRepository.findAllByDate(year);
+	}
+	
+	public List<Interview> getInterviewsByDate(int year, int month) {
 		return interviewRepository.findAllByDate(year, month);
+	}
+	
+	public List<Interview> getInterviewsByDate(int year, int month, int day) {
+		return interviewRepository.findAllByDate(year, month, day);
 	}
 }
