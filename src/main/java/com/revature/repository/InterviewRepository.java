@@ -20,6 +20,8 @@ public interface InterviewRepository extends JpaRepository<Interview, Integer>, 
 	
 	List<Interview> findByProfile_id(int id);
 	
+	List<Interview> findByJob_id(int id);
+	
 	@Query("select i from Interview i where year(i.date) = ?1")
 	List<Interview> findAllByDate(int year);
 	

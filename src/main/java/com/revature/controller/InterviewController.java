@@ -46,8 +46,6 @@ public class InterviewController {
 		this.userService = userService;
 	}
 
-
-
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
 		Set<User> users = new HashSet<User>();
@@ -67,6 +65,12 @@ public class InterviewController {
 	@GetMapping("/id/{id}")
 	public Interview getById(@PathVariable int id) {
 		return interviewService.getById(id);
+	}
+	
+	@GetMapping("/job/{id}")
+	public List<Interview> getByJobId(@PathVariable int id)
+	{
+		return interviewService.getInterviewsByJobId(id);
 	}
 	
 	@GetMapping("/profile/{id}")

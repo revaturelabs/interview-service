@@ -48,6 +48,11 @@ public class InterviewService {
 		return interviewRepository.findByProfile_id(id);
 	}
 	
+	public List<Interview> getInterviewsByJobId(int id)
+	{
+		return interviewRepository.findByJob_id(id);
+	}
+	
 	public List<Interview> getInterviewsByDate(int year) {
 		return interviewRepository.findAllByDate(year);
 	}
