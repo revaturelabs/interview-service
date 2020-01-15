@@ -1,5 +1,9 @@
 package com.revature.controller;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,4 +100,29 @@ public class SkillController {
 	public Skill getSkills(@PathVariable("Title") String title) {
 		return skillService.findSkill(title);
 	}
+	
+	@GetMapping(value = "/populate")
+	public Boolean populate() {
+		String filePath = "skill-categories.csv";
+		try(BufferedReader Reader = new BufferedReader(new FileReader(filePath))){
+			String lineread = Reader.readLine(); //reads the title
+			int id =0;
+			while((lineread = Reader.readLine()) !=null) {
+				//check
+				if(skillService.findSkill(lineread) ==null){
+				skillRepository.save(new Skill(id,lineread,null));
+				}
+				
+				}
+			
+			return true;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 }
