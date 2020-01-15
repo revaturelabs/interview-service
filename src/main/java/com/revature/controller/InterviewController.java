@@ -68,4 +68,14 @@ public class InterviewController {
 	public Interview getById(@PathVariable int id) {
 		return interviewService.getById(id);
 	}
+	
+	@GetMapping("/profile/{id}")
+	public List<Interview> getByProfileId(@PathVariable int id) {
+		return interviewService.getInterviewsByProfileId(id);
+	}
+	
+	@GetMapping("/date/{year}/{month}")
+	public List<Interview> getByYearAndMonth(@PathVariable("year") int year, @PathVariable("month") int month) {
+		return interviewService.getInterviewsByYearAndMonth(year, month);
+	}
 }
