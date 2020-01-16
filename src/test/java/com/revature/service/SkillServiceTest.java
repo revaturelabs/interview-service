@@ -1,7 +1,6 @@
 package com.revature.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -20,7 +19,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import com.revature.controller.SkillController;
 import com.revature.model.Skill;
 import com.revature.repository.SkillRepository;
 import com.revature.service.SkillService;
