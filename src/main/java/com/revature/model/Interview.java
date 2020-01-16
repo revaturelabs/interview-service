@@ -45,7 +45,7 @@ public class Interview {
 	@JoinColumn(name = "interview_job")
 	private Job job;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(name = "interviewer_users", joinColumns = { @JoinColumn(name = "interview_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "users_id") })
 	private Set<User> users = new HashSet<>();
