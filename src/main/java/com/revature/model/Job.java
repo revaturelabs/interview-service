@@ -33,7 +33,7 @@ public class Job {
 	@Column(name = "job_title")
 	private String title;
 
-	@Column(name = "job_description")
+	@Column(name = "job_description", length=10_000)
 	private String description;
 	
 	@Column(name = "job_location")
