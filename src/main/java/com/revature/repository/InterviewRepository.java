@@ -15,7 +15,7 @@ import com.revature.model.Interview;
  * @author Adriana Long
  */
 @Repository
-public interface InterviewRepository extends JpaRepository<Interview, Integer>, CustomRepo {
+public interface InterviewRepository extends JpaRepository<Interview, Integer> {
 	Interview findById(int id);
 	
 	List<Interview> findByProfile_id(int id);

@@ -89,7 +89,7 @@ public class JobServiceTest {
 		Boolean request = jobServ.insertJobInfo(testJob);
 		
 		assertTrue(request);
-		verify(jobRep, times(1)).mergeEntity(testJob);
+		verify(jobRep, times(1)).save(testJob);
 	}
 
 	// TODO: Test throws assertion error. Check routing. May need to check equality between getter and testJob.

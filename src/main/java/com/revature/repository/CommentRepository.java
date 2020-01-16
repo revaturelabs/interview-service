@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Integer>, CustomRepo {
+public interface CommentRepository extends JpaRepository<Comment, Integer>{
     /**
      * @see returns all comments based on interviewId
      */

@@ -34,7 +34,7 @@ public class JobService {
 	@Transactional
 	public boolean insertJobInfo(Job job) {
 		try {
-			jobRepository.mergeEntity(job);
+			jobRepository.save(job);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);

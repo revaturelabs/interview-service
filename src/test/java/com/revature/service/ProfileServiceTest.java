@@ -137,7 +137,7 @@ public class ProfileServiceTest {
 		Boolean request = profServ.insertProfileInfo(newProf);
 		
 		assertTrue(request);
-		verify(profRep, times(1)).mergeEntity(newProf);
+		verify(profRep, times(1)).save(newProf);
 	}
 
 	@Test
