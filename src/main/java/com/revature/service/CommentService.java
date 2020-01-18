@@ -33,7 +33,7 @@ public class CommentService {
 	public Comment insertCommentWithInterview(int id, Comment comment) {
         try {
             comment.setInterviewId(interviewRepository.findById(id));
-            commentRepository.mergeEntity(comment);
+            commentRepository.save(comment);
             return comment;
         } catch (Exception e) {
             System.out.println(e);

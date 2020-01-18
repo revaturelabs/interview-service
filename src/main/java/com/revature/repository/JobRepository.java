@@ -17,11 +17,11 @@ import com.revature.model.Job;
  */
 @Repository
 @Transactional
-public interface JobRepository extends JpaRepository<Job, Integer>, CustomRepo {
+public interface JobRepository extends JpaRepository<Job, Integer> {
 	Job findById(int id);
 
-	Job findByTitle(String title);
+	List<Job> findByTitleStartsWithIgnoreCase(String title);
 	
-	List<Job> findByTitle(String title, Pageable page);
+	List<Job> findByTitleStartsWithIgnoreCase(String title, Pageable page);
 	
 }

@@ -2,6 +2,7 @@ package com.revature.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,10 @@ import com.revature.model.Skill;
  */
 @Repository
 public interface SkillRepository extends JpaRepository<Skill, Integer> {
-	Skill findByTitle(String title);
+	
+	Skill findById(int id);
+	
+	List<Skill> findByTitleStartsWithIgnoreCase(String title);
 
-	List<Skill> findByTitleOrderByTitleAsc(String title);
+	List<Skill> findByTitleStartsWithIgnoreCase(String title, Pageable page);
 }

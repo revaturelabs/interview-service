@@ -62,7 +62,7 @@ public class SkillController {
 	 * @return The skill that matches the id
 	 * @author Seacriest Brown
 	 */
-	@GetMapping(value = "/getskill/{id}")
+	@GetMapping(value = "/getskillbyid/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {
 		for (Skill skill : skillRepository.findAll()) {
 			if (skill.getId() == id) {
@@ -97,8 +97,13 @@ public class SkillController {
 	 * @return skill by title
 	 */
 	@GetMapping(value = "/getskill/{Title}")
-	public Skill getSkills(@PathVariable("Title") String title) {
+	public List<Skill> getSkills(@PathVariable("Title") String title) {
 		return skillService.findSkill(title);
+	}
+
+	@GetMapping(value = "/getskill/{Title}/{page}")
+	public List<Skill> getSkills(@PathVariable("Title") String title, @PathVariable int page) {
+		return skillService.findSkillPaged(title, page);
 	}
 	
 	@GetMapping(value = "/populate")

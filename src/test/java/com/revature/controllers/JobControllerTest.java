@@ -53,7 +53,8 @@ public class JobControllerTest {
 	
 	@Test
 	public void testGetByTitle() {
-		Job jb = new Job(1,"head","it me","here", skills, true);
+		List<Job> jb = new ArrayList<>();
+		jb.add(new Job(1,"head","it me","here", skills, true));
 		Mockito.when(jobServ.findByTitle("head")).thenReturn(jb);
 		System.out.println("called");
 		System.out.println(jb);
@@ -62,13 +63,7 @@ public class JobControllerTest {
 		
 	}
 	
-	@Test
-	public void testUpdateJob() {
-		Job jb1 = new Job();
-		Mockito.when(jobServ.updateJobInfo(jb1)).thenReturn(true);
-		assertEquals(true, jc.updateJobInfo(jb1));
-		Mockito.verify(jobServ).updateJobInfo(jb1);
-	}
+	
 	@Test
 	public void testInsertJob() {
 		Job jb2 = new Job();

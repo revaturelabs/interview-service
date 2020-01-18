@@ -162,11 +162,12 @@ public class SkillControllerTest {
 		Skill testSkill = Mockito.mock(Skill.class);
 		testSkill.setId(1);
 		testSkill.setTitle("Java");
-		
-		when(skillServ.findSkill("Java")).thenReturn(testSkill);
+		List<Skill> testList = new ArrayList<>();
+		testList.add(testSkill);
+		when(skillServ.findSkill("Java")).thenReturn(testList);
 		
 		//Tester
-		Skill reqSkill = skillCon.getSkills("Java");
+		Skill reqSkill = skillCon.getSkills("Java").get(0);
 		assertEquals(reqSkill, testSkill);
 		verify(skillServ, times(1)).findSkill("Java");
 	}

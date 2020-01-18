@@ -3,6 +3,7 @@ package com.revature.service;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -31,10 +32,10 @@ public class JobService {
 		this.jobRepository = jobRepository;
 	}
 
-	@Transactional
+
 	public boolean insertJobInfo(Job job) {
 		try {
-			jobRepository.mergeEntity(job);
+			jobRepository.save(job);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -42,19 +43,6 @@ public class JobService {
 		}
 	}
 
-	public boolean updateJobInfo(Job job) {
-		try {
-			Job job2;
-			int id = job.getId();
-			job2 = jobRepository.findById(id);
-			job2.setFilled(true);
-			jobRepository.save(job2);
-			return true;
-		} catch (Exception e) {
-			System.out.println(e);
-			return false;
-		}
-	}
 
 	public Iterable<Job> getAllJobs() {
 		return jobRepository.findAll();
@@ -68,8 +56,8 @@ public class JobService {
 		return jobRepository.findById(id);
 	}
 
-	public Job findByTitle(String title) {
-		return jobRepository.findByTitle(title);
+	public List<Job> findByTitle(String title) {
+		return jobRepository.findByTitleStartsWithIgnoreCase(title);
 	}
 
 	public Iterable<Job> findAll() {
@@ -78,7 +66,7 @@ public class JobService {
 	
 		
 	public List<Job> findByTitlePaged(String title,int page){
-		return jobRepository.findByTitle(title, PageRequest.of(page, this.pageReturnSize));
+		return jobRepository.findByTitleStartsWithIgnoreCase(title, PageRequest.of(page, this.pageReturnSize));
 	}
 	
 }
