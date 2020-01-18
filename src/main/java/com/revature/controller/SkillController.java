@@ -114,8 +114,24 @@ public class SkillController {
 			int id =0;
 			while((lineread = Reader.readLine()) !=null) {
 				//check
-				if(skillService.findSkill(lineread) ==null){
+				List<Skill> testList = skillService.findSkill(lineread);
+				//if empty add
+				if(testList.isEmpty()){					
 				skillRepository.save(new Skill(id,lineread,null));
+				}
+				//since things like Java and java script exist we need to check exact name
+				if(!testList.isEmpty())
+				{
+					boolean found =false;
+					for(Skill iterSkill:testList) {
+						if(iterSkill.getTitle().equals(lineread))
+							found= true;
+						if(found)
+							break;
+						
+					}
+					if(!found)
+						skillRepository.save(new Skill(id,lineread,null));
 				}
 				
 				}
