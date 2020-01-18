@@ -45,7 +45,7 @@ public class InterviewService {
 	public boolean insertInterviewInfo(Interview interview) {
 		try {
 			if(interview.getJob()!= null) {
-				Job temp = this.jobRepo.findByTitle(interview.getJob().getTitle());
+				Job temp = this.jobRepo.findById(interview.getJob().getId());
 				if(temp != null)
 				{
 					interview.setJob(temp);

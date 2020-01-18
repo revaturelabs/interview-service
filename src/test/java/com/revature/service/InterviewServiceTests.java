@@ -31,6 +31,7 @@ import com.revature.model.User;
 import com.revature.repository.InterviewRepository;
 import com.revature.repository.JobRepository;
 import com.revature.repository.ProfileRepository;
+import com.revature.repository.UserRepository;
 
 @SpringBootTest(classes = {InterviewService.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableJpaRepositories("com.revature.repository")
@@ -67,12 +68,13 @@ public class InterviewServiceTests {
 	private InterviewRepository interviewRepository = Mockito.mock(InterviewRepository.class);
 	private JobRepository jobRepository = Mockito.mock(JobRepository.class);
 	private ProfileRepository profileRepository = Mockito.mock(ProfileRepository.class);
+	private UserRepository userRepository = Mockito.mock(UserRepository.class);
 	private InterviewService is;
 	
 
 	@Before
 	public void setUp() throws Exception {
-		is = new InterviewService(interviewRepository, jobRepository,profileRepository);
+		is = new InterviewService(interviewRepository, jobRepository,profileRepository, userRepository);
 		System.out.println(is);
 	}
 	

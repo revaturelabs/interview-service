@@ -109,7 +109,7 @@ public class JobServiceTest {
 		Job updateJob = testJob;
 		updateJob.setDescription("Just kidding, you manage the people that clean up things.");
 		
-		Boolean updateReq = this.jobServ.updateJobInfo(updateJob);
+		Boolean updateReq = this.jobServ.insertJobInfo(updateJob);
 		
 		Job reqJob = this.jobServ.findById(1);
 		
@@ -202,13 +202,14 @@ public class JobServiceTest {
 		Job testJob = Mockito.mock(Job.class);
 		testJob.setId(0);
 		testJob.setTitle("Title Holder");
+		List<Job> testJobList = new ArrayList<>();
+		testJobList.add(testJob);
+		when(jobRep.findByTitleStartsWithIgnoreCase("Title Holder")).thenReturn(testJobList);
 		
-		when(jobRep.findByTitle("Title Holder")).thenReturn(testJob);
-		
-		Job reqJob = jobServ.findByTitle("Title Holder");
+		Job reqJob = jobServ.findByTitle("Title Holder").get(0);
 		
 		assertEquals(reqJob, testJob);
-		verify(jobRep, times(1)).findByTitle("Title Holder");
+		verify(jobRep, times(1)).findByTitleStartsWithIgnoreCase("Title Holder");
 	}
 
 	// Redundant. Method is exactly identical to getAllJobs. Suggest removal. -redc
@@ -252,12 +253,12 @@ System.out.println("in findByTitlePaged");
 		
 		testList.add(testJob);
 		
-		when(jobRep.findByTitle("Title Holder", PageRequest.of(0, 10))).thenReturn(testList);
+		when(jobRep.findByTitleStartsWithIgnoreCase("Title Holder", PageRequest.of(0, 10))).thenReturn(testList);
 		
 		List<Job> reqList = jobServ.findByTitlePaged("Title Holder", 0);
 		
 		assertEquals(reqList, testList);
-		verify(jobRep, times(1)).findByTitle("Title Holder", PageRequest.of(0, 10));
+		verify(jobRep, times(1)).findByTitleStartsWithIgnoreCase("Title Holder", PageRequest.of(0, 10));
 	}
 
 }

@@ -127,12 +127,14 @@ public class SkillServiceTest {
 		Skill testSkill = Mockito.mock(Skill.class);
 		testSkill.setId(2);
 		testSkill.setTitle("SQL");
-		when(skillRep.findByTitle("SQL")).thenReturn(testSkill);
+		List<Skill> testList = new ArrayList<>();
+		testList.add(testSkill);
+		when(skillRep.findByTitleStartsWithIgnoreCase("SQL")).thenReturn(testList);
 
 		//Tester
 		//skillServ.findSkill("SQL");
 		assertEquals(skillServ.findSkill("SQL"), testSkill);
-		verify(skillRep, times(1)).findByTitle("SQL");
+		verify(skillRep, times(1)).findByTitleStartsWithIgnoreCase("SQL");
 	}
 
 }

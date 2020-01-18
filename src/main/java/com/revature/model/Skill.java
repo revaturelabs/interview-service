@@ -32,12 +32,12 @@ public class Skill {
 	@Column(name = "skill_title")
 	private String title;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, mappedBy = "skills")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE }, mappedBy = "skills")
 	@Column(name = "profiles")
 	@JsonIgnore
 	private Set<Profile> profiles = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, mappedBy = "skills")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE }, mappedBy = "skills")
 	@Column(name = "jobs")
 	@JsonIgnore
 	private Set<Job> jobs = new HashSet<>();
@@ -48,7 +48,7 @@ public class Skill {
 
 	@Override
 	public String toString() {
-		return "Skill [id=" + id + ", title=" + title + ", profiles=" + profiles + "]";
+		return "Skill [id=" + id + ", title=" + title + ", profiles=" + profiles.toArray() + "]";
 	}
 
 	public Skill(int id, String title, Set<Profile> skillProfiles) {

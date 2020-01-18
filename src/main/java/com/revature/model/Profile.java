@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Profile {
 	@Id
 	@Column(name = "profile_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@Column(name = "profile_firstName")
@@ -45,7 +45,7 @@ public class Profile {
 	@Column(name = "profile_email_address")
 	private String emailAddress;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "profile_skills", joinColumns = { @JoinColumn(name = "profile_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "skill_id") })
 	private Set<Skill> skills = new HashSet<>();

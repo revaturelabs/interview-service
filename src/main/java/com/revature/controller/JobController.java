@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,30 +49,22 @@ public class JobController {
 		this.skillService = skillService;
 	}
 
-
+    /**
+     * This will create a new job if sent a invalid id or update a 
+     * valid id
+     * 
+     * @param job
+     * @return a boolean if it ran/Hopfully worked
+     */
 
 	@PostMapping("/saveJob")
     @Transactional
     public boolean insertJobInfo(@RequestBody Job job) {
-        Set<Skill> skills = new HashSet<Skill>();
-        for (Skill skill : job.getSkills()) {
-            Skill tempSkill = skillService.findSkill(skill.getTitle());
-            skills.add(tempSkill);
-        }
-        job.setSkills(skills);
+	
         return jobService.insertJobInfo(job);
     }
 
-    /**
-     * Update jobs to the database
-     * 
-     * @return String confirming successful or unsuccessful entry
-     * @author william liederer
-     */
-    @PatchMapping("/updateJob")
-    public boolean updateJobInfo(@RequestBody Job job) {
-        return jobService.updateJobInfo(job);
-    }
+
 
     /**
      * Retrieve jobs from the database
@@ -96,7 +89,7 @@ public class JobController {
      * @return job by title
      */
     @GetMapping("/jobTitle/{title}")
-    public Job getByTitle(@PathVariable String title) {
+    public List<Job> getByTitle(@PathVariable String title) {
         return jobService.findByTitle(title);
     }
     
