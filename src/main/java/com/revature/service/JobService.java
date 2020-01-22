@@ -33,13 +33,12 @@ public class JobService {
 	}
 
 
-	public boolean insertJobInfo(Job job) {
+	public Job insertJobInfo(Job job) {
 		try {
-			jobRepository.save(job);
-			return true;
+			return jobRepository.save(job);
 		} catch (Exception e) {
 			System.out.println(e);
-			return false;
+			return null;
 		}
 	}
 

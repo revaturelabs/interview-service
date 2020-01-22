@@ -59,7 +59,7 @@ public class JobController {
 
 	@PostMapping("/saveJob")
     @Transactional
-    public boolean insertJobInfo(@RequestBody Job job) {
+    public Job insertJobInfo(@RequestBody Job job) {
 	
         return jobService.insertJobInfo(job);
     }

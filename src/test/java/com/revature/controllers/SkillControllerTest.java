@@ -117,7 +117,7 @@ public class SkillControllerTest {
 		testSkill.setId(2);
 		testSkill.setTitle("SQL");
 		
-		when(skillCon.getBySkill(2)).thenReturn(testSkill);
+		Mockito.when(skillCon.getBySkill(2)).thenReturn(testSkill);
 		
 		//Tester
 		Skill reqSkill = skillCon.getBySkill(2);
