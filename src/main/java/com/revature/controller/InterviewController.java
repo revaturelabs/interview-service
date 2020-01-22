@@ -48,6 +48,7 @@ public class InterviewController {
 
 	@PostMapping("/saveInterview")
 	public boolean saveInterview(@RequestBody Interview interview) {
+		System.out.println("user added");
 		Set<User> users = new HashSet<User>();
 		for (User u : interview.getUsers()) {
 			User tempUser = userService.findById(u.getId());
