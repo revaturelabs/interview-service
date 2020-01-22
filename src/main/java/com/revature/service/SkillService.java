@@ -51,10 +51,10 @@ public class SkillService {
 	}
 
 	public List<Skill> findSkill(String title) {
-		return skillRepository.findByTitleStartsWithIgnoreCase(title);
+		return skillRepository.findByTitleStartsWithIgnoreCase(title.toLowerCase());
 	}
 	
 	public List<Skill> findSkillPaged(String title,	int page) {
-		return skillRepository.findByTitleStartsWithIgnoreCase(title, PageRequest.of(page, this.pageReturnSize ));
+		return skillRepository.findByTitleStartsWithIgnoreCase(title.toLowerCase(), PageRequest.of(page, this.pageReturnSize ));
 	}
 }
