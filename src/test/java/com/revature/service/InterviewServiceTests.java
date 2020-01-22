@@ -33,12 +33,12 @@ import com.revature.repository.JobRepository;
 import com.revature.repository.ProfileRepository;
 import com.revature.repository.UserRepository;
 
-@SpringBootTest(classes = {InterviewService.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+/*@SpringBootTest(classes = {InterviewService.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableJpaRepositories("com.revature.repository")
 @EntityScan("com.revature.model")
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")*/
 public class InterviewServiceTests {
 	
 	/**

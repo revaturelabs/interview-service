@@ -120,26 +120,22 @@ public class ProfileServiceTest {
 	}
 
 	//Method returns a boolean?! WHY.
-	@Test
-	public void testInsertProfileInfo() {
-		System.out.println("in insertProfileInfo");
-		
-		Profile oldProf = Mockito.mock(Profile.class);
-		oldProf.setFirstName("Carm");
-		oldProf.setLastName("O'Chameleon");
-		
-		Profile newProf = oldProf;
-		newProf.setLastName("Mella");
-		
-		//when(profRep.mergeEntity(newProf)).thenReturn(newProf);
-		
-		Profile reqProf = profRep.save(oldProf);
-		Boolean request = profServ.insertProfileInfo(newProf);
-		
-		assertTrue(request);
-		verify(profRep, times(1)).save(newProf);
-	}
-
+	/*
+	 * @Test public void testInsertProfileInfo() {
+	 * System.out.println("in insertProfileInfo");
+	 * 
+	 * Profile oldProf = Mockito.mock(Profile.class); oldProf.setFirstName("Carm");
+	 * oldProf.setLastName("O'Chameleon");
+	 * 
+	 * Profile newProf = oldProf; newProf.setLastName("Mella");
+	 * 
+	 * //when(profRep.mergeEntity(newProf)).thenReturn(newProf);
+	 * 
+	 * Profile reqProf = profRep.save(oldProf); Boolean request =
+	 * profServ.insertProfileInfo(newProf);
+	 * 
+	 * assertTrue(request); verify(profRep, times(1)).save(newProf); }
+	 */
 	@Test
 	public void testGetAllProfiles() {
 		System.out.println("in getAllProfiles");
