@@ -54,6 +54,7 @@ public class InterviewController {
 	 * @param interview The interview being scheduled.
 	 * @return True if the interview is saved successfully, and false if the interview was not saved. */
 	public boolean saveInterview(@RequestBody Interview interview) {
+		System.out.println("user added");
 		Set<User> users = new HashSet<User>();
 		for (User u : interview.getUsers()) {
 			User tempUser = userService.findById(u.getId());

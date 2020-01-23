@@ -64,12 +64,7 @@ public class SkillController {
 	 */
 	@GetMapping(value = "/getskillbyid/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {
-		for (Skill skill : skillRepository.findAll()) {
-			if (skill.getId() == id) {
-				return skill;
-			}
-		}
-		return null;
+		return skillService.getById(id);
 	}
 
 	/**

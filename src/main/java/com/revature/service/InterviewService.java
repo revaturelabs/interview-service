@@ -75,7 +75,7 @@ public class InterviewService {
 				Set<User> interiewUserSet = new HashSet<>();
 				for(User userIter :interview.getUsers()) {
 
-				User temp = userRepo.findById(0);
+				User temp = userRepo.findById(userIter.getId());
 				if(temp != null)
 				{
 					interiewUserSet.add(temp);

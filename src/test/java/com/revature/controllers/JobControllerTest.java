@@ -64,13 +64,13 @@ public class JobControllerTest {
 	}
 	
 	
-	@Test
-	public void testInsertJob() {
-		Job jb2 = new Job();
-		Mockito.when(jobServ.insertJobInfo(jb2)).thenReturn(true);
-		assertEquals(true, jc.insertJobInfo(jb2));
-		Mockito.verify(jobServ).insertJobInfo(jb2);
-	}
+//	@Test
+//	public void testInsertJob() {
+//		Job jb2 = new Job();
+//		Mockito.when(jobServ.insertJobInfo(jb2)).thenReturn(true);
+//		assertEquals(true, jc.insertJobInfo(jb2));
+//		Mockito.verify(jobServ).insertJobInfo(jb2);
+//	}
 	
 	@Test 
 	public void testGetAll() {

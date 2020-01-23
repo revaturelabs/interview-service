@@ -69,7 +69,7 @@ public class SkillService {
 	 * @return A ist of all skills whose names start with the provided string,
 	 ignoring upper and lower case. */
 	public List<Skill> findSkill(String title) {
-		return skillRepository.findByTitleStartsWithIgnoreCase(title);
+		return skillRepository.findByTitleStartsWithIgnoreCase(title.toLowerCase());
 	}
 	
 	/** Returns a list of skills on a given page whose names start with the provided string,
@@ -81,6 +81,6 @@ public class SkillService {
 	 * @return A list of skills on a given page whose names start with the provided string,
 	 ignoring upper and lower case. */
 	public List<Skill> findSkillPaged(String title,	int page) {
-		return skillRepository.findByTitleStartsWithIgnoreCase(title, PageRequest.of(page, this.pageReturnSize ));
+		return skillRepository.findByTitleStartsWithIgnoreCase(title.toLowerCase(), PageRequest.of(page, this.pageReturnSize ));
 	}
 }
