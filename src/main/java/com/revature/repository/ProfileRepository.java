@@ -39,13 +39,15 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     List<Profile> findByLastNameOrderByLastNameAsc(String lastName);
 
     /** Retrieves a list containing the profiles for all candidates on a given page whose first name starts with
-     a provided string, and whose last name starts with another provided string.
-     * @param firstName A string that will filter out all candidates whose first names do not start with that string.
-     * @param lastName A string that will filter out all candidates whose last names do not start with that string.
-     * @param page The page that will be searched for matching candidates. Any candidate outside this page will
+    a provided string, and whose last name starts with another provided string.
+    * @param firstName A string that will filter out all candidates whose first names do not start with that string.
+     To search for profiles with an empty first name, use "%" as the argument.
+    * @param lastName A string that will filter out all candidates whose last names do not start with that string.
+     To search for profiles with an empty last name, use "%" as the argument.
+    * @param page The page that will be searched for matching candidates. Any candidate outside this page will
 	 not be returned in the results list, even if they fulfill the other search criteria.
-     * @return A list containing the profiles for all candidates on a given page whose first name starts with
-     a provided string, and whose last name starts with another provided string. */
+    * @return A list containing the profiles for all candidates on a given page whose first name starts with
+    a provided string, and whose last name starts with another provided string. */
     List<Profile> findByFirstNameStartsWithIgnoreCaseAndLastNameStartsWithIgnoreCase(String firstName, String lastName, Pageable page);
 	
 }

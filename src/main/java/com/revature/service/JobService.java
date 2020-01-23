@@ -20,7 +20,7 @@ public class JobService {
 	/** A CRUD repository that links this job service to the database. */
 	private JobRepository jobRepository;
 	
-	/** The number of jobs to return on each page. */
+	/** The number of jobs to return on each page. Default is 10. */
 	private int pageReturnSize = 10;
 	
 	/** Creates a new job service, with all properties set to their default values. */
