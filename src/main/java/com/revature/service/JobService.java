@@ -37,7 +37,7 @@ public class JobService {
 	/** Saves a job to the database.
 	 * @param job The job being saved.
 	 * @return True if the job was saved successfully, and false if the job was not saved. */
-	public boolean insertJobInfo(Job job) {
+	public Job insertJobInfo(Job job) {
 		try {
 			return jobRepository.save(job);
 		} catch (Exception e) {

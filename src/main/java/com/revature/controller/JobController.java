@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,7 +54,7 @@ public class JobController {
 	 this job will updated. If no such job exists, a new one will be added to the database.
 	 * @param job The job being saved.
 	 * @return True if the job was saved successfully, and false if the job was not saved. 
-    public boolean insertJobInfo(@RequestBody Job job) {
+   */ public Job insertJobInfo(@RequestBody Job job) {
         return jobService.insertJobInfo(job);
     }
 
@@ -62,7 +63,7 @@ public class JobController {
     /** Returns an iterable data structure containing all jobs in the database,
 	 in response to an HTTP Get request at the uri "/jobs/allJobs".
 	 * @return An iterable data structure containing all jobs in the database.
-    public Iterable<Job> getAll() {
+    */public Iterable<Job> getAll() {
         return jobService.findAll();
     }
 
