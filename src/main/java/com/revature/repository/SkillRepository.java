@@ -18,7 +18,7 @@ public interface SkillRepository extends JpaRepository<Skill, Integer> {
 	 Returns null if no such skill is found.
 	 * @param id The integer that uniquely identifies the skill.
 	 * @return The skill from the database whose ID matches the provided number,
-	 or null if no such skill is found. */
+	 or null if no such skill is found.  */
 	Skill findById(int id);
 	
 	/** Retrieves a list of all skills whose name starts with the provided string,
