@@ -54,7 +54,6 @@ public class Interview {
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(name = "interviewer_users", joinColumns = { @JoinColumn(name = "interview_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "users_id") })
-	
 	/** The set of employees responsible for conducting this interview. */
 	private Set<User> users = new HashSet<>();
 
