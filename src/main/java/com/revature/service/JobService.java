@@ -55,7 +55,7 @@ public class JobService {
 	}
 
 	/** Returns a list of all jobs on a given page.
-	 * @param page An integer identifier the page to search for jobs.
+	 * @param page An integer identifying the page to search for jobs.
 	 * @return A list of all jobs on the specified page. */
 	public List<Job> getAllJobsPaged(int page){
 		return jobRepository.findAll(PageRequest.of(page, this.pageReturnSize)).getContent();
@@ -90,11 +90,11 @@ public class JobService {
 	 ignoring upper and lower case.
 	 * @param title A string that will filter out all jobs whose names do not start with the string,
 	 ignoring upper and lower case.
-	 * @param page An integer identifier the page to search for jobs. All jobs outside this page
+	 * @param page An integer identifying the page to search for jobs. All jobs outside this page
 	 will not be included in the returned list, even if their names start with the title parameter.
 	 * @return A list of jobs on a given page whose names start with the provided string,
 	 ignoring upper and lower case. */
-	public List<Job> findByTitlePaged(String title,int page){
+	public List<Job> findByTitlePaged(String title, int page){
 		return jobRepository.findByTitleStartsWithIgnoreCase(title, PageRequest.of(page, this.pageReturnSize));
 	}
 	
