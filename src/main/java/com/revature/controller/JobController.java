@@ -5,15 +5,19 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Job;
+import com.revature.model.Profile;
+import com.revature.repository.JobRepository;
 import com.revature.service.JobService;
 import com.revature.service.SkillService;
 
@@ -73,9 +77,14 @@ public class JobController {
 	 the page to search for jobs.
 	 * @param page An integer identifying the page to search for jobs.
 	 * @return A list of all jobs on the specified page. */
-    public List<Job> getAllPaged(@PathVariable int page){
-    	return jobService.getAllJobsPaged(page);
-    }
+    public List<Job> getAllPaged(@PathVariable int page, @RequestHeader("usefilter") boolean useFilter,
+			@RequestHeader("value") String value) {
+ 		if (useFilter) {
+ 			return jobService.getFilterJobsPaged(value, page);
+ 		}else {
+ 			return jobService.getAllJobsPaged(page);
+ 		}
+	}
 
     @GetMapping("/jobTitle/{title}")
 	/** Returns a list of jobs whose names start with the provided string,
@@ -107,5 +116,6 @@ public class JobController {
         return jobService.findByTitlePaged(title, page);
     }
     
+
     
 }
