@@ -30,19 +30,24 @@ public class Skill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	/** An integer that uniquely identifies this skill. */
 	private int id;
+	
 	@Column(name = "skill_title")
 	/** The name of this skill. */
 	private String title;
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE }, mappedBy = "skills")
 	@Column(name = "profiles")
 	/** A set of candidates who claim proficiency in this skill. */
+	
 	@JsonIgnore
 	private Set<Profile> profiles = new HashSet<>();
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE }, mappedBy = "skills")
 	@Column(name = "jobs")
 	/** A set of jobs that this skill is necessary for. */
 	@JsonIgnore
 	private Set<Job> jobs = new HashSet<>();
+	
 	/** Creates a new skill with all properties set to their default values. */
 	public Skill() {
 		super();
