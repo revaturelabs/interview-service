@@ -8,11 +8,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.revature.model.Interview;
 import com.revature.model.Job;
+import com.revature.model.Skill;
 
 /**
  * Repository for adding and retrieving jobs
- * @author John Thaddeus Kelly
+ * @author 
  */
 @Repository
 @Transactional
@@ -38,5 +40,13 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
 	 * @return A list of jobs on a given page whose name starts with the provided string,
 	 ignoring upper and lower case. */
 	List<Job> findByTitleStartsWithIgnoreCase(String title, Pageable page);
+	
+	List<Job> findBySkills(Skill skill);
+	
+	List<Job> findByInterviews(Interview interview);
+	
+	List<Job> findByLocation(String location);
+		
+	List<Job> findByIsFilled(boolean isFilled);
 	
 }
