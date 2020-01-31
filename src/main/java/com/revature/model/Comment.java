@@ -35,16 +35,20 @@ public class Comment {
 	private int id;
 	private Calendar date;
 	private String text;
+	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "interview_comments")
-	private Interview interviewId;
+	@JoinColumn(name = "interview_interviewer")
+	
+	private InterviewInterviewer interviewInterviewer;
+	
 	public Comment() {
 	}
-	public Comment(int id, Calendar date, String text, Interview interviewId) {
+	
+	public Comment(int id, Calendar date, String text, InterviewInterviewer interviewInterviewer) {
 		this.id = id;
 		this.date = date;
 		this.text = text;
-		this.interviewId = interviewId;
+		this.interviewInterviewer = interviewInterviewer;
 	}
 	public int getId() {
 		return this.id;
@@ -64,12 +68,7 @@ public class Comment {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Interview getInterviewId() {
-		return this.interviewId;
-	}
-	public void setInterviewId(Interview interviewId) {
-		this.interviewId = interviewId;
-	}
+
 	public Comment id(int id) {
 		this.id = id;
 		return this;
@@ -82,8 +81,21 @@ public class Comment {
 		this.text = text;
 		return this;
 	}
-	public Comment interviewId(Interview interviewId) {
-		this.interviewId = interviewId;
-		return this;
+
+	public InterviewInterviewer getInterviewInterviewer() {
+		return interviewInterviewer;
 	}
+
+	public void setInterviewInterviewer(InterviewInterviewer interviewInterviewer) {
+		this.interviewInterviewer = interviewInterviewer;
+	}
+
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", date=" + date + ", text=" + text + ", interviewInterviewer="
+				+ interviewInterviewer + "]";
+	}
+
+	
+	
 }

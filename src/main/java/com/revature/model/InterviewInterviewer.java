@@ -23,9 +23,11 @@ public class InterviewInterviewer {
 	@JoinColumn(name="fk_interview")
 	private Interview interview;
 	private String interviewer;
+	
 	public InterviewInterviewer() {
 		super();
 	}
+	
 	public InterviewInterviewer(int id, String text, Interview interview, String interviewer) {
 		super();
 		this.id = id;
