@@ -24,32 +24,37 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "interviews")
-//@JsonIdentityInfo(
-//		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-//		  property = "id")
+
 public class Interview {
+	
 	@Id
 	@Column(name = "interview_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	/** An integer that uniquely identifies this interview. */
 	private int id;
+	
 	@Column(name = "interview_date")
 	/** The date and time that this interview takes place. */
 	private Calendar date;
+	
 	@Column(name = "interview_is_complete")
 	/** Returns true if the interview has ended, and false if it is in the future or still ongoing. */
 	private boolean isComplete;
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "interview_job")
 	/** The job that the candidate is applying to. */
 	private Job job;
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "interview_profile")
 	/** The candidate being interviewed. */
 	private Profile profile;
+	
 	/** Creates a new interview with all properties set to their default values. */
 	public Interview() {
 	}
+	
 	/** Creates an interview with its properties set to the values provided. 
 	 * @param id An integer that uniquely identifies this interview. 
 	 * @param profile The candidate being interviewed.
