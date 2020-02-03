@@ -1,6 +1,7 @@
 package com.revature.model;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * An object representation of our Job model.
  * 
@@ -24,32 +23,39 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "jobs")
-
 public class Job {
+	
 	@Id
 	@Column(name = "job_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	/** An integer that uniquely identifies this job. */
 	private int id;
+	
 	@Column(name = "job_title")
 	/** The name of this job. */
 	private String title;
+	
 	@Column(name = "job_description", length=10_000)
 	/** A description of this job, with a maximum length of 10,000 characters. */
 	private String description;
+	
 	@Column(name = "job_location")
 	/** A string identifying where the job takes place. */
 	private String location;
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "job_skills", joinColumns = { @JoinColumn(name = "job_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "skill_id") })
 	/** A set of skills that candidates applying to this job are expected to have. */
 	private Set<Skill> skills = new HashSet<>();
+	
 	@Column(name = "job_isFilled")
 	/** Returns true if the job opening is currently filled, and false otherwise. */
 	private boolean isFilled;
+	
 	@OneToMany(mappedBy="job")
 	private Set<Interview> interviews = new HashSet<>();
+	
 	@OneToOne
 	@JoinColumn(name = "filled_by_profile_id")
 	/** The employee that currently holds this job. Returns null if it is not held by any employee. */

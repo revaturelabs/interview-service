@@ -18,10 +18,14 @@ public class InterviewInterviewer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="interview_interviewer_id")
 	private int id;
+	
 	private String text;
+	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_interview")
 	private Interview interview;
+	
+	// This column will utilize the Interviewer's username.
 	private String interviewer;
 	
 	public InterviewInterviewer() {
