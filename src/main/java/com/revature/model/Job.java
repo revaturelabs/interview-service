@@ -15,10 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-<<<<<<< HEAD
 
-=======
->>>>>>> 9c66410cfb28f9dc4de0b1a0eddfc28c458d241d
 /**
  * An object representation of our Job model.
  * 

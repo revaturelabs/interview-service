@@ -14,13 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-=======
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
->>>>>>> 9c66410cfb28f9dc4de0b1a0eddfc28c458d241d
 /**
  * An object representation of our Profile model. This model is considered our
  * "Interviewee".

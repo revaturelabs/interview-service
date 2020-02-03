@@ -1,9 +1,5 @@
 package com.revature.model;
 import java.util.Calendar;
-<<<<<<< HEAD
-=======
-
->>>>>>> 9c66410cfb28f9dc4de0b1a0eddfc28c458d241d
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

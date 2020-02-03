@@ -119,25 +119,5 @@ public class Comment {
 		return "Comment [id=" + id + ", date=" + date + ", text=" + text + ", interviewInterviewer="
 				+ interviewInterviewer + "]";
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(date, id, interviewInterviewer, text);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof Comment)) {
-			return false;
-		}
-		Comment other = (Comment) obj;
-		return Objects.equals(date, other.date) && id == other.id
-				&& Objects.equals(interviewInterviewer, other.interviewInterviewer) && Objects.equals(text, other.text);
-	}
-
-	
 	
 }

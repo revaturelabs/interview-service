@@ -26,11 +26,7 @@ public class InterviewInterviewer {
 	@JoinColumn(name="fk_interview")
 	private Interview interview;
 	
-<<<<<<< HEAD
-	// This column will hold the interviewer's username
-=======
 	// This column will utilize the Interviewer's username.
->>>>>>> 9c66410cfb28f9dc4de0b1a0eddfc28c458d241d
 	private String interviewer;
 	
 	public InterviewInterviewer() {
