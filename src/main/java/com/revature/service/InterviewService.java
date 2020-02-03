@@ -1,21 +1,15 @@
 package com.revature.service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.revature.model.Interview;
 import com.revature.model.Job;
 import com.revature.model.Profile;
-import com.revature.model.User;
 import com.revature.repository.InterviewRepository;
 import com.revature.repository.JobRepository;
 import com.revature.repository.ProfileRepository;
-import com.revature.repository.UserRepository;
 
 /** The service layer (or business logic) for the Interview object.
  * @author Adriana Long */
@@ -31,9 +25,6 @@ public class InterviewService {
 	/** A CRUD repository for the candidate who is applying during this interview. */
 	private ProfileRepository proRepo;
 	
-	/** A CRUD repository for the users who are conducting this interview. */
-	private UserRepository userRepo;
-
 	/** Creates a new interview service, with all its properties set to their default values. */
 	public InterviewService() {
 	}
@@ -44,11 +35,10 @@ public class InterviewService {
 	 * @param jobRepo A CRUD repository for the job that is being applied for during this interview.
 	 * @param proRepo A CRUD repository for the candidate who is applying during this interview.
 	 * @param userRepo A CRUD repository for the users who are conducting this interview. */
-	public InterviewService(InterviewRepository interviewrepo, JobRepository jobRepo, ProfileRepository proRepo, UserRepository userRepo) {
+	public InterviewService(InterviewRepository interviewrepo, JobRepository jobRepo, ProfileRepository proRepo) {
 		this.interviewRepository = interviewrepo;
 		this.jobRepo = jobRepo;
 		this.proRepo= proRepo;
-		this.userRepo=userRepo;
 	}
 	
 	@Transactional
@@ -70,23 +60,7 @@ public class InterviewService {
 				{
 					interview.setProfile(temp);
 				}
-			}
-			if(interview.getUsers() !=null) {
-				Set<User> interiewUserSet = new HashSet<>();
-				for(User userIter :interview.getUsers()) {
-
-				User temp = userRepo.findById(userIter.getId());
-				if(temp != null)
-				{
-					interiewUserSet.add(temp);
-				}
-				}
-				if(interiewUserSet != null) {
-					interview.setUsers(interiewUserSet);
-				}
-
-			}
-				
+			}	
 			interviewRepository.save(interview);
 			return true;
 		} catch (Exception e) {

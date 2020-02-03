@@ -112,7 +112,7 @@ public class SkillController {
 				List<Skill> testList = skillService.findSkill(lineread);
 				//if empty add
 				if(testList.isEmpty()){					
-				skillRepository.save(new Skill(id,lineread,null));
+				skillRepository.save(new Skill(id,lineread,null, null));
 				}
 				//since things like Java and java script exist we need to check exact name
 				if(!testList.isEmpty())
@@ -126,7 +126,7 @@ public class SkillController {
 						
 					}
 					if(!found)
-						skillRepository.save(new Skill(id,lineread,null));
+						skillRepository.save(new Skill(id,lineread,null, null));
 				}
 				
 				}

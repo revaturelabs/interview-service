@@ -1,9 +1,6 @@
 package com.revature.controller;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.revature.model.Interview;
-import com.revature.model.User;
 import com.revature.service.InterviewService;
-import com.revature.service.UserService;
 
 /** The main controller for obtaining information about an Interview from the
  * database.
@@ -30,9 +24,6 @@ public class InterviewController {
 	/** An interview service object that performs the business logic for the interview class. */
 	private InterviewService interviewService;
 
-	/** A user service object that performs the business logic for the user conducting this interview. */
-	private UserService userService;
-
 	/** Creates a new interview controller, setting all its properties to their default values. */
 	public InterviewController() {
 	}
@@ -42,10 +33,9 @@ public class InterviewController {
 	/** Creates a new interview controller, setting its properties to the provided values.
 	 * @param interviewService An interview service object that performs the business logic for the interview class.
 	 * @param userService A user service object that performs the business logic for the user conducting this interview. */
-	public InterviewController(InterviewService interviewService, UserService userService) {
+	public InterviewController(InterviewService interviewService) {
 		super();
 		this.interviewService = interviewService;
-		this.userService = userService;
 	}
 
 	@PostMapping("/saveInterview")
@@ -54,13 +44,6 @@ public class InterviewController {
 	 * @param interview The interview being scheduled.
 	 * @return True if the interview is saved successfully, and false if the interview was not saved. */
 	public boolean saveInterview(@RequestBody Interview interview) {
-		System.out.println("user added");
-		Set<User> users = new HashSet<User>();
-		for (User u : interview.getUsers()) {
-			User tempUser = userService.findById(u.getId());
-			users.add(tempUser);
-		}
-		interview.setUsers(users);
 		return interviewService.insertInterviewInfo(interview);
 	}
 	@GetMapping("/allInterviews")

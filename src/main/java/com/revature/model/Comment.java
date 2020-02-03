@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 /**
  * An object representation of our Comment model.
  * 
@@ -27,18 +28,21 @@ import javax.persistence.Table;
  * 
  * @author Davin Merry
  */
+
 @Entity
 @Table(name = "comments")
 public class Comment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private Calendar date;
+	
 	private String text;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "interview_interviewer")
-	
 	private InterviewInterviewer interviewInterviewer;
 	
 	public Comment() {
@@ -88,6 +92,25 @@ public class Comment {
 
 	public void setInterviewInterviewer(InterviewInterviewer interviewInterviewer) {
 		this.interviewInterviewer = interviewInterviewer;
+	}
+
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(date, id, interviewInterviewer, text);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Comment)) {
+			return false;
+		}
+		Comment other = (Comment) obj;
+		return Objects.equals(date, other.date) && id == other.id
+				&& Objects.equals(interviewInterviewer, other.interviewInterviewer) && Objects.equals(text, other.text);
 	}
 
 	@Override
