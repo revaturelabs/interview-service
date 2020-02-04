@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Job;
+import com.revature.model.Skill;
 import com.revature.repository.JobRepository;
 
 /** The service layer (or business logic) for the Job object.
@@ -90,6 +91,15 @@ public class JobService {
 	 ignoring upper and lower case. */
 	public List<Job> findByTitlePaged(String title, int page){
 		return jobRepository.findByTitleStartsWithIgnoreCase(title, PageRequest.of(page, this.pageReturnSize));
+	}
+	
+	public List<Job> findBySkills(List<Skill> skills){
+		
+		List<Job> ans =  jobRepository.findBySkills(skills);
+		for(Job j: ans) {
+			System.out.println(j);
+		}
+		return ans;
 	}
 	
 }

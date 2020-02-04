@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Interview;
@@ -41,6 +42,7 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
 	 ignoring upper and lower case. */
 	List<Job> findByTitleStartsWithIgnoreCase(String title, Pageable page);
 	
+	@Query(nativeQuery =true, value="select * from jobs j inner join( select * from job_skills js  where skill_id IN (?1.skill_id)) on j.job_id = js.job_id")
 	List<Job> findBySkills(List<Skill> skills);
 
 	
