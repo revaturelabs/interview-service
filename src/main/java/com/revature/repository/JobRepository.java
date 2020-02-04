@@ -41,12 +41,7 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
 	 ignoring upper and lower case. */
 	List<Job> findByTitleStartsWithIgnoreCase(String title, Pageable page);
 	
-	List<Job> findBySkills(Skill skill);
-	
-	List<Job> findByInterviews(Interview interview);
-	
-	List<Job> findByLocation(String location);
-		
-	List<Job> findByIsFilled(boolean isFilled);
+	List<Job> findBySkills(List<Skill> skills);
+
 	
 }
