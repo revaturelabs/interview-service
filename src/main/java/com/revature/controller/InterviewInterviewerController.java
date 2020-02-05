@@ -52,10 +52,4 @@ public class InterviewInterviewerController {
 		return interviewInterviewerService.findByInterviewer(interviewer);
 	}
 	
-	@PostMapping("/allJobBySkills")
-	public List<Job> findBySkills(SkillList skillList){
-		List<Skill> skills = skillList.getSkills();
-		return jobService.findBySkills(skills);
-	}
-
 }
