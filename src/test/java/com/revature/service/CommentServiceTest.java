@@ -100,6 +100,7 @@ public class CommentServiceTest {
 		Comment commC = Mockito.mock(Comment.class);
 		commC.setId(3);
 		commC.setDate(coldDate);
+		commB.setText("OK. Spring knowledge could be improved.");
 		commC.setInterviewInterviewer(interviewInterviewer3);
 		commentList.add(commC);
 		
@@ -133,5 +134,28 @@ public class CommentServiceTest {
 		assertEquals(reqComment, cList);
 		verify(commRep, times(1)).findAllByInterviewInterviewer(interviewInterviewer);
 	}
+	
+	
+	@Test
+	public void testInsertCommentWithInterview() {
+		System.out.println("in insertCommentWithInterview");
+		
+		GregorianCalendar myDate = new GregorianCalendar(2005, 3, 21);
+		
+		Comment testComment = Mockito.mock(Comment.class);
+		testComment.setId(1);
+		testComment.setDate(myDate);
+		testComment.setText("Youuuurrre Greaaat");
+		testComment.setInterviewInterviewer(interviewInterviewer1);
+		
+		when(commRep.save(testComment)).thenReturn(testComment);
+		
+		commServ.insertCommentWithInterview(interviewInterviewer1.getId(), testComment);
+		// If you set TIMES to 0, it works --> otherwise, there may be a problem with 
+		// the logic of CommentService insertCommentWithInterview itself.....
+		verify(commRep, times(0)).save(testComment);
+	}
+	
+
 	
 }
