@@ -126,15 +126,6 @@ public class JobService {
 	public List<Job> findByTitlePaged(String title, int page) {
 		return jobRepository.findByTitleStartsWithIgnoreCase(title, PageRequest.of(page, this.pageReturnSize));
 	}
-	
-	public List<Job> findBySkills(List<Skill> skills){
-		
-		List<Job> ans =  jobRepository.findBySkills(skills);
-		for(Job j: ans) {
-			System.out.println(j);
-		}
-		return ans;
-	}
 
 	/** Returns a filtered list of all jobs on a given page. 
      * @param given job search value to filter with.
