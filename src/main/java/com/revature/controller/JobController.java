@@ -82,14 +82,18 @@ public class JobController {
  			List<Job> jobs = new ArrayList<>();
  			
  			//grabs jobs with filter by job title, location
- 			List<Job> temp1 = jobService.getFilterJobsPaged(value, page);
+ 			List<Job> jobsList1 = jobService.getFilterJobsPaged(value, page);
  			
  			//parse skill id string into int[] array, and grab jobs filtered by skills
  			int[] skillIds = Arrays.asList(data.split(",")).stream().mapToInt(Integer::parseInt).toArray();
- 			List<Job> temp2 = jobService.findBySkills(skillIds, page);
-
- 			jobs.addAll(temp1);
- 			jobs.addAll(temp2);
+ 			List<Job> jobsList2 = jobService.findBySkills(skillIds, page);
+ 			
+ 			if (!jobsList1.isEmpty()) {
+ 				jobsList2.retainAll(jobsList1);
+ 				jobs.addAll(jobsList1);
+ 			}else {
+ 				jobs.addAll(jobsList2);
+ 			}
  			return jobs;
  		}else {
  			return jobService.getAllJobsPaged(page);
