@@ -1,11 +1,12 @@
 package com.revature.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Job;
-import com.revature.model.Profile;
-import com.revature.repository.JobRepository;
 import com.revature.service.JobService;
 import com.revature.service.SkillService;
 
@@ -78,13 +77,30 @@ public class JobController {
 	 * @param page An integer identifying the page to search for jobs.
 	 * @return A list of all jobs on the specified page. */
     public List<Job> getAllPaged(@PathVariable int page, @RequestHeader("usefilter") boolean useFilter,
-			@RequestHeader("value") String value) {
+			@RequestHeader("value") String value, @RequestHeader("skillids") String data) {
  		if (useFilter) {
- 			return jobService.getFilterJobsPaged(value, page);
+ 			List<Job> jobs = new ArrayList<>();
+ 			
+ 			//grabs jobs with filter by job title, location
+ 			List<Job> temp1 = jobService.getFilterJobsPaged(value, page);
+ 			
+ 			//parse skill id string into int[] array, and grab jobs filtered by skills
+ 			int[] skillIds = Arrays.asList(data.split(",")).stream().mapToInt(Integer::parseInt).toArray();
+ 			List<Job> temp2 = jobService.findBySkills(skillIds, page);
+
+ 			jobs.addAll(temp1);
+ 			jobs.addAll(temp2);
+ 			return jobs;
  		}else {
  			return jobService.getAllJobsPaged(page);
  		}
 	}
+    
+    @GetMapping("/test")
+    public List<Job> testDB() {
+    	int[] skillIds = {1, 2};
+    	return jobService.findBySkills(skillIds, 0);
+    }
 
     @GetMapping("/jobTitle/{title}")
 	/** Returns a list of jobs whose names start with the provided string,

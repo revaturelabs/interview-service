@@ -75,7 +75,7 @@ public class ProfileService {
 	}
     
     /** Returns a filtered list of all candidate profiles on a given page. 
-     * @param firstName pass in search value to filter with.
+     * @param given profile search value to filter with.
      * @param page An integer identifier the page to search for profiles.
      * @return A list of filtered candidate profiles on a given page. */
     public List<Profile> getFilterProfilesPaged(String searchValue, int page) {

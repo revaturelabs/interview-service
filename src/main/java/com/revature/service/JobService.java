@@ -136,8 +136,16 @@ public class JobService {
 		return ans;
 	}
 
+	/** Returns a filtered list of all jobs on a given page. 
+     * @param given job search value to filter with.
+     * @param page An integer identifier the page to search for profiles.
+     * @return A list of filtered jobs on a given page. */
 	public List<Job> getFilterJobsPaged(String searchValue, int page) {
-		return jobRepository.findByTitleStartsWithIgnoreCase(searchValue, PageRequest.of(page, this.pageReturnSize));
+		return jobRepository.findByTitleStartsWithIgnoreCaseOrLocationStartsWithIgnoreCase(searchValue,searchValue, PageRequest.of(page, this.pageReturnSize));
 
+	}
+	
+	public List<Job> findBySkills(int[] skillIds, int page){
+		return jobRepository.findBySkills(skillIds, PageRequest.of(page, this.pageReturnSize));
 	}
 }
