@@ -1,10 +1,7 @@
 package com.revature.service;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
 
->>>>>>> 677af72c655f196c2ad02172ff759364f48e82db
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
