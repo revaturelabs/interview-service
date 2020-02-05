@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -63,8 +64,13 @@ public class ProfileController {
 	 the page to search for profiles.
      * @param page An integer identifier the page to search for profiles.
      * @return A list of all candidate profiles on a given page. */
-	public List<Profile> getAllPaged(@PathVariable int page) {
-		return profileService.getAllProfilesPaged(page);
+	public List<Profile> getAllPaged(@PathVariable int page, @RequestHeader("usefilter") boolean useFilter,
+			@RequestHeader("value") String value) {
+ 		if (useFilter) {
+ 			return profileService.getFilterProfilesPaged(value, page);
+ 		}else {
+ 			return profileService.getAllProfilesPaged(page);
+ 		}
 	}
 
 	@GetMapping("/searchProfiles/{firstName}/{lastName}/{page}")
