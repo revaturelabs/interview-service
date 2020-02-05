@@ -41,6 +41,9 @@ public class CommentServiceTest {
 	@InjectMocks
 	CommentService commServ;
 
+	@InjectMocks
+	InterviewInterviewer interviewInterviewer;
+	
 	@Before
 	public void setUp() throws Exception {
 		
@@ -108,5 +111,27 @@ public class CommentServiceTest {
 		verify(commRep, times(1)).findAll();
 	}
 	
+	@Test
+	public void testFindAllByInterviewInterviewer() {
+		System.out.println("in getCommentsByInterview");
+		
+		GregorianCalendar myDate = new GregorianCalendar(2005, 3, 21);
+		
+		Comment testComment = Mockito.mock(Comment.class);
+		testComment.setId(1);
+		testComment.setDate(myDate);
+		testComment.setText("Great interview!");
+		testComment.setInterviewInterviewer(interviewInterviewer1);
+		
+		List<Comment> cList = new ArrayList<>();
+		cList.add(testComment);
+		
+		when(commRep.findAllByInterviewInterviewer(interviewInterviewer)).thenReturn(cList);
+		
+		Iterable<Comment> reqComment = commRep.findAllByInterviewInterviewer(interviewInterviewer);
+		
+		assertEquals(reqComment, cList);
+		verify(commRep, times(1)).findAllByInterviewInterviewer(interviewInterviewer);
+	}
 	
 }
