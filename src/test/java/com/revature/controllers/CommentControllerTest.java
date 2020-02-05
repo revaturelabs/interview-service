@@ -48,10 +48,11 @@ public class CommentControllerTest {
 	private static InterviewInterviewer interviewInterviewer2 = new InterviewInterviewer(2, "bad interview", interview2, "matt");
 	private static InterviewInterviewer interviewInterviewer3 = new InterviewInterviewer(3, "great interview", interview3, "andrew");
 	
+	//set up Comment
 	private Comment commentOne = new Comment(1, new GregorianCalendar(2005, 3, 21), "Not a good interview.",interviewInterviewer1);
 	private Comment commentTwo = new Comment(2, new GregorianCalendar(2002, 4, 5), "Pretty good interview.", interviewInterviewer2);
 	private Comment commentThree = new Comment(3, new GregorianCalendar(2008, 8, 1), "Great interview!", interviewInterviewer3);
-	
+
 	private List<Comment> fullList = new ArrayList<>();
 	private List<Comment> smallList = new ArrayList<>();
 
