@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Job;
@@ -53,7 +53,20 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
 	 *         string, ignoring upper and lower case.
 	 */
 	List<Job> findByTitleStartsWithIgnoreCase(String title, Pageable page);
-
 	
+	/** Retrieves a list containing the profiles for all candidates whose first names starts with provided value.
+     * @param searchValue 
+     * @param using search value to filter title start with
+     * @param using search value to filter location start with
+     * @param using search value to filter isFilled boolean
+     * @return A list containing the filtered jobs */
+	List<Job> findByTitleStartsWithIgnoreCaseOrLocationStartsWithIgnoreCase(String title,String location, Pageable page);
+
+	//SELECT * FROM jobs j LEFT JOIN job_skills js ON (js.skill_id IN (1,2)) WHERE j.job_id = js.job_id
+	
+	//HQL
+	//@Query("SELECT * FROM Job j LEFT JOIN Skills s ON (s.id IN (:skillIds)) WHERE j.id = s.id")
+	@Query(nativeQuery=true, value = "SELECT * FROM jobs j LEFT JOIN job_skills js ON (js.skill_id IN (:skillIds)) WHERE j.job_id = js.job_id")
+	List<Job> findBySkills(int[] skillIds, Pageable page);	
 
 }

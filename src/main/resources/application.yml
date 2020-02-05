@@ -35,9 +35,9 @@ spring:  application:    name: interview-service
     # url: jdbc:h2:./Interview_ServiceDB;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;
     # username: sa
     # password: sa
-    url: jdbc:postgresql://project3oldschema.cwfgboi9kdoq.us-east-1.rds.amazonaws.com/postgres
-    username: Batch696
-    password: project3
+    url: jdbc:postgresql://dummy-db.ccd4ftbqsqlk.us-east-2.rds.amazonaws.com/postgres
+    username: postgres
+    password: 75407540
     hikari:
       maximum-pool-size: 5
       idle-timeout: 30000
