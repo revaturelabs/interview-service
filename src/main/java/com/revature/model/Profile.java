@@ -78,21 +78,25 @@ public class Profile {
 		this.interviews = new HashSet<Interview>();
 		this.description = description;
 	}
+	
 	/** Returns an integer that uniquely identifies this candidate.
 	 * @return An integer that uniquely identifies this candidate. */
 	public int getId() {
 		return id;
 	}
+	
 	/** Sets the integer that uniquely identifies this candidate.
 	 * @param id The new value of the integer that uniquely identifies this candidate. */
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	/** Returns the candidate's first name.
 	 * @return The candidate's first name. */
 	public String getFirstName() {
 		return firstName;
 	}
+	
 	/** Updates the candidate's first name.
 	 * @param firstName The candidate's first name. */
 	public void setFirstName(String firstName) {
@@ -103,41 +107,49 @@ public class Profile {
 	public String getLastName() {
 		return lastName;
 	}
+	
 	/** Updates the candidate's last name.
 	 * @param lastName The candidate's last name. */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
 	/** Returns the set of skills that the candidate claims proficiency in.
 	 * @return The set of skills that the candidate claims proficiency in. */
 	public Set<Skill> getSkills() {
 		return skills;
 	}
+	
 	/** Updates the set of skills that the candidate claims proficiency in.
 	 * @param skills The set of skills that the candidate claims proficiency in. */
 	public void setSkills(Set<Skill> skills) {
 		this.skills = skills;
 	}
+	
 	/** Returns the set of interviews that this candidate has been scheduled for. 
 	 * @return The set of interviews that this candidate has been scheduled for. */
 	public Set<Interview> getInterviews() {
 		return interviews;
 	}
+	
 	/** Updates the set of interviews that this candidate has been scheduled for. 
 	 * @param interviews The set of interviews that this candidate has been scheduled for. */
 	public void setInterviews(Set<Interview> interviews) {
 		this.interviews = interviews;
 	}
+	
 	/** Returns a description of the candidate. 
 	 * @return A description of the candidate. */
 	public String getDescription() {
 		return description;
 	}
+	
 	/** Updates the description of the candidate. 
 	 * @param description A description of the candidate. */
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	/** Returns the location provided by the candidate. 
 	 * @return The location provided by the candidate. */
 	public String getLocation() {
@@ -148,16 +160,19 @@ public class Profile {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
 	/** Returns the email address provided by the candidate. 
 	 * @return The email address provided by the candidate. */
 	public String getEmailAddress() {
 		return emailAddress;
 	}
+	
 	/** Updates the email address provided by the candidate. 
 	 * @param emailAddress The email address provided by the candidate. */
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
+	
 	@Override
 	/** Returns a string representation of the candidate. 
 	 * @return A string representation of the candidate. */

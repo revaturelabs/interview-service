@@ -70,8 +70,7 @@ public class CommentServiceTest {
 	private static InterviewInterviewer interviewInterviewer1 = new InterviewInterviewer(1, "good interview", interview1, "quinn");
 	private static InterviewInterviewer interviewInterviewer2 = new InterviewInterviewer(2, "bad interview", interview2, "matt");
 	private static InterviewInterviewer interviewInterviewer3 = new InterviewInterviewer(3, "great interview", interview3, "andrew");
-	
-//////////////////////////////////////////////////////////////	
+
 	
 	@Test
 	public void testFindAll() {
