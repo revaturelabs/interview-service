@@ -30,8 +30,6 @@ public class CommentController {
 		this.commentService = commentService;
 	}
 
-
-
 	@PostMapping("/insert")
 	public Comment insertComment(@RequestParam int id, @RequestBody Comment comment) {
 			return commentService.insertCommentWithInterview(id, comment);

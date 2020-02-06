@@ -60,4 +60,5 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     List<Profile> findByFirstNameStartsWithIgnoreCaseOrLastNameStartsWithIgnoreCaseOrLocationStartsWithIgnoreCaseOrEmailAddressStartsWithIgnoreCase(
     		String firstName, String lastName, String location, String emailAddress, Pageable page);
 	
+    
 }
