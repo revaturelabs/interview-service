@@ -58,3 +58,11 @@ logging:
           descriptor:
             sql:
               BasicBinder: trace
+
+---
+spring:
+  profiles: local
+  
+server:
+  error:
+    include-stacktrace: always
