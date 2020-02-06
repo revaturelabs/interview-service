@@ -67,12 +67,15 @@ public class Comment {
 	public Calendar getDate() {
 		return this.date;
 	}
+	
 	public void setDate(Calendar date) {
 		this.date = date;
 	}
+	
 	public String getText() {
 		return this.text;
 	}
+	
 	public void setText(String text) {
 		this.text = text;
 	}
@@ -81,10 +84,12 @@ public class Comment {
 		this.id = id;
 		return this;
 	}
+	
 	public Comment date(Calendar date) {
 		this.date = date;
 		return this;
 	}
+	
 	public Comment text(String text) {
 		this.text = text;
 		return this;
@@ -97,7 +102,6 @@ public class Comment {
 	public void setInterviewInterviewer(InterviewInterviewer interviewInterviewer) {
 		this.interviewInterviewer = interviewInterviewer;
 	}
-
 	
 	@Override
 	public int hashCode() {

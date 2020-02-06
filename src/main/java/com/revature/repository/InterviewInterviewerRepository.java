@@ -12,6 +12,7 @@ import com.revature.model.InterviewInterviewer;
 public interface InterviewInterviewerRepository extends JpaRepository <InterviewInterviewer, Integer> {
 	
 	InterviewInterviewer findById(int id);
+	
 	List<InterviewInterviewer> findByInterview(Interview interview);
 	
 	List<InterviewInterviewer> findByInterviewer(String interviewer);

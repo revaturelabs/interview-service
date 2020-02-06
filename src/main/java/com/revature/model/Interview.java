@@ -64,51 +64,63 @@ public class Interview {
 		this.isComplete = isComplete;
 		this.job = job;
 	}
+	
 	/** Returns an integer that uniquely identifies this interview. */
 	public int getId() {
 		return this.id;
 	}
+	
 	/** Sets the integer that uniquely identifies this interview. */
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	/** Returns the date and time that this interview takes place. */
 	public Calendar getDate() {
 		return this.date;
 	}
+	
 	/** Sets the date and time that this interview takes place. */
 	public void setDate(Calendar date) {
 		this.date = date;
 	}
+	
 	/** Returns true if the interview has ended, and false if it is in the future or still ongoing. */
 	public boolean isIsComplete() {
 		return this.isComplete;
 	}
+	
 	/** Returns true if the interview has ended, and false if it is in the future or still ongoing. */
 	public boolean getIsComplete() {
 		return this.isComplete;
 	}
+	
 	/** Sets the property that marks whether the interview has ended (true) or is in the future 
 	 or still ongoing (false). */
 	public void setIsComplete(boolean isComplete) {
 		this.isComplete = isComplete;
 	}
+	
 	/** Returns the job that the candidate is applying to. */
 	public Job getJob() {
 		return this.job;
 	}
+	
 	/** Sets the job that the candidate is applying to. */
 	public void setJob(Job job) {
 		this.job = job;
 	}
+	
 	/** Returns the candidate being interviewed. */
 	public Profile getProfile() {
 		return this.profile;
 	}
+	
 	/** Sets the candidate being interviewed. */
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
+	
 	@Override
 	public String toString() {
 		return "Interview [id=" + id + ", date=" + date + ", isComplete=" + isComplete + ", job=" + job + ", profile="

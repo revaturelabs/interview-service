@@ -27,8 +27,6 @@ public class CommentService {
 		this.interviewInterviewerRepository = interviewInterviewerRepository;
 	}
 
-
-
 	public Comment insertCommentWithInterview(int id, Comment comment) {
         try {
             comment.setInterviewInterviewer(interviewInterviewerRepository.findById(id));

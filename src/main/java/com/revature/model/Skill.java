@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "skills")
 public class Skill {
+	
 	@Id
 	@Column(name = "skill_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,12 +51,14 @@ public class Skill {
 	public Skill() {
 		super();
 	}
+	
 	public Skill(String title, Set<Profile> profiles, Set<Job> jobs) {
 		super();
 		this.title = title;
 		this.profiles = profiles;
 		this.jobs = jobs;
 	}
+	
 	public Skill(int id, String title, Set<Profile> profiles, Set<Job> jobs) {
 		super();
 		this.id = id;
@@ -63,34 +66,43 @@ public class Skill {
 		this.profiles = profiles;
 		this.jobs = jobs;
 	}
+	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	public Set<Profile> getProfiles() {
 		return profiles;
 	}
+	
 	public void setProfiles(Set<Profile> profiles) {
 		this.profiles = profiles;
 	}
+	
 	public Set<Job> getJobs() {
 		return jobs;
 	}
+	
 	public void setJobs(Set<Job> jobs) {
 		this.jobs = jobs;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, jobs, profiles, title);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -103,6 +115,7 @@ public class Skill {
 		return id == other.id && Objects.equals(jobs, other.jobs) && Objects.equals(profiles, other.profiles)
 				&& Objects.equals(title, other.title);
 	}
+	
 	@Override
 	public String toString() {
 		return "Skill [id=" + id + ", title=" + title + ", profiles=" + profiles + ", jobs=" + jobs + "]";

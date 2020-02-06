@@ -43,9 +43,6 @@ public class SkillControllerTest {
 	
 	@InjectMocks
 	SkillController skillCon;
-
-	
-	
 	
 	//Pulls from H2. Integration testing. Too far?
 	/*

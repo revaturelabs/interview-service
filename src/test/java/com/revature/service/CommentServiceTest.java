@@ -135,7 +135,6 @@ public class CommentServiceTest {
 		verify(commRep, times(1)).findAllByInterviewInterviewer(interviewInterviewer);
 	}
 	
-	
 	@Test
 	public void testInsertCommentWithInterview() {
 		System.out.println("in insertCommentWithInterview");

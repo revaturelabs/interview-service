@@ -6,8 +6,6 @@ public class SkillList {
 
 	private List<Skill> skills;
 	
-	
-
 	public SkillList() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -24,7 +22,6 @@ public class SkillList {
 
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
-	}
-	
+	}	
 	
 }
