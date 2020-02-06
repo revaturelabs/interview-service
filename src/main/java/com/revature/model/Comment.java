@@ -1,4 +1,5 @@
 package com.revature.model;
+
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -33,49 +34,49 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "comments")
 public class Comment {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private Calendar date;
-	
+
 	private String text;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "interview_interviewer")
 	private InterviewInterviewer interviewInterviewer;
-	
+
 	public Comment() {
 	}
-	
+
 	public Comment(int id, Calendar date, String text, InterviewInterviewer interviewInterviewer) {
 		this.id = id;
 		this.date = date;
 		this.text = text;
 		this.interviewInterviewer = interviewInterviewer;
 	}
-	
+
 	public int getId() {
 		return this.id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public Calendar getDate() {
 		return this.date;
 	}
-	
+
 	public void setDate(Calendar date) {
 		this.date = date;
 	}
-	
+
 	public String getText() {
 		return this.text;
 	}
-	
+
 	public void setText(String text) {
 		this.text = text;
 	}
@@ -84,12 +85,12 @@ public class Comment {
 		this.id = id;
 		return this;
 	}
-	
+
 	public Comment date(Calendar date) {
 		this.date = date;
 		return this;
 	}
-	
+
 	public Comment text(String text) {
 		this.text = text;
 		return this;
@@ -102,7 +103,7 @@ public class Comment {
 	public void setInterviewInterviewer(InterviewInterviewer interviewInterviewer) {
 		this.interviewInterviewer = interviewInterviewer;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(date, id, interviewInterviewer, text);
@@ -126,5 +127,5 @@ public class Comment {
 		return "Comment [id=" + id + ", date=" + date + ", text=" + text + ", interviewInterviewer="
 				+ interviewInterviewer + "]";
 	}
-	
+
 }
