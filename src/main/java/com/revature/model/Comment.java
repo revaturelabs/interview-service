@@ -55,12 +55,15 @@ public class Comment {
 		this.text = text;
 		this.interviewInterviewer = interviewInterviewer;
 	}
+	
 	public int getId() {
 		return this.id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public Calendar getDate() {
 		return this.date;
 	}

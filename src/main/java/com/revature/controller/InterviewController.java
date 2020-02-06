@@ -28,7 +28,6 @@ public class InterviewController {
 	public InterviewController() {
 	}
 
-	
 	@Autowired
 	/** Creates a new interview controller, setting its properties to the provided values.
 	 * @param interviewService An interview service object that performs the business logic for the interview class.
@@ -46,6 +45,7 @@ public class InterviewController {
 	public boolean saveInterview(@RequestBody Interview interview) {
 		return interviewService.insertInterviewInfo(interview);
 	}
+	
 	@GetMapping("/allInterviews")
 	/** Retrieves a list of all interviews in the database in response to an HTTP Get request
 	 * at the uri "/interviews/allInterviews".

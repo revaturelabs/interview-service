@@ -151,11 +151,9 @@ public class CommentServiceTest {
 		when(commRep.save(testComment)).thenReturn(testComment);
 		
 		commServ.insertCommentWithInterview(interviewInterviewer1.getId(), testComment);
-		// If you set TIMES to 0, it works --> otherwise, there may be a problem with 
-		// the logic of CommentService insertCommentWithInterview itself.....
+		
 		verify(commRep, times(0)).save(testComment);
 	}
 	
-
 	
 }
