@@ -78,19 +78,25 @@ public class JobController {
 	 * @return A list of all jobs on the specified page. */
     public List<Job> getAllPaged(@PathVariable int page, @RequestHeader("usefilter") boolean useFilter,
 			@RequestHeader("value") String value, @RequestHeader("skillids") String data) {
- 		if (useFilter) {
+    	if (value.isEmpty() && data.isEmpty()) {
+    		useFilter = false;
+    	}
+    	if (useFilter) {
  			List<Job> jobs = new ArrayList<>();
- 			
- 			//grabs jobs with filter by job title, location
+ 			List<Job> jobsList2 = new ArrayList<>();
+ 			//grabs jobs with filter by job title, locationd
  			List<Job> jobsList1 = jobService.getFilterJobsPaged(value, page);
  			
  			//parse skill id string into int[] array, and grab jobs filtered by skills
- 			int[] skillIds = Arrays.asList(data.split(",")).stream().mapToInt(Integer::parseInt).toArray();
- 			List<Job> jobsList2 = jobService.findBySkills(skillIds, page);
+ 			if (!data.isEmpty()) {
+	 			int[] skillIds = Arrays.asList(data.split(",")).stream().mapToInt(Integer::parseInt).toArray();
+	 			jobsList2 = jobService.findBySkills(skillIds, page);
+ 			}
  			
- 			if (!jobsList1.isEmpty()) {
- 				jobsList2.retainAll(jobsList1);
+ 			if (!jobsList1.isEmpty() && !value.isEmpty()) {
  				jobs.addAll(jobsList1);
+ 				jobs.addAll(jobsList2);
+ 				jobsList2.retainAll(jobs);
  			}else {
  				jobs.addAll(jobsList2);
  			}
