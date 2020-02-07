@@ -1,5 +1,7 @@
 server:
   port: 10002
+  error:
+    include-stacktrace: always
 spring:
   datasource:
     password: password
