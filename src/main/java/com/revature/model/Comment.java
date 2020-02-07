@@ -30,7 +30,6 @@ import javax.persistence.Table;
  * 
  * @author Davin Merry
  */
-
 @Entity
 @Table(name = "comments")
 public class Comment {

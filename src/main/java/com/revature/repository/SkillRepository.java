@@ -24,7 +24,7 @@ public interface SkillRepository extends JpaRepository<Skill, Integer> {
 	/** Retrieves a list of all skills whose name starts with the provided string,
 	 ignoring upper and lower case.
 	 * @param title A string that will filter out all skills whose names do not start with that string,
-	 ignoring upper and lower case.   
+	 ignoring upper and lower case.
 	 * @return A list of all skills whose name starts with the provided string,
 	 ignoring upper and lower case. */
 	List<Skill> findByTitleStartsWithIgnoreCase(String title);

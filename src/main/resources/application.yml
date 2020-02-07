@@ -9,8 +9,7 @@
 #server.port 9001 used for development purposes
 #change port to 0 when service can be linked to Zuul
 server:
-  #port: 50222
-  port: 9001
+  port: 50222
 
 #Updated to point to H2 Console.
 spring:  application:    name: interview-service
