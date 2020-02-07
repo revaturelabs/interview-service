@@ -68,11 +68,7 @@ public class ProfileController {
      * @return A list of all candidate profiles on a given page. */
 	public List<Profile> getAllPaged(@PathVariable int page,
 			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
- 		boolean useFilter = false;
  		if (!value.isEmpty() || !data.isEmpty()) {
-    		useFilter = true;
- 		}	
- 		if (useFilter) {
  			List<Profile> profiles = new ArrayList<>();
  			List<Profile> profilesList2 = new ArrayList<>();
  			//grabs jobs with filter by job title, location

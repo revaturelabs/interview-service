@@ -78,11 +78,8 @@ public class JobController {
 	 * @return A list of all jobs on the specified page. */
     public List<Job> getAllPaged(@PathVariable int page,
 			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
-    	boolean useFilter = false;
+
     	if (!value.isEmpty() || !data.isEmpty()) {
-    		useFilter = true;
-    	}
-    	if (useFilter) {
  			List<Job> jobs = new ArrayList<>();
  			List<Job> jobsList2 = new ArrayList<>();
  			//grabs jobs with filter by job title, location
