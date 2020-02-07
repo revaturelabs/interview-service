@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Job;
@@ -40,7 +40,7 @@ public class JobController {
 	}
 
     @Autowired
-    /** Creates a new job controller, with all propertiers set to the provided values.
+    /** Creates a new job controller, with all properties set to the provided values.
      * @param jobService A job service object that performs the business logic for the job class.
      * @param skillService A skill service object that performs the business logic 
      for the skills required for this job. */
@@ -76,15 +76,16 @@ public class JobController {
 	 the page to search for jobs.
 	 * @param page An integer identifying the page to search for jobs.
 	 * @return A list of all jobs on the specified page. */
-    public List<Job> getAllPaged(@PathVariable int page, @RequestHeader("usefilter") boolean useFilter,
-			@RequestHeader("value") String value, @RequestHeader("skillids") String data) {
-    	if (value.isEmpty() && data.isEmpty()) {
-    		useFilter = false;
+    public List<Job> getAllPaged(@PathVariable int page,
+			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
+    	boolean useFilter = false;
+    	if (!value.isEmpty() || !data.isEmpty()) {
+    		useFilter = true;
     	}
     	if (useFilter) {
  			List<Job> jobs = new ArrayList<>();
  			List<Job> jobsList2 = new ArrayList<>();
- 			//grabs jobs with filter by job title, locationd
+ 			//grabs jobs with filter by job title, location
  			List<Job> jobsList1 = jobService.getFilterJobsPaged(value, page);
  			
  			//parse skill id string into int[] array, and grab jobs filtered by skills

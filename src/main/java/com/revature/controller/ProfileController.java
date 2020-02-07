@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Profile;
@@ -64,10 +66,31 @@ public class ProfileController {
 	 the page to search for profiles.
      * @param page An integer identifier the page to search for profiles.
      * @return A list of all candidate profiles on a given page. */
-	public List<Profile> getAllPaged(@PathVariable int page, @RequestHeader("usefilter") boolean useFilter,
-			@RequestHeader("value") String value) {
+	public List<Profile> getAllPaged(@PathVariable int page,
+			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
+ 		boolean useFilter = false;
+ 		if (!value.isEmpty() || !data.isEmpty()) {
+    		useFilter = true;
+ 		}	
  		if (useFilter) {
- 			return profileService.getFilterProfilesPaged(value, page);
+ 			List<Profile> profiles = new ArrayList<>();
+ 			List<Profile> profilesList2 = new ArrayList<>();
+ 			//grabs jobs with filter by job title, location
+ 			List<Profile> profilesList1 = profileService.getFilterProfilesPaged(value, page);
+ 			
+ 			if (!data.isEmpty()) {
+	 			int[] skillIds = Arrays.asList(data.split(",")).stream().mapToInt(Integer::parseInt).toArray();
+	 			profilesList2 = profileService.findBySkills(skillIds, page);
+ 			}
+ 			
+ 			if (!profilesList1.isEmpty() && !value.isEmpty()) {
+ 				profiles.addAll(profilesList1);
+ 				profiles.addAll(profilesList2);
+ 				profilesList2.retainAll(profiles);
+ 			}else {
+ 				profiles.addAll(profilesList2);
+ 			}
+ 			return profiles;
  		}else {
  			return profileService.getAllProfilesPaged(page);
  		}
