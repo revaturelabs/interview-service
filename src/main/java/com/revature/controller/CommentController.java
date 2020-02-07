@@ -17,31 +17,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value="/comment")
+@RequestMapping(value = "/comment")
 public class CommentController {
-    private CommentService commentService;
+	private CommentService commentService;
 
-    public CommentController() {
+	public CommentController() {
 	}
 
-    @Autowired
-    public CommentController(CommentService commentService) {
+	@Autowired
+	public CommentController(CommentService commentService) {
 		super();
 		this.commentService = commentService;
 	}
 
-	@PostMapping("/insert")
+	@PostMapping("/comments")
 	public Comment insertComment(@RequestParam int id, @RequestBody Comment comment) {
-			return commentService.insertCommentWithInterview(id, comment);
-    }
-    
-    @GetMapping("/getByInterview/{id}")
-    public List<Comment> findByInterviewId(@PathVariable int id){
-        return commentService.getCommentsByInterview(id);
-    }
-    
-    @GetMapping("/getAllComments")
-    public List<Comment> findAll(){
-    	return commentService.findAll();
-    }
+		return commentService.insertCommentWithInterview(id, comment);
+	}
+
+	@GetMapping("/comments/{interviewId}")
+	public List<Comment> findByInterviewId(@PathVariable int interviewId) {
+		return commentService.getCommentsByInterview(interviewId);
+	}
+
+	@GetMapping("/comments")
+	public List<Comment> findAll() {
+		return commentService.findAll();
+	}
 }

@@ -42,7 +42,7 @@ public class ProfileController {
 		this.profileService = profileService;
 	}
 
-	@PostMapping("/saveProfile")
+    @PostMapping("/profiles")
     @Transactional
     /** Transactionally saves a candidate profile to the database, in response to an HTTP Post request 
      at the uri "/profiles/saveProfile". 
@@ -51,16 +51,14 @@ public class ProfileController {
     public boolean insertProfileInfo(@RequestBody Profile profile) {
         return profileService.insertProfileInfo(profile);
     }
-
-    @GetMapping("/allProfiles")
+    @GetMapping("/profiles")
     /** Returns a list of all candidate profiles in the database, in response to an HTTP Get request
      at the uri "/profiles/allProfiles".
      * @return A list of all candidate profiles in the database. */
     public List<Profile> getAll() {
         return profileService.getAllProfiles();
     }
-    
- 	@GetMapping("/allProfiles/{page}")
+ 	@GetMapping("/profiles/{page}")
     /** Returns a list of all candidate profiles on a given page, in response to an HTTP Get request
      at the uri "/profiles/allProfiles/{page}" where {page} refers to an integer identifying 
 	 the page to search for profiles.
@@ -77,12 +75,10 @@ public class ProfileController {
  			List<Profile> profilesList2 = new ArrayList<>();
  			//grabs jobs with filter by job title, location
  			List<Profile> profilesList1 = profileService.getFilterProfilesPaged(value, page);
- 			
  			if (!data.isEmpty()) {
 	 			int[] skillIds = Arrays.asList(data.split(",")).stream().mapToInt(Integer::parseInt).toArray();
 	 			profilesList2 = profileService.findBySkills(skillIds, page);
  			}
- 			
  			if (!profilesList1.isEmpty() && !value.isEmpty()) {
  				profiles.addAll(profilesList1);
  				profiles.addAll(profilesList2);
@@ -95,8 +91,7 @@ public class ProfileController {
  			return profileService.getAllProfilesPaged(page);
  		}
 	}
-
-	@GetMapping("/searchProfiles/{firstName}/{lastName}/{page}")
+	@GetMapping("/profiles/{firstName}/{lastName}/{page}")
     /** Retrieves a list containing the profiles for all candidates on a given page whose first name starts with
     a provided string, and whose last name starts with another provided string, in response to an HTTP Get request
     at the uri "/profiles/searchProfiles/{firstName}/{lastName}/{page}" where {firstName} refers to the start
@@ -115,4 +110,4 @@ public class ProfileController {
 			@PathVariable int page) {
 		return profileService.findAllByFullNamePaged(firstName, lastName, page);
 	}
-}
+	}

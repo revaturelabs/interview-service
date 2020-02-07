@@ -47,7 +47,7 @@ public class SkillController {
 	 * @author Seacriest Brown
 	 * @return List of skills
 	 */
-	@GetMapping(value = "/allSkills")
+	@GetMapping(value = "/skills")
 	public @ResponseBody List<Skill> allSkills() {
 		List<Skill> list = new ArrayList<>();
 		for (Skill skill : skillRepository.findAll()) {
@@ -55,52 +55,45 @@ public class SkillController {
 		}
 		return list;
 	}
-
 	/**
 	 * Retrieve selected skill by id
 	 * 
 	 * @return The skill that matches the id
 	 * @author Seacriest Brown
 	 */
-	@GetMapping(value = "/getskillbyid/{id}")
+	@GetMapping(value = "/skills/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {
 		return skillService.getById(id);
 	}
-
 	/**
 	 * @author Joseph F Davis
 	 * @param skill The skill to insert
 	 */
-	@PostMapping(value = "/insertSkill")
+	@PostMapping(value = "/skills")
 	public boolean insertSkill(@RequestBody Skill skill) {
 		return skillService.insertSkill(skill);
 	}
-
 	/**
 	 * @author Joseph F Davis
 	 * @return All skills through the service layer
 	 */
-  
 	/*
 	 * @GetMapping(value = "/getSkills") public Iterable<Skill> getSkills() { return
 	 * sk.getAll(); }
 	 */
-
 	/**
 	 * @author Joseph F Davis
 	 * @param title
 	 * @return skill by title
 	 */
-	@GetMapping(value = "/getskill/{Title}")
+	@GetMapping(value = "/skills/{Title}")
 	public List<Skill> getSkills(@PathVariable("Title") String title) {
 		return skillService.findSkill(title);
 	}
-
-	@GetMapping(value = "/getskill/{Title}/{page}")
+	@GetMapping(value = "/skills/{Title}/{page}")
 	public List<Skill> getSkills(@PathVariable("Title") String title, @PathVariable int page) {
 		return skillService.findSkillPaged(title, page);
 	}
-	
 	@GetMapping(value = "/populate")
 	public Boolean populate() {
 		String filePath = "skill-categories.csv";
@@ -123,14 +116,11 @@ public class SkillController {
 							found= true;
 						if(found)
 							break;
-						
 					}
 					if(!found)
 						skillRepository.save(new Skill(id,lineread,null, null));
 				}
-				
 				}
-			
 			return true;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -140,5 +130,4 @@ public class SkillController {
 			return false;
 		}
 	}
-	
 }

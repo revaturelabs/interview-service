@@ -35,7 +35,7 @@ public class SkillServiceTest {
 	//Mockito starter stuff.
 	@Rule
 	public MockitoRule mockRule = MockitoJUnit.rule();
-	
+
 	@Mock
 	SkillRepository skillRep;
 	
