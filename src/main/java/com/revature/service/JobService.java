@@ -7,7 +7,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Job;
-import com.revature.model.Skill;
 import com.revature.repository.JobRepository;
 
 /**

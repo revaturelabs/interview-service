@@ -98,4 +98,7 @@ public class ProfileService {
 				PageRequest.of(page, this.pageReturnSize));
 	}
 
+	public List<Profile> findBySkills(int[] skillIds, int page){
+		return profileRepository.findBySkills(skillIds, PageRequest.of(page, this.pageReturnSize));
+	}
 }
