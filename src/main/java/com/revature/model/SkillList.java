@@ -23,5 +23,5 @@ public class SkillList {
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
 	}	
-	
+
 }

@@ -14,14 +14,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "interview_interviewer")
 public class InterviewInterviewer {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="interview_interviewer_id")
 	private int id;
-	
+
 	private String text;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_interview")
 	private Interview interview;

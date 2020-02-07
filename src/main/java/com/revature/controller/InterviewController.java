@@ -133,8 +133,8 @@ public class InterviewController {
 		return interviewService.getInterviewsByDate(year, month, day);
 	}
 
-	@PostMapping("/interviewer")
-	public InterviewInterviewer findById(@RequestBody int id) {
+	@GetMapping("/{interviewerId}")
+	public InterviewInterviewer findById(@PathVariable("interviewId") int id) {
 		return interviewInterviewerService.findById(id);
 	}
 

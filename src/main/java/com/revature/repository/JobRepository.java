@@ -53,7 +53,7 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
 	 *         string, ignoring upper and lower case.
 	 */
 	List<Job> findByTitleStartsWithIgnoreCase(String title, Pageable page);
-	
+
 	/** Retrieves a list containing the profiles for all candidates whose first names starts with provided value.
      * @param searchValue 
      * @param using search value to filter title start with

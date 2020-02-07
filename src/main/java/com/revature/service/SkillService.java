@@ -41,7 +41,7 @@ public class SkillService {
 	public Skill getById(int id) {
 		return skillRepository.findById(id);
 	}
-	
+
 	/** Returns an iterable data structure containing all skills in the database. 
 	 * @return An iterable data structure containing all skills in the database. */
 	public Iterable<Skill> getAll() {

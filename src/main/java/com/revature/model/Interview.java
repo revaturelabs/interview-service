@@ -79,7 +79,7 @@ public class Interview {
 	public Calendar getDate() {
 		return this.date;
 	}
-	
+
 	/** Sets the date and time that this interview takes place. */
 	public void setDate(Calendar date) {
 		this.date = date;

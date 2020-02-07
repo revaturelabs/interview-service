@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/comment")
 public class CommentController {
+	
     private CommentService commentService;
 
     public CommentController() {

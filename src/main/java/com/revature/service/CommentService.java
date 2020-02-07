@@ -19,7 +19,7 @@ public class CommentService {
 
     public CommentService() {
 	}
-    
+
     @Autowired
     public CommentService(CommentRepository commentRepository, InterviewInterviewerRepository interviewInterviewerRepository) {
 		super();

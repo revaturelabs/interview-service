@@ -18,17 +18,17 @@ public class InterviewService {
 
 	/** A CRUD repository that links the interview service class to the database. */
 	private InterviewRepository interviewRepository;
-	
+
 	/** A CRUD repository for the job that is being applied for during this interview. */
 	private JobRepository jobRepo;
-	
+
 	/** A CRUD repository for the candidate who is applying during this interview. */
 	private ProfileRepository proRepo;
-	
+
 	/** Creates a new interview service, with all its properties set to their default values. */
 	public InterviewService() {
 	}
-	
+
 	@Autowired
 	/** Creates a new interview service with its properties set to the values provided.
 	 * @param interviewrepo A CRUD repository that links the interview service class to the database.

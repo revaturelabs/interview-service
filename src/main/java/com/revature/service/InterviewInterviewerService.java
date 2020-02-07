@@ -15,9 +15,9 @@ public class InterviewInterviewerService {
 	private InterviewInterviewerRepository interviewInterviewerRepository;
 	
 	public InterviewInterviewerService() {
-		
-	}
 	
+	}
+
 	@Autowired
 	public InterviewInterviewerService(InterviewInterviewerRepository interviewInterviewerRepository) {
 			this.interviewInterviewerRepository = interviewInterviewerRepository;
@@ -26,6 +26,7 @@ public class InterviewInterviewerService {
 	public InterviewInterviewer findById(int id) {
 		return interviewInterviewerRepository.findById(id);
 	}
+
 	public List<InterviewInterviewer> findByInterview(Interview interview){
 		return interviewInterviewerRepository.findByInterview(interview);
 	}

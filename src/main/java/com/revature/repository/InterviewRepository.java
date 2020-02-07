@@ -27,12 +27,12 @@ public interface InterviewRepository extends JpaRepository<Interview, Integer> {
 	 * @param id The integer that uniquely identifies the candidate. 
 	 * @return A list of interviews that the candidate has been scheduled for. */
 	List<Interview> findByProfile_id(int id);
-	
+
 	/** Returns a list of interviews for a given job opening, based on that job's ID.
 	 * @param id The integer that uniquely identifies the job.
 	 * @return A list of past, present, and future interviews for the job. */
 	List<Interview> findByJob_id(int id);
-	
+
 	/** Returns a list of the interviews scheduled to take place within a given year.
 	 * @param year An integer representing the Gregorian year when the interview is scheduled to take place.
 	 All digits of the year must be included, e.g. the year 1999 must be entered as "1999" not "99". 

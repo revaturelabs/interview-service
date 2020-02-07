@@ -26,7 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "jobs")
 public class Job {
-	
+
 	@Id
 	@Column(name = "job_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

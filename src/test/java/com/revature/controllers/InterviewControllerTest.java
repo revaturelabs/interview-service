@@ -19,6 +19,7 @@ import com.revature.model.Interview;
 import com.revature.model.Job;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
+import com.revature.service.InterviewInterviewerService;
 import com.revature.service.InterviewService;
 
 /**
@@ -51,8 +52,9 @@ public class InterviewControllerTest {
 	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3);
 	
 	private InterviewService is = Mockito.mock(InterviewService.class);
-		
-	InterviewController ic;
+	private InterviewInterviewerService iis = Mockito.mock(InterviewInterviewerService.class);
+
+	private InterviewController ic;
 	
 	
 	public InterviewControllerTest() {
@@ -75,7 +77,7 @@ public class InterviewControllerTest {
 	public void setUp() throws Exception {
 		System.out.println("Setting up to test expected InterviewController behavior");
 		
-		ic = new InterviewController(is);
+		ic = new InterviewController(is, iis);
 
 	}
 	
@@ -125,5 +127,4 @@ public class InterviewControllerTest {
 		
 		Mockito.verify(is).getById(1);
 	}
-
 }
