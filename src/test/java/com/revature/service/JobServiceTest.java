@@ -30,7 +30,7 @@ import com.revature.repository.JobRepository;
  */
 
 public class JobServiceTest {
-	
+
 	//Mockito starter stuff.
 	@Rule
 	public MockitoRule mockRule = MockitoJUnit.rule();

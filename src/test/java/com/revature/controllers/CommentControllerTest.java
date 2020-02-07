@@ -24,7 +24,7 @@ import com.revature.service.CommentService;
  findInterviewById and findAll.  
  @author Miranda Brawner */
 public class CommentControllerTest {
-	
+
 	private CommentController ctrl;
 	private int interviewId = 7;
 

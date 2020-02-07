@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.revature.model.Interview;
+import com.revature.model.InterviewInterviewer;
+import com.revature.service.InterviewInterviewerService;
 import com.revature.service.InterviewService;
 
 /** The main controller for obtaining information about an Interview from the
@@ -20,6 +23,8 @@ import com.revature.service.InterviewService;
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/interviews")
 public class InterviewController {
+
+	private InterviewInterviewerService interviewInterviewerService;
 
 	/** An interview service object that performs the business logic for the interview class. */
 	private InterviewService interviewService;
@@ -32,9 +37,10 @@ public class InterviewController {
 	/** Creates a new interview controller, setting its properties to the provided values.
 	 * @param interviewService An interview service object that performs the business logic for the interview class.
 	 * @param userService A user service object that performs the business logic for the user conducting this interview. */
-	public InterviewController(InterviewService interviewService) {
+	public InterviewController(InterviewService interviewService, InterviewInterviewerService interviewInterviewerService) {
 		super();
 		this.interviewService = interviewService;
+		this.interviewInterviewerService = interviewInterviewerService;
 	}
 
 	@PostMapping("/saveInterview")
@@ -95,7 +101,7 @@ public class InterviewController {
 	public List<Interview> getByDate(@PathVariable("year") int year) {
 		return interviewService.getInterviewsByDate(year);
 	}
-	
+
 	@GetMapping("/date/{year}/{month}")
 	/** Returns a list of the interviews scheduled to take place within a given month,
 	 in response to an HTTP request at the uri "/interviews/date/{year}/{month}"
@@ -125,5 +131,20 @@ public class InterviewController {
 	 * @return A list of the interviews scheduled to take place on a given day. */
 	public List<Interview> getByDate(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day") int day) {
 		return interviewService.getInterviewsByDate(year, month, day);
+	}
+	
+	@PostMapping("/interviewInterviewer")
+	public InterviewInterviewer findById(int id) {
+		return interviewInterviewerService.findById(id);
+	}
+	
+	@PostMapping("/allInterviewInterviewerByInterview")
+	public List<InterviewInterviewer> findByInterview(Interview interview){
+		return interviewInterviewerService.findByInterview(interview);
+	}
+
+	@PostMapping("/allInterviewInterviewerByInterviewer")
+	public List<InterviewInterviewer> findByInterviewer(String interviewer){
+		return interviewInterviewerService.findByInterviewer(interviewer);
 	}
 }

@@ -43,7 +43,7 @@ public class CommentServiceTest {
 
 	@InjectMocks
 	InterviewInterviewer interviewInterviewer;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		

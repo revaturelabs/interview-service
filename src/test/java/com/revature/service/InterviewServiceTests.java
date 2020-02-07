@@ -84,9 +84,7 @@ public class InterviewServiceTests {
 		 */
 	  
 	  }
-	 
-	
-	
+
 	@Test
 	public void testGetAllInterview() {
 		List<Interview> interviews = new ArrayList<>();
