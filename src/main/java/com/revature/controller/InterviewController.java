@@ -51,7 +51,7 @@ public class InterviewController {
 	public boolean saveInterview(@RequestBody Interview interview) {
 		return interviewService.insertInterviewInfo(interview);
 	}
-	
+
 	@GetMapping("/allInterviews")
 	/** Retrieves a list of all interviews in the database in response to an HTTP Get request
 	 * at the uri "/interviews/allInterviews".
@@ -70,7 +70,7 @@ public class InterviewController {
 	public Interview getById(@PathVariable int id) {
 		return interviewService.getById(id);
 	}
-	
+
 	@GetMapping("/job/{id}")
 	/** Returns a list of interviews for a job opening whose ID matches the provided number,
 	 in response to an HTTP request at the uri "/interviews/job/{id}" where {id} refers to
@@ -80,7 +80,7 @@ public class InterviewController {
 	public List<Interview> getByJobId(@PathVariable int id) {
 		return interviewService.getInterviewsByJobId(id);
 	}
-	
+
 	@GetMapping("/profile/{id}")
 	/** Returns a list of interviews scheduled for a candidate whose ID matches the provided number,
 	 in response to an HTTP request at the uri "/interviews/profile/{id}" where {id} refers to
@@ -90,7 +90,7 @@ public class InterviewController {
 	public List<Interview> getByProfileId(@PathVariable int id) {
 		return interviewService.getInterviewsByProfileId(id);
 	}
-	
+
 	@GetMapping("/date/{year}")
 	/** Returns a list of the interviews scheduled to take place within a given year, 
 	 in response to an HTTP request at the uri "/interviews/date/{year}" where {year} refers to
@@ -116,7 +116,7 @@ public class InterviewController {
 	public List<Interview> getByDate(@PathVariable("year") int year, @PathVariable("month") int month) {
 		return interviewService.getInterviewsByDate(year, month);
 	}
-	
+
 	@GetMapping("/date/{year}/{month}/{day}")
 	/** Returns a list of the interviews scheduled to take place on a given day,
 	 in response to an HTTP request at the uri "/interviews/date/{year}/{month}/{day}"
@@ -132,19 +132,19 @@ public class InterviewController {
 	public List<Interview> getByDate(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day") int day) {
 		return interviewService.getInterviewsByDate(year, month, day);
 	}
-	
-	@PostMapping("/interviewInterviewer")
-	public InterviewInterviewer findById(int id) {
+
+	@PostMapping("/interviewer")
+	public InterviewInterviewer findById(@RequestBody int id) {
 		return interviewInterviewerService.findById(id);
 	}
-	
-	@PostMapping("/allInterviewInterviewerByInterview")
-	public List<InterviewInterviewer> findByInterview(Interview interview){
+
+	@PostMapping("/interviews")
+	public List<InterviewInterviewer> findByInterview(@RequestBody Interview interview){
 		return interviewInterviewerService.findByInterview(interview);
 	}
 
-	@PostMapping("/allInterviewInterviewerByInterviewer")
-	public List<InterviewInterviewer> findByInterviewer(String interviewer){
+	@GetMapping("/allInterviews/{interviewer}")
+	public List<InterviewInterviewer> findByInterviewer(@PathVariable("interviewer") String interviewer) {
 		return interviewInterviewerService.findByInterviewer(interviewer);
 	}
 }
