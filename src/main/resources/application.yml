@@ -26,20 +26,27 @@ spring:  application:    name: interview-service
           lob:
             non_contextual_creation: false
         temp:
-          use_jdbc_metadata_defaults: false    database-platform: org.hibernate.dialect.H2Dialect
+
+          use_jdbc_metadata_defaults: false    #database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQL82Dialect
   datasource:
     name: Interview_ServiceDB
     # initialize is deprecated. Updating to use initilization-mode.
     initialization-mode: NEVER    platform: postgres
     # add IFEXISTS=TRUE;  if we want to stop creation of local DB
-    url: jdbc:h2:./Interview_ServiceDB;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;
-    username: sa
-    password: sa
+
+    url: jdbc:postgresql://dummy-db.ccd4ftbqsqlk.us-east-2.rds.amazonaws.com/postgres
+    username: postgres
+    password: 75407540
+
+    # url: jdbc:h2:./Interview_ServiceDB;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;
+    # username: sa
+    # password: sa
     hikari:
       maximum-pool-size: 5
       idle-timeout: 30000
       connection-timeout: 30000
-    driver-class-name: org.h2.Driver
+    driver-class-name: org.postgresql.Driver
   main:    allow-bean-definition-overriding: true
   h2:    console:      enabled: true
 

@@ -1,7 +1,6 @@
 package com.revature.controllers;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,25 +12,14 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.controller.InterviewController;
 import com.revature.model.Interview;
 import com.revature.model.Job;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
-import com.revature.model.User;
 import com.revature.service.InterviewService;
-import com.revature.service.UserService;
 
 /**
  * Below annotations (above the class) is useful for integration-testing
@@ -58,14 +46,11 @@ public class InterviewControllerTest {
 	private static Job job3 = new Job(3, "title3", "description3", "location3", new HashSet<Skill>(), true);
 	
 	//Setup Interviews
-	private static Interview interview1 = new Interview(1, profile1, Calendar.getInstance(), true, job1, new HashSet<User>());
-	private static Interview interview2 = new Interview(2, profile2, Calendar.getInstance(), true, job2, new HashSet<User>());
-	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3, new HashSet<User>());
-
-	
+	private static Interview interview1 = new Interview(1, profile1, Calendar.getInstance(), true, job1);
+	private static Interview interview2 = new Interview(2, profile2, Calendar.getInstance(), true, job2);
+	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3);
 	
 	private InterviewService is = Mockito.mock(InterviewService.class);
-	private UserService us = Mockito.mock(UserService.class);
 		
 	InterviewController ic;
 	
@@ -78,7 +63,7 @@ public class InterviewControllerTest {
 //		this.ic = ic;
 //	}
 	
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -90,7 +75,7 @@ public class InterviewControllerTest {
 	public void setUp() throws Exception {
 		System.out.println("Setting up to test expected InterviewController behavior");
 		
-		ic = new InterviewController(is, us);
+		ic = new InterviewController(is);
 
 	}
 	

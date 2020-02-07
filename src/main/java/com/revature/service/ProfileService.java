@@ -73,6 +73,15 @@ public class ProfileService {
     public List<Profile> getAllProfilesPaged(int page) {
 		return profileRepository.findAll(PageRequest.of(page, this.pageReturnSize)).getContent();
 	}
+    
+    /** Returns a filtered list of all candidate profiles on a given page. 
+     * @param given profile search value to filter with.
+     * @param page An integer identifier the page to search for profiles.
+     * @return A list of filtered candidate profiles on a given page. */
+    public List<Profile> getFilterProfilesPaged(String searchValue, int page) {
+		return profileRepository.findByFirstNameStartsWithIgnoreCaseOrLastNameStartsWithIgnoreCaseOrLocationStartsWithIgnoreCaseOrEmailAddressStartsWithIgnoreCase(
+				searchValue, searchValue, searchValue, searchValue, PageRequest.of(page, this.pageReturnSize));
+	}
 	
     /** Retrieves a list containing the profiles for all candidates on a given page whose first name starts with
     a provided string, and whose last name starts with another provided string.
@@ -89,4 +98,7 @@ public class ProfileService {
 				PageRequest.of(page, this.pageReturnSize));
 	}
 
+	public List<Profile> findBySkills(int[] skillIds, int page){
+		return profileRepository.findBySkills(skillIds, PageRequest.of(page, this.pageReturnSize));
+	}
 }

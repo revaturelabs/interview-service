@@ -1,5 +1,4 @@
 package com.revature.model;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -27,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "profiles")
+
 public class Profile {
 	
 	@Id
@@ -42,11 +41,11 @@ public class Profile {
 	@Column(name = "profile_lastName")
 	/** The candidate's last name. */
 	private String lastName;
-	
+
 	@Column(name = "profile_location")
 	/** The location provided by the candidate. */
 	private String location;
-	
+
 	@Column(name = "profile_email_address")
 	/** The email address provided by the candidate. */
 	private String emailAddress;
@@ -54,9 +53,10 @@ public class Profile {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "profile_skills", joinColumns = { @JoinColumn(name = "profile_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "skill_id") })
+	
 	/** A set of skills that the candidate claims proficiency in. */
 	private Set<Skill> skills = new HashSet<>();
-
+	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "profile")
 	@JsonIgnore
 	/** A set of interviews that this candidate has been scheduled for. */
@@ -167,7 +167,6 @@ public class Profile {
 	public String getLocation() {
 		return location;
 	}
-
 	/** Updates the location provided by the candidate.
 	 * @param location The location provided by the candidate. */
 	public void setLocation(String location) {

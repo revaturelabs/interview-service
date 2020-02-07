@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Profile;
@@ -25,7 +28,7 @@ public class ProfileController {
 
 	/** A profile service object that performs the business logic for the profile class. */
     private ProfileService profileService;
-    
+
     /** Creates a new profile service, setting its properties to their default values. */
     public ProfileController() {
 	}
@@ -63,8 +66,34 @@ public class ProfileController {
 	 the page to search for profiles.
      * @param page An integer identifier the page to search for profiles.
      * @return A list of all candidate profiles on a given page. */
-	public List<Profile> getAllPaged(@PathVariable int page) {
-		return profileService.getAllProfilesPaged(page);
+	public List<Profile> getAllPaged(@PathVariable int page,
+			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
+ 		boolean useFilter = false;
+ 		if (!value.isEmpty() || !data.isEmpty()) {
+    		useFilter = true;
+ 		}	
+ 		if (useFilter) {
+ 			List<Profile> profiles = new ArrayList<>();
+ 			List<Profile> profilesList2 = new ArrayList<>();
+ 			//grabs jobs with filter by job title, location
+ 			List<Profile> profilesList1 = profileService.getFilterProfilesPaged(value, page);
+ 			
+ 			if (!data.isEmpty()) {
+	 			int[] skillIds = Arrays.asList(data.split(",")).stream().mapToInt(Integer::parseInt).toArray();
+	 			profilesList2 = profileService.findBySkills(skillIds, page);
+ 			}
+ 			
+ 			if (!profilesList1.isEmpty() && !value.isEmpty()) {
+ 				profiles.addAll(profilesList1);
+ 				profiles.addAll(profilesList2);
+ 				profilesList2.retainAll(profiles);
+ 			}else {
+ 				profiles.addAll(profilesList2);
+ 			}
+ 			return profiles;
+ 		}else {
+ 			return profileService.getAllProfilesPaged(page);
+ 		}
 	}
 
 	@GetMapping("/searchProfiles/{firstName}/{lastName}/{page}")

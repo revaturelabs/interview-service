@@ -23,14 +23,12 @@ public class CommentController {
 
     public CommentController() {
 	}
-    
+
     @Autowired
     public CommentController(CommentService commentService) {
 		super();
 		this.commentService = commentService;
 	}
-
-
 
 	@PostMapping("/insert")
 	public Comment insertComment(@RequestParam int id, @RequestBody Comment comment) {

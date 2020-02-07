@@ -58,4 +58,5 @@ public interface InterviewRepository extends JpaRepository<Interview, Integer> {
 	 * @return A list of the interviews scheduled to take place on a given day. */
 	@Query("select i from Interview i where year(i.date) = ?1 and month(i.date) = ?2 and day(i.date) = ?3")
 	List<Interview> findAllByDate(int year, int month, int day);
+
 }

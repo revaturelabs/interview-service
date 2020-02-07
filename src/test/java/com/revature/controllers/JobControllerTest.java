@@ -63,7 +63,6 @@ public class JobControllerTest {
 		
 	}
 	
-	
 //	@Test
 //	public void testInsertJob() {
 //		Job jb2 = new Job();
@@ -96,7 +95,7 @@ public class JobControllerTest {
 			
 		Mockito.when(jobServ.getAllJobsPaged(0)).thenReturn(jobs.subList(0, 10));
 		
-		assertEquals(10, jc.getAllPaged(0).size());
+		assertEquals(10, jc.getAllPaged(0, "", "").size());
 		
 		Mockito.verify(jobServ).getAllJobsPaged(0);
 				

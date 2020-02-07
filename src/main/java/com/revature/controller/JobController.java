@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Job;
@@ -37,7 +40,7 @@ public class JobController {
 	}
 
     @Autowired
-    /** Creates a new job controller, with all propertiers set to the provided values.
+    /** Creates a new job controller, with all properties set to the provided values.
      * @param jobService A job service object that performs the business logic for the job class.
      * @param skillService A skill service object that performs the business logic 
      for the skills required for this job. */
@@ -73,8 +76,41 @@ public class JobController {
 	 the page to search for jobs.
 	 * @param page An integer identifying the page to search for jobs.
 	 * @return A list of all jobs on the specified page. */
-    public List<Job> getAllPaged(@PathVariable int page){
-    	return jobService.getAllJobsPaged(page);
+    public List<Job> getAllPaged(@PathVariable int page,
+			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
+    	boolean useFilter = false;
+    	if (!value.isEmpty() || !data.isEmpty()) {
+    		useFilter = true;
+    	}
+    	if (useFilter) {
+ 			List<Job> jobs = new ArrayList<>();
+ 			List<Job> jobsList2 = new ArrayList<>();
+ 			//grabs jobs with filter by job title, location
+ 			List<Job> jobsList1 = jobService.getFilterJobsPaged(value, page);
+ 			
+ 			//parse skill id string into int[] array, and grab jobs filtered by skills
+ 			if (!data.isEmpty()) {
+	 			int[] skillIds = Arrays.asList(data.split(",")).stream().mapToInt(Integer::parseInt).toArray();
+	 			jobsList2 = jobService.findBySkills(skillIds, page);
+ 			}
+ 			
+ 			if (!jobsList1.isEmpty() && !value.isEmpty()) {
+ 				jobs.addAll(jobsList1);
+ 				jobs.addAll(jobsList2);
+ 				jobsList2.retainAll(jobs);
+ 			}else {
+ 				jobs.addAll(jobsList2);
+ 			}
+ 			return jobs;
+ 		}else {
+ 			return jobService.getAllJobsPaged(page);
+ 		}
+	}
+    
+    @GetMapping("/test")
+    public List<Job> testDB() {
+    	int[] skillIds = {1, 2};
+    	return jobService.findBySkills(skillIds, 0);
     }
 
     @GetMapping("/jobTitle/{title}")
@@ -107,5 +143,6 @@ public class JobController {
         return jobService.findByTitlePaged(title, page);
     }
     
+
     
 }
