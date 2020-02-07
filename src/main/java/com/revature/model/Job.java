@@ -108,6 +108,7 @@ public class Job {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	/** Returns a description of this job. 
 	 * @return A string describing this job.*/
 	public String getDescription() {
@@ -168,7 +169,7 @@ public class Job {
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
-	
+
 	@Override
 	/** A string representation of this job.
 	 * @return A string representation of this job. */

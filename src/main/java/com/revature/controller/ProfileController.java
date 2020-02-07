@@ -28,7 +28,7 @@ public class ProfileController {
 
 	/** A profile service object that performs the business logic for the profile class. */
     private ProfileService profileService;
-    
+
     /** Creates a new profile service, setting its properties to their default values. */
     public ProfileController() {
 	}

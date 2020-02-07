@@ -90,7 +90,7 @@ public class InterviewInterviewer {
 		return id == other.id && Objects.equals(interview, other.interview)
 				&& Objects.equals(interviewer, other.interviewer) && Objects.equals(text, other.text);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "InterviewJoin [id=" + id + ", text=" + text + ", interview=" + interview + ", interviewer="

@@ -5,7 +5,7 @@ import java.util.List;
 public class SkillList {
 
 	private List<Skill> skills;
-	
+
 	public SkillList() {
 		super();
 		// TODO Auto-generated constructor stub
