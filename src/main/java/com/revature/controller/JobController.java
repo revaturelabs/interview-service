@@ -50,8 +50,8 @@ public class JobController {
 		this.skillService = skillService;
 	}
 
-	@PostMapping("/saveJob")
-  @Transactional
+	@PostMapping
+	@Transactional
 	/** Saves a job to the database, in response to an HTTP Post request at the uri
 	 "/jobs/saveJob". If a job with the same ID as the provided job already exists,
 	 this job will updated. If no such job exists, a new one will be added to the database.
@@ -61,7 +61,7 @@ public class JobController {
         return jobService.insertJobInfo(job);
     }
 
-    @GetMapping("/allJobs")
+    @GetMapping
     /** Returns an iterable data structure containing all jobs in the database,
 	 in response to an HTTP Get request at the uri "/jobs/allJobs".
 	 * @return An iterable data structure containing all jobs in the database.
@@ -69,9 +69,9 @@ public class JobController {
         return jobService.findAll();
     }
 
-    @GetMapping("/allJobs/{page}")
+    @GetMapping("/{page}")
 	/** Returns a list of all jobs on a given page, in response to an HTTP Get request
-	 at the uri "/jobs/allJobs/{page}" where {page} refers to an integer identifying 
+	 at the uri "/jobs/{page}" where {page} refers to an integer identifying 
 	 the page to search for jobs.
 	 * @param page An integer identifying the page to search for jobs.
 	 * @return A list of all jobs on the specified page. */
@@ -103,10 +103,10 @@ public class JobController {
  		}
 	}
 
-    @GetMapping("/jobTitle/{title}")
+    @GetMapping("/title/{title}")
 	/** Returns a list of jobs whose names start with the provided string,
 	 in response to an HTTP Get request at the uri
-	 "/jobs/jobTitle/{title}" where {title} refers to a string that will filter out all jobs 
+	 "/jobs/title/{title}" where {title} refers to a string that will filter out all jobs 
 	 whose names do not start with the string, ignoring upper and lower case.
 	 * @param title A string that will filter out all jobs whose names do not start with the string,
 	 ignoring upper and lower case.
@@ -117,9 +117,9 @@ public class JobController {
     }
     
 	
-	@GetMapping("/jobTitle/{title}/{page}")
+	@GetMapping("/title/{title}/{page}")
 	/** Returns a list of jobs on a given page whose names start with the provided string,
-	 in response to an HTTP Get request at the uri "/jobs/jobTitle/{title}/{page}"
+	 in response to an HTTP Get request at the uri "/jobs/title/{title}/{page}"
 	 where {title} refers to a string that will filter out all jobs 
 	 whose names do not start with the string, ignoring upper and lower case,
 	 and {page} refers to an integer identifying the page to search for jobs.
