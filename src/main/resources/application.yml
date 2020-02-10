@@ -10,6 +10,8 @@
 #change port to 0 when service can be linked to Zuul
 server:
   port: 50222
+  error:
+    include-stacktrace: never
 
 #Updated to point to H2 Console.
 spring:  application:    name: interview-service
@@ -56,3 +58,11 @@ logging:
           descriptor:
             sql:
               BasicBinder: trace
+
+---
+spring:
+  profiles: local
+  
+server:
+  error:
+    include-stacktrace: always
