@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Profile;
@@ -49,5 +50,18 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     * @return A list containing the profiles for all candidates on a given page whose first name starts with
     a provided string, and whose last name starts with another provided string. */
     List<Profile> findByFirstNameStartsWithIgnoreCaseAndLastNameStartsWithIgnoreCase(String firstName, String lastName, Pageable page);
+    
+    /** Retrieves a list containing the profiles for all candidates whose first names starts with provided value.
+     * @param searchValue 
+     * @param using search value to filter first name start with
+     * @param using search value to filter last name start with
+     * @param using search value to filter location start with
+     * @param using search value to filter emailAddress start with
+     * @return A list containing the profiles for filtered candidates */
+    List<Profile> findByFirstNameStartsWithIgnoreCaseOrLastNameStartsWithIgnoreCaseOrLocationStartsWithIgnoreCaseOrEmailAddressStartsWithIgnoreCase(
+    		String firstName, String lastName, String location, String emailAddress, Pageable page);
 	
+    @Query(nativeQuery=true, value = "SELECT * FROM profiles p LEFT JOIN profile_skills ps ON (ps.skill_id IN (:skillIds)) WHERE p.profile_id = ps.profile_id")
+	List<Profile> findBySkills(int[] skillIds, Pageable page);	
+    
 }

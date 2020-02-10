@@ -3,10 +3,9 @@ package com.revature.service;
 import java.util.List;
 
 import com.revature.model.Comment;
-import com.revature.model.Interview;
+import com.revature.model.InterviewInterviewer;
 import com.revature.repository.CommentRepository;
-import com.revature.repository.InterviewRepository;
-
+import com.revature.repository.InterviewInterviewerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,23 +15,21 @@ public class CommentService {
 
     private CommentRepository commentRepository;
 
-    private InterviewRepository interviewRepository;
+    private InterviewInterviewerRepository interviewInterviewerRepository;
 
     public CommentService() {
 	}
-    
+
     @Autowired
-    public CommentService(CommentRepository commentRepository, InterviewRepository interviewRepository) {
+    public CommentService(CommentRepository commentRepository, InterviewInterviewerRepository interviewInterviewerRepository) {
 		super();
 		this.commentRepository = commentRepository;
-		this.interviewRepository = interviewRepository;
+		this.interviewInterviewerRepository = interviewInterviewerRepository;
 	}
-
-
 
 	public Comment insertCommentWithInterview(int id, Comment comment) {
         try {
-            comment.setInterviewId(interviewRepository.findById(id));
+            comment.setInterviewInterviewer(interviewInterviewerRepository.findById(id));
             commentRepository.save(comment);
             return comment;
         } catch (Exception e) {
@@ -42,11 +39,11 @@ public class CommentService {
     }
 
     public List<Comment> getCommentsByInterview(int id) {
-        Interview interview = interviewRepository.findById(id);
-        if (interview == null) {
+    	InterviewInterviewer interviewInterviewer = interviewInterviewerRepository.findById(id);
+        if (interviewInterviewer == null) {
             return null;
         } else {
-            return commentRepository.findAllByInterviewId(interview);
+            return commentRepository.findAllByInterviewInterviewer(interviewInterviewer);
         }
     }
 

@@ -1,7 +1,9 @@
 package com.revature.controllers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Assert;
@@ -11,23 +13,46 @@ import org.mockito.Mockito;
 
 import com.revature.controller.CommentController;
 import com.revature.model.Comment;
+import com.revature.model.Interview;
+import com.revature.model.InterviewInterviewer;
+import com.revature.model.Job;
+import com.revature.model.Profile;
+import com.revature.model.Skill;
 import com.revature.service.CommentService;
 
 /** A class to test the methods of the CommentController class. These methods are insertComment, 
  findInterviewById and findAll.  
  @author Miranda Brawner */
 public class CommentControllerTest {
-	
+
 	private CommentController ctrl;
 	private int interviewId = 7;
+
+	//Setup profile
+	private static Profile profile1 = new Profile(1, "fName1", "lName1", "location1", "email1", "description1");
+	private static Profile profile2 = new Profile(2, "fname2", "lName2", "location2", "email2", "description2");
+	private static Profile profile3 = new Profile(3, "fName3", "lName3", "location3", "email3", "description3");
 	
-	private Comment commentOne = new Comment(1, new GregorianCalendar(2005, 3, 21), "Not a good interview.",
-			"We can probably find a better candidate.", null);
-	private Comment commentTwo = new Comment(2, new GregorianCalendar(2002, 4, 5), "Pretty good interview.",
-			"Seems like an acceptable candidate.", null);
-	private Comment commentThree = new Comment(3, new GregorianCalendar(2008, 8, 1), "Great interview!",
-			"Definitely the best of the candidates so far.", null);
+	//Setup job
+	private static Job job1 = new Job(1, "title1", "description1", "location1", new HashSet<Skill>(), true);
+	private static Job job2 = new Job(2, "title2", "description2", "location2", new HashSet<Skill>(), true);
+	private static Job job3 = new Job(3, "title3", "description3", "location3", new HashSet<Skill>(), true);
 	
+	//Setup Interviews
+	private static Interview interview1 = new Interview(1, profile1, Calendar.getInstance(), true, job1);
+	private static Interview interview2 = new Interview(2, profile2, Calendar.getInstance(), true, job2);
+	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3);
+	
+	//set up interviewInterviewer 
+	private static InterviewInterviewer interviewInterviewer1 = new InterviewInterviewer(1, "good interview", interview1, "quinn");
+	private static InterviewInterviewer interviewInterviewer2 = new InterviewInterviewer(2, "bad interview", interview2, "matt");
+	private static InterviewInterviewer interviewInterviewer3 = new InterviewInterviewer(3, "great interview", interview3, "andrew");
+	
+	//set up Comment
+	private Comment commentOne = new Comment(1, new GregorianCalendar(2005, 3, 21), "Not a good interview.",interviewInterviewer1);
+	private Comment commentTwo = new Comment(2, new GregorianCalendar(2002, 4, 5), "Pretty good interview.", interviewInterviewer2);
+	private Comment commentThree = new Comment(3, new GregorianCalendar(2008, 8, 1), "Great interview!", interviewInterviewer3);
+
 	private List<Comment> fullList = new ArrayList<>();
 	private List<Comment> smallList = new ArrayList<>();
 
@@ -83,7 +108,7 @@ public class CommentControllerTest {
 		}
 		System.out.println("Find all test is complete.");
 	}
-	
+
 	@Test
 	/** Tests that the findByInterviewId method returns the list of commments provided by the service method, 
 	 and that the corresponding service method was called. */

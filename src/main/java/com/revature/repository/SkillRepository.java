@@ -20,7 +20,7 @@ public interface SkillRepository extends JpaRepository<Skill, Integer> {
 	 * @return The skill from the database whose ID matches the provided number,
 	 or null if no such skill is found.  */
 	Skill findById(int id);
-	
+
 	/** Retrieves a list of all skills whose name starts with the provided string,
 	 ignoring upper and lower case.
 	 * @param title A string that will filter out all skills whose names do not start with that string,

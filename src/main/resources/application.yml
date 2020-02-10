@@ -26,7 +26,7 @@ spring:  application:    name: interview-service
           lob:
             non_contextual_creation: false
         temp:
-          use_jdbc_metadata_defaults: false    database-platform: org.hibernate.dialect.H2Dialect
+          use_jdbc_metadata_defaults: false          database-platform: org.hibernate.dialect.H2Dialect
   datasource:
     name: Interview_ServiceDB
     # initialize is deprecated. Updating to use initilization-mode.

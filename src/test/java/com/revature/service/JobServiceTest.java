@@ -1,7 +1,6 @@
 package com.revature.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -10,7 +9,6 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.h2.mvstore.Page;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,8 +21,6 @@ import org.mockito.junit.MockitoRule;
 import org.springframework.data.domain.PageRequest;
 
 import com.revature.model.Job;
-import com.revature.model.Profile;
-import com.revature.model.Skill;
 import com.revature.repository.JobRepository;
 
 /*
@@ -34,7 +30,7 @@ import com.revature.repository.JobRepository;
  */
 
 public class JobServiceTest {
-	
+
 	//Mockito starter stuff.
 	@Rule
 	public MockitoRule mockRule = MockitoJUnit.rule();

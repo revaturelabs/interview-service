@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Skill;
@@ -42,7 +41,7 @@ public class SkillService {
 	public Skill getById(int id) {
 		return skillRepository.findById(id);
 	}
-	
+
 	/** Returns an iterable data structure containing all skills in the database. 
 	 * @return An iterable data structure containing all skills in the database. */
 	public Iterable<Skill> getAll() {

@@ -33,25 +33,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "comments")
 public class Comment {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	private Calendar date;
-	private String name;
+
 	private String text;
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "interview_comments")
-	private Interview interviewId;
+	@JoinColumn(name = "interview_interviewer")
+	private InterviewInterviewer interviewInterviewer;
 
 	public Comment() {
 	}
 
-	public Comment(int id, Calendar date, String name, String text, Interview interviewId) {
+	public Comment(int id, Calendar date, String text, InterviewInterviewer interviewInterviewer) {
 		this.id = id;
 		this.date = date;
-		this.name = name;
 		this.text = text;
-		this.interviewId = interviewId;
+		this.interviewInterviewer = interviewInterviewer;
 	}
 
 	public int getId() {
@@ -70,28 +72,12 @@ public class Comment {
 		this.date = date;
 	}
 
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getText() {
 		return this.text;
 	}
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	public Interview getInterviewId() {
-		return this.interviewId;
-	}
-
-	public void setInterviewId(Interview interviewId) {
-		this.interviewId = interviewId;
 	}
 
 	public Comment id(int id) {
@@ -104,42 +90,41 @@ public class Comment {
 		return this;
 	}
 
-	public Comment name(String name) {
-		this.name = name;
-		return this;
-	}
-
 	public Comment text(String text) {
 		this.text = text;
 		return this;
 	}
 
-	public Comment interviewId(Interview interviewId) {
-		this.interviewId = interviewId;
-		return this;
+	public InterviewInterviewer getInterviewInterviewer() {
+		return interviewInterviewer;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (o == this)
-			return true;
-		if (!(o instanceof Comment)) {
-			return false;
-		}
-		Comment comment = (Comment) o;
-		return id == comment.id && Objects.equals(date, comment.date) && Objects.equals(name, comment.name)
-				&& Objects.equals(text, comment.text) && Objects.equals(interviewId, comment.interviewId);
+	public void setInterviewInterviewer(InterviewInterviewer interviewInterviewer) {
+		this.interviewInterviewer = interviewInterviewer;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, date, name, text, interviewId);
+		return Objects.hash(date, id, interviewInterviewer, text);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Comment)) {
+			return false;
+		}
+		Comment other = (Comment) obj;
+		return Objects.equals(date, other.date) && id == other.id
+				&& Objects.equals(interviewInterviewer, other.interviewInterviewer) && Objects.equals(text, other.text);
 	}
 
 	@Override
 	public String toString() {
-		return "{" + " id='" + getId() + "'" + ", date='" + getDate() + "'" + ", name='" + getName() + "'" + ", text='"
-				+ getText() + "'" + ", interviewId='" + getInterviewId() + "'" + "}";
+		return "Comment [id=" + id + ", date=" + date + ", text=" + text + ", interviewInterviewer="
+				+ interviewInterviewer + "]";
 	}
 
 }

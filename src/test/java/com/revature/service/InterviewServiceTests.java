@@ -9,29 +9,16 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Before;
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import org.mockito.Mockito;
-
-
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.model.Interview;
 import com.revature.model.Job;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
-import com.revature.model.User;
 import com.revature.repository.InterviewRepository;
 import com.revature.repository.JobRepository;
 import com.revature.repository.ProfileRepository;
-import com.revature.repository.UserRepository;
 
 /*@SpringBootTest(classes = {InterviewService.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableJpaRepositories("com.revature.repository")
@@ -58,23 +45,19 @@ public class InterviewServiceTests {
 	private static Job job3 = new Job(3, "title3", "description3", "location3", new HashSet<Skill>(), true);
 
 	// Setup Interviews
-	private static Interview interview1 = new Interview(1, profile1, Calendar.getInstance(), true, job1,
-			new HashSet<User>());
-	private static Interview interview2 = new Interview(2, profile2, Calendar.getInstance(), true, job2,
-			new HashSet<User>());
-	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3,
-			new HashSet<User>());
+	private static Interview interview1 = new Interview(1, profile1, Calendar.getInstance(), true, job1);
+	private static Interview interview2 = new Interview(2, profile2, Calendar.getInstance(), true, job2);
+	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3);
 
 	private InterviewRepository interviewRepository = Mockito.mock(InterviewRepository.class);
 	private JobRepository jobRepository = Mockito.mock(JobRepository.class);
 	private ProfileRepository profileRepository = Mockito.mock(ProfileRepository.class);
-	private UserRepository userRepository = Mockito.mock(UserRepository.class);
 	private InterviewService is;
 	
 
 	@Before
 	public void setUp() throws Exception {
-		is = new InterviewService(interviewRepository, jobRepository,profileRepository, userRepository);
+		is = new InterviewService(interviewRepository, jobRepository,profileRepository);
 		System.out.println(is);
 	}
 	
@@ -101,9 +84,7 @@ public class InterviewServiceTests {
 		 */
 	  
 	  }
-	 
-	
-	
+
 	@Test
 	public void testGetAllInterview() {
 		List<Interview> interviews = new ArrayList<>();
