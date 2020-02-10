@@ -42,27 +42,27 @@ public class ProfileController {
 		this.profileService = profileService;
 	}
 
-	@PostMapping("/saveProfile")
+	@PostMapping
     @Transactional
     /** Transactionally saves a candidate profile to the database, in response to an HTTP Post request 
-     at the uri "/profiles/saveProfile". 
+     at the uri "/profiles". 
      * @param profile The candidate profile being saved.
      * @return True if the profile was saved successfully, and false if the profile was not saved. */
     public boolean insertProfileInfo(@RequestBody Profile profile) {
         return profileService.insertProfileInfo(profile);
     }
 
-    @GetMapping("/allProfiles")
+    @GetMapping
     /** Returns a list of all candidate profiles in the database, in response to an HTTP Get request
-     at the uri "/profiles/allProfiles".
+     at the uri "/profiles".
      * @return A list of all candidate profiles in the database. */
     public List<Profile> getAll() {
         return profileService.getAllProfiles();
     }
     
- 	@GetMapping("/allProfiles/{page}")
+ 	@GetMapping("/{page}")
     /** Returns a list of all candidate profiles on a given page, in response to an HTTP Get request
-     at the uri "/profiles/allProfiles/{page}" where {page} refers to an integer identifying 
+     at the uri "/profiles/{page}" where {page} refers to an integer identifying 
 	 the page to search for profiles.
      * @param page An integer identifier the page to search for profiles.
      * @return A list of all candidate profiles on a given page. */
@@ -92,10 +92,10 @@ public class ProfileController {
  		}
 	}
 
-	@GetMapping("/searchProfiles/{firstName}/{lastName}/{page}")
+	@GetMapping("/search/{firstName}/{lastName}/{page}")
     /** Retrieves a list containing the profiles for all candidates on a given page whose first name starts with
     a provided string, and whose last name starts with another provided string, in response to an HTTP Get request
-    at the uri "/profiles/searchProfiles/{firstName}/{lastName}/{page}" where {firstName} refers to the start
+    at the uri "/profiles/search/{firstName}/{lastName}/{page}" where {firstName} refers to the start
     of their first name, {lastName} refers to the start of their last name, and {page} refers to an integer 
     identifying the page to search for profiles. Upper and lower case are ignored for both the firstName and
     lastName parameters.

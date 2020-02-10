@@ -47,7 +47,7 @@ public class SkillController {
 	 * @author Seacriest Brown
 	 * @return List of skills
 	 */
-	@GetMapping(value = "/allSkills")
+	@GetMapping
 	public @ResponseBody List<Skill> allSkills() {
 		List<Skill> list = new ArrayList<>();
 		for (Skill skill : skillRepository.findAll()) {
@@ -62,7 +62,7 @@ public class SkillController {
 	 * @return The skill that matches the id
 	 * @author Seacriest Brown
 	 */
-	@GetMapping(value = "/getskillbyid/{id}")
+	@GetMapping(value = "/{id}")
 	public Skill getBySkill(@PathVariable("id") int id) {
 		return skillService.getById(id);
 	}
@@ -71,32 +71,23 @@ public class SkillController {
 	 * @author Joseph F Davis
 	 * @param skill The skill to insert
 	 */
-	@PostMapping(value = "/insertSkill")
+	@PostMapping
 	public boolean insertSkill(@RequestBody Skill skill) {
 		return skillService.insertSkill(skill);
 	}
 
-	/**
-	 * @author Joseph F Davis
-	 * @return All skills through the service layer
-	 */
-  
-	/*
-	 * @GetMapping(value = "/getSkills") public Iterable<Skill> getSkills() { return
-	 * sk.getAll(); }
-	 */
 
 	/**
 	 * @author Joseph F Davis
 	 * @param title
 	 * @return skill by title
 	 */
-	@GetMapping(value = "/getskill/{Title}")
+	@GetMapping(value = "/title/{Title}")
 	public List<Skill> getSkills(@PathVariable("Title") String title) {
 		return skillService.findSkill(title);
 	}
 
-	@GetMapping(value = "/getskill/{Title}/{page}")
+	@GetMapping(value = "/title/{Title}/{page}")
 	public List<Skill> getSkills(@PathVariable("Title") String title, @PathVariable int page) {
 		return skillService.findSkillPaged(title, page);
 	}

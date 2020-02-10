@@ -31,17 +31,17 @@ public class CommentController {
 		this.commentService = commentService;
 	}
 
-	@PostMapping("/insert")
+	@PostMapping
 	public Comment insertComment(@RequestParam int id, @RequestBody Comment comment) {
 			return commentService.insertCommentWithInterview(id, comment);
     }
     
-    @GetMapping("/getByInterview/{id}")
+    @GetMapping("/{id}")
     public List<Comment> findByInterviewId(@PathVariable int id){
         return commentService.getCommentsByInterview(id);
     }
     
-    @GetMapping("/getAllComments")
+    @GetMapping
     public List<Comment> findAll(){
     	return commentService.findAll();
     }
