@@ -134,7 +134,7 @@ public class InterviewController {
 	}
 
 
-	@GetMapping("/interviewers/{interviewId}")
+	@GetMapping("/interviewer/{interviewId}")
 	public List<InterviewInterviewer> findByInterview(@PathVariable int id){
 		Interview iv = interviewService.getById(id);
 		return interviewInterviewerService.findByInterview(iv);
