@@ -13,9 +13,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import com.revature.controller.InterviewController;
 import com.revature.model.Interview;
+import com.revature.model.InterviewInterviewer;
 import com.revature.model.Job;
 import com.revature.model.Profile;
 import com.revature.model.Skill;
@@ -50,11 +50,14 @@ public class InterviewControllerTest {
 	private static Interview interview1 = new Interview(1, profile1, Calendar.getInstance(), true, job1);
 	private static Interview interview2 = new Interview(2, profile2, Calendar.getInstance(), true, job2);
 	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3);
-
+	
+	//Setup InterviewInterviewer
+	private static InterviewInterviewer ii1 = new InterviewInterviewer(1, "Great interview", interview1,  "Bob");
+	
 	private InterviewService is = Mockito.mock(InterviewService.class);
 	private InterviewInterviewerService iis = Mockito.mock(InterviewInterviewerService.class);
 
-	 private InterviewController ic;
+	private InterviewController ic;
 
 	public InterviewControllerTest() {
 	}
@@ -74,7 +77,6 @@ public class InterviewControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Setting up to test expected InterviewController behavior");
-
 		ic = new InterviewController(is, iis);
 
 	}
@@ -125,5 +127,20 @@ public class InterviewControllerTest {
 
 		Mockito.verify(is).getById(1);
 	}
-
+	
+//	@Test
+//	public void findByInterview() {
+//		Mockito.when(methodCall)
+//		
+//		List<InterviewInterviewer> list = new ArrayList<>();
+//		list.add(ii1);
+//		
+//		
+//		
+//	}
+//			
+//	@PostMapping("/interviews")
+//	public List<InterviewInterviewer> findByInterview(@RequestBody Interview interview){
+//		return nterviewInterviewerService.findByInterview(interview);
+//	}
 }

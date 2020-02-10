@@ -17,6 +17,6 @@ public interface CommentRepository extends JpaRepository<Comment, Integer>{
     /**
      * @see returns all comments based on interviewId
      */
-	
+
 	List<Comment> findAllByInterviewInterviewer (InterviewInterviewer interviewInterviewer);
 }

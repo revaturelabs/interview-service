@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "profiles")
 
 public class Profile {
-	
+
 	@Id
 	@Column(name = "profile_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)

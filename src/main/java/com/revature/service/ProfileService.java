@@ -13,7 +13,7 @@ import com.revature.repository.ProfileRepository;
  * @author Adriana Long */
 @Service
 public class ProfileService {
-   
+
 	/** A CRUD repository that connects this profile service to the database. */
     private ProfileRepository profileRepository;
 

@@ -43,6 +43,7 @@ public class CommentControllerTest {
 	private static Interview interview2 = new Interview(2, profile2, Calendar.getInstance(), true, job2);
 	private static Interview interview3 = new Interview(3, profile3, Calendar.getInstance(), true, job3);
 	
+
 	//set up interviewInterviewer 
 	private static InterviewInterviewer interviewInterviewer1 = new InterviewInterviewer(1, "good interview", interview1, "quinn");
 	private static InterviewInterviewer interviewInterviewer2 = new InterviewInterviewer(2, "bad interview", interview2, "matt");
@@ -108,7 +109,7 @@ public class CommentControllerTest {
 		}
 		System.out.println("Find all test is complete.");
 	}
-	
+
 	@Test
 	/** Tests that the findByInterviewId method returns the list of commments provided by the service method, 
 	 and that the corresponding service method was called. */

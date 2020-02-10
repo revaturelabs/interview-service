@@ -26,7 +26,6 @@ spring:  application:    name: interview-service
           lob:
             non_contextual_creation: false
         temp:
-
           use_jdbc_metadata_defaults: false    #database-platform: org.hibernate.dialect.H2Dialect
     database-platform: org.hibernate.dialect.PostgreSQL82Dialect
   datasource:
@@ -34,7 +33,6 @@ spring:  application:    name: interview-service
     # initialize is deprecated. Updating to use initilization-mode.
     initialization-mode: NEVER    platform: postgres
     # add IFEXISTS=TRUE;  if we want to stop creation of local DB
-
     url: jdbc:postgresql://dummy-db.ccd4ftbqsqlk.us-east-2.rds.amazonaws.com/postgres
     username: postgres
     password: 75407540
