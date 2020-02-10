@@ -103,12 +103,6 @@ public class JobController {
  			return jobService.getAllJobsPaged(page);
  		}
 	}
-    
-    @GetMapping("/test")
-    public List<Job> testDB() {
-    	int[] skillIds = {1, 2};
-    	return jobService.findBySkills(skillIds, 0);
-    }
 
     @GetMapping("/jobTitle/{title}")
 	/** Returns a list of jobs whose names start with the provided string,
