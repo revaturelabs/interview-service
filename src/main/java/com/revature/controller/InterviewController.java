@@ -140,7 +140,7 @@ public class InterviewController {
 		return interviewInterviewerService.findByInterview(iv);
 	}
 
-	@GetMapping("/Interviewer/{interviewer}")
+	@GetMapping("/interviewer/{interviewer}")
 	public List<InterviewInterviewer> findByInterviewer(@PathVariable("interviewer") String interviewer) {
 		return interviewInterviewerService.findByInterviewer(interviewer);
 	}
