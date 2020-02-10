@@ -61,7 +61,6 @@ public class JobController {
         return jobService.insertJobInfo(job);
     }
 
-
     @GetMapping("/allJobs")
     /** Returns an iterable data structure containing all jobs in the database,
 	 in response to an HTTP Get request at the uri "/jobs/allJobs".
@@ -79,7 +78,7 @@ public class JobController {
     public List<Job> getAllPaged(@PathVariable int page,
 			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
 
-    	if (!value.isEmpty() || !data.isEmpty()) {
+    	if (!(value.isEmpty() && data.isEmpty())) {
  			List<Job> jobs = new ArrayList<>();
  			List<Job> jobsList2 = new ArrayList<>();
  			//grabs jobs with filter by job title, location
