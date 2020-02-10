@@ -43,24 +43,24 @@ public class InterviewController {
 		this.interviewInterviewerService = interviewInterviewerService;
 	}
 
-	@PostMapping("/saveInterview")
+	@PostMapping
 	/** Saves an interview to the database in response to an HTTP Post request 
-	 at the uri "/interviews/saveInterview".
+	 at the uri "/interviews".
 	 * @param interview The interview being scheduled.
 	 * @return True if the interview is saved successfully, and false if the interview was not saved. */
 	public boolean saveInterview(@RequestBody Interview interview) {
 		return interviewService.insertInterviewInfo(interview);
 	}
 
-	@GetMapping("/allInterviews")
+	@GetMapping
 	/** Retrieves a list of all interviews in the database in response to an HTTP Get request
-	 * at the uri "/interviews/allInterviews".
+	 * at the uri "/interviews".
 	 * @return A list of all interviews in the database. */
 	public List<Interview> getAll() {
 		return interviewService.getAllInterviews();
 	}
 
-	@GetMapping("/id/{id}")
+	@GetMapping("/{id}")
 	/** Retrieves the interview whose ID matches the provided number, in response to an HTTP Get request
 	 at the uri "/interviews/id/{id}" where {id} refers to the interview's unique ID.
 	 Returns null if no such interview is found.
@@ -133,17 +133,14 @@ public class InterviewController {
 		return interviewService.getInterviewsByDate(year, month, day);
 	}
 
-	@GetMapping("/{interviewerId}")
-	public InterviewInterviewer findById(@PathVariable("interviewId") int id) {
-		return interviewInterviewerService.findById(id);
+
+	@GetMapping("/interviewers/{interviewId}")
+	public List<InterviewInterviewer> findByInterview(@PathVariable int id){
+		Interview iv = interviewService.getById(id);
+		return interviewInterviewerService.findByInterview(iv);
 	}
 
-	@PostMapping("/interviews")
-	public List<InterviewInterviewer> findByInterview(@RequestBody Interview interview){
-		return interviewInterviewerService.findByInterview(interview);
-	}
-
-	@GetMapping("/allInterviews/{interviewer}")
+	@GetMapping("/Interviewer/{interviewer}")
 	public List<InterviewInterviewer> findByInterviewer(@PathVariable("interviewer") String interviewer) {
 		return interviewInterviewerService.findByInterviewer(interviewer);
 	}
