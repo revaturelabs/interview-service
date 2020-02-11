@@ -132,4 +132,8 @@ public class SkillController {
 		}
 	}
 	
+	@GetMapping(value = "/test")
+	public Skill test() {
+		throw new NullPointerException();
+	}
 }

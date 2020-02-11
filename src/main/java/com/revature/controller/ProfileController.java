@@ -67,7 +67,7 @@ public class ProfileController {
      * @param page An integer identifier the page to search for profiles.
      * @return A list of all candidate profiles on a given page. */
 	public List<Profile> getAllPaged(@PathVariable int page,
-			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
+			@RequestParam("filtertext") String value, @RequestParam("skillids") String data) {
  		if (!(value.isEmpty() && data.isEmpty())) {
  			List<Profile> profiles = new ArrayList<>();
  			List<Profile> profilesList2 = new ArrayList<>();

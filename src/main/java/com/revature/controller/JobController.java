@@ -76,7 +76,7 @@ public class JobController {
 	 * @param page An integer identifying the page to search for jobs.
 	 * @return A list of all jobs on the specified page. */
     public List<Job> getAllPaged(@PathVariable int page,
-			@RequestParam("filtervalue") String value, @RequestParam("skillids") String data) {
+			@RequestParam("filtertext") String value, @RequestParam("skillids") String data) {
 
     	if (!(value.isEmpty() && data.isEmpty())) {
  			List<Job> jobs = new ArrayList<>();
