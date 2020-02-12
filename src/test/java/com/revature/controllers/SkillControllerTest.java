@@ -43,16 +43,6 @@ public class SkillControllerTest {
 	
 	@InjectMocks
 	SkillController skillCon;
-	
-	//Pulls from H2. Integration testing. Too far?
-	/*
-	 * Session ses; Database db = new Database(null, null);
-	 */
-	
-	// Cannibalized from old tester. Modifed to fit constructor. 
-	//Skill skill = new Skill(1, "Spring Boot Test"); 
-	//Skill skill2 = new Skill(2, "Java"); 
-	//Skill skill3 = new Skill(3, "SQL");
 
 	@Before
 	public void setUp() throws Exception {
@@ -60,22 +50,13 @@ public class SkillControllerTest {
 		MockitoAnnotations.initMocks(this);
 		
 		skillCon = new SkillController(skillRep, skillServ);
-		
-		
 
-		
-		//args: Database, User, int.
-		//ses = new Session(null, null, 0);
 	}
 
-	//Testing that correct number of skills comes back, then
 	@Test
 	public void testAllSkills() {
 		System.out.println("in allSkills");
-		
-		
-		//Config
-		
+
 		List<Skill> skillList = new ArrayList<Skill>();
 		Skill skillA = Mockito.mock(Skill.class);
 		skillA.setId(0);
@@ -95,28 +76,11 @@ public class SkillControllerTest {
 		
 		when(skillRep.findAll()).thenReturn(skillList);
 		
-		//Tester
-		
 		List<Skill> reqList = skillCon.allSkills();
 		assertEquals(3, reqList.size());
 		verify(skillRep, times(1)).findAll();
 	}
 
-	//Testing that id given as arg returns correct skill. Method in Controller uses findAll to search. WHY. XD
-	//TODO: Rewrite once method in Controller has been rewritten. Eww.
-	/*
-	 * @Test public void testGetBySkill() { System.out.println("in getBySkull");
-	 * 
-	 * //Config Skill testSkill = Mockito.mock(Skill.class); testSkill.setId(2);
-	 * testSkill.setTitle("SQL");
-	 * 
-	 * Mockito.when(skillCon.getBySkill(2)).thenReturn(testSkill);
-	 * 
-	 * //Tester Skill reqSkill = skillCon.getBySkill(2); assertEquals(reqSkill,
-	 * testSkill); verify(skillCon, times(1)).getBySkill(2); }
-	 */
-
-	// Test insertion. Create skill, and ensure that a value from DB is returned. (Query by name?)
 	@Test
 	public void testInsertSkill() {
 		System.out.println("in InsertSkill");
@@ -133,17 +97,6 @@ public class SkillControllerTest {
 		
 	}
 
-	// Gets all skills through service layer. How to differentiate from allSkils tester? Also, NOT IN SERVICE LAYER. XD
-	// TODO: Implement method in Service/repo then create tester.
-	/*
-	 * @Test public void testGetSkills() { System.out.println("in GetSkills");
-	 * 
-	 * //Config
-	 * 
-	 * fail("Not yet implemented"); }
-	 */
-
-	//Gets skill by title.
 	@Test
 	public void testGetSkillsString() {
 		System.out.println("in getSkillByString");

@@ -25,11 +25,12 @@
   ProfileService falseService; 
   Profile profileOne;
   Profile profileTwo;
-	  @Before
-	 /**
-		 * Creates two instances each of the profile, service, and controller classes,
-		 * using Mockito mock instances in the case of service.
-		 */
+
+	@Before
+	/**
+	 * Creates two instances each of the profile, service, and controller classes,
+	 * using Mockito mock instances in the case of service.
+	 */
 	public void setup() {
 		trueService = Mockito.mock(ProfileService.class);
 		falseService = Mockito.mock(ProfileService.class);
@@ -37,25 +38,26 @@
 		profileTwo = new Profile(2, "Oscar", "Smith", "LA", "test1@gmail.com", "This is another test profile.");
 		trueController = new ProfileController();
 		falseController = new ProfileController();
-		
+
 		ReflectionTestUtils.setField(trueController, "profileService", trueService);
 		ReflectionTestUtils.setField(falseController, "profileService", falseService);
-		
+
 		Mockito.when(trueService.insertProfileInfo(profileOne)).thenReturn(true);
 		Mockito.when(trueService.insertProfileInfo(profileTwo)).thenReturn(true);
 		Mockito.when(falseService.insertProfileInfo(profileOne)).thenReturn(false);
 		Mockito.when(falseService.insertProfileInfo(profileTwo)).thenReturn(false);
-		
+
 		List<Profile> listOfTwo = new ArrayList<>();
 		listOfTwo.add(profileOne);
 		listOfTwo.add(profileTwo);
-		
+
 		List<Profile> emptyList = new ArrayList<>();
 		Mockito.when(trueService.getAllProfiles()).thenReturn(listOfTwo);
 		Mockito.when(falseService.getAllProfiles()).thenReturn(emptyList);
 	}
-  @Test
- /**
+
+	@Test
+	/**
 	 * Tests the controller method that takes a profile and sends it to the
 	 * controller. The first controller has a service member that always returns
 	 * true, and the second one has a service member that always returns false. The
@@ -71,33 +73,34 @@
 		System.out.printf("Test 2: %s. insertProfileInfo returned %s. (Expected: false.)\n", resultString, result);
 		assertTrue(!result);
 	}
-  @Test
- /**
+
+	@Test
+	/**
 	 * Tests the controller method that retrieves a list of profiles from the
 	 * service class and returns it. Two controllers are assigned different service
 	 * members, each with their own list of profiles. The controllers should return
 	 * the same lists that their service members were given.
 	 */
 	public void testGetAll() {
-	  
+
 		List<Profile> firstReturnedList = trueController.getAll();
 		boolean result = firstReturnedList.get(0) == profileOne;
 		String resultString = result ? "Success" : "Failure";
 		String match = result ? "matched" : "did not match";
 		System.out.printf("Test 3: %s. The first returned profile of getAll %s the expected profile.\n", resultString,
 				match);
-		
+
 		result = firstReturnedList.get(1) == profileTwo;
 		resultString = result ? "Success" : "Failure";
 		match = result ? "matched" : "did not match";
 		System.out.printf("Test 4: %s. The second returned profile of getAll %s the expected profile.\n", resultString,
 				match);
-		
+
 		List<Profile> secondReturnedList = falseController.getAll();
-		
+
 		int length = secondReturnedList.size();
 		resultString = (length == 0) ? "Success" : "Failure";
-		
+
 		System.out.printf("Test 5: %s. The returned list had a length of %d. (Expected: 0)\n", resultString, length);
 		assertEquals(length, 0);
 	}

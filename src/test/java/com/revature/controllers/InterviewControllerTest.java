@@ -28,14 +28,6 @@ import com.revature.service.InterviewService;
  * 
  * @author ryank
  */
-//@SpringBootTest(classes = { InterviewController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@RunWith(SpringRunner.class)
-//@EnableJpaRepositories("com.revature.repository")
-//@EntityScan("com.revature.model")
-//@ComponentScan("com.revature.service")
-//@EnableAutoConfiguration
-//@TestPropertySource(locations = "classpath:application-test.properties")
-
 public class InterviewControllerTest {
 
 	// Setup profile
@@ -64,11 +56,6 @@ public class InterviewControllerTest {
 	public InterviewControllerTest() {
 	}
 
-//	@Autowired
-//	public InterviewControllerTest(InterviewController ic) {
-//		this.ic = ic;
-//	}
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -82,12 +69,6 @@ public class InterviewControllerTest {
 		System.out.println("Setting up to test expected InterviewController behavior");
 
 		ic = new InterviewController(is, iis);
-
-	}
-
-	@After
-	public void tearDown() throws Exception {
-
 	}
 
 	@Test
@@ -131,7 +112,6 @@ public class InterviewControllerTest {
 
 		Mockito.when(is.getAllInterviews()).thenReturn(allInterviews);
 
-		// assertEquals(allInterviews.iterator().next(), ic.getAll().iterator().next());
 		assertEquals(allInterviews, ic.getAll());
 
 		Mockito.verify(is).getAllInterviews();
@@ -141,25 +121,9 @@ public class InterviewControllerTest {
 	public void getById() {
 		Mockito.when(is.getById(1)).thenReturn(interview1);
 
-		// assertEquals(ic.getById(1).getId(), interview1.getId());
 		assertEquals(interview1, ic.getById(1));
 
 		Mockito.verify(is).getById(1);
 	}
 
-//	@Test
-//	public void findByInterview() {
-//		Mockito.when(methodCall)
-//		
-//		List<InterviewInterviewer> list = new ArrayList<>();
-//		list.add(ii1);
-//		
-//		
-//		
-//	}
-//			
-//	@PostMapping("/interviews")
-//	public List<InterviewInterviewer> findByInterview(@RequestBody Interview interview){
-//		return nterviewInterviewerService.findByInterview(interview);
-//	}
 }
