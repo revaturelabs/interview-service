@@ -106,6 +106,7 @@ public class CommentControllerTest {
 			System.out.printf("%s: At index %d, the expected and returned comments %s.\n", success, index, doNot);
 			Assert.assertEquals(success, "Success");
 		}
+		
 		System.out.println("Find all test is complete.");
 	}
 

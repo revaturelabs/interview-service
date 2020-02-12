@@ -92,44 +92,4 @@ public class SkillController {
 		return skillService.findSkillPaged(title, page);
 	}
 	
-	@GetMapping(value = "/populate")
-	public Boolean populate() {
-		String filePath = "skill-categories.csv";
-		try(BufferedReader Reader = new BufferedReader(new FileReader(filePath))){
-			String lineread = Reader.readLine(); //reads the title
-			int id =0;
-			while((lineread = Reader.readLine()) !=null) {
-				//check
-				List<Skill> testList = skillService.findSkill(lineread);
-				//if empty add
-				if(testList.isEmpty()){					
-				skillRepository.save(new Skill(id,lineread,null, null));
-				}
-				//since things like Java and java script exist we need to check exact name
-				if(!testList.isEmpty())
-				{
-					boolean found =false;
-					for(Skill iterSkill:testList) {
-						if(iterSkill.getTitle().equals(lineread))
-							found= true;
-						if(found)
-							break;
-						
-					}
-					if(!found)
-						skillRepository.save(new Skill(id,lineread,null, null));
-				}
-				
-				}
-			
-			return true;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
 }

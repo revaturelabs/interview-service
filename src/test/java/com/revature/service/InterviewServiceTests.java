@@ -3,6 +3,7 @@ package com.revature.service;
 import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -19,6 +20,8 @@ import com.revature.model.Skill;
 import com.revature.repository.InterviewRepository;
 import com.revature.repository.JobRepository;
 import com.revature.repository.ProfileRepository;
+
+import junit.framework.Assert;
 
 /*@SpringBootTest(classes = {InterviewService.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableJpaRepositories("com.revature.repository")
@@ -63,27 +66,19 @@ public class InterviewServiceTests {
 	
 	
 	  @Test public void testInsertInterviewInfo() {
-		  
-		  //Presently interviewRepository.mergeEntity(xxxxx) returns void. But the when method in mockito does not allow for void return.
-		  //So this test is on hold for now until some refactoring is approved.
-	  
-		/*
-		 * Mockito.when(interviewRepository.mergeEntity(interview1)).thenReturn(true);
-		 * Mockito.when(interviewRepository.mergeEntity(interview2)).thenReturn(true);
-		 * Mockito.when(interviewRepository.mergeEntity(interview3)).thenReturn(true);
-		 * 
-		 * System.out.println(is);
-		 * 
-		 * assertTrue(is.insertInterviewInfo(interview1));
-		 * assertTrue(is.insertInterviewInfo(interview2));
-		 * assertTrue(is.insertInterviewInfo(interview3));
-		 * 
-		 * Mockito.verify(interviewRepository).mergeEntity(interview1);
-		 * Mockito.verify(interviewRepository).mergeEntity(interview2);
-		 * Mockito.verify(interviewRepository).mergeEntity(interview3);
-		 */
-	  
+		  Mockito.when(jobRepository.findById(1)).thenReturn(job1);
+		  Mockito.when(profileRepository.findById(1)).thenReturn(profile1);
+		  assertEquals(true, is.insertInterviewInfo(interview1));
+		  Mockito.verify(interviewRepository).save(interview1);
 	  }
+	  
+	  @Test public void testInsertInterviewInfoError() {
+		  Mockito.when(jobRepository.findById(1)).thenReturn(job1);
+		  Mockito.when(profileRepository.findById(1)).thenReturn(profile1);
+		  Mockito.when(interviewRepository.save(interview1)).thenThrow(new RuntimeException());
+		  assertEquals(false, is.insertInterviewInfo(interview1));
+	  }
+	  
 
 	@Test
 	public void testGetAllInterview() {

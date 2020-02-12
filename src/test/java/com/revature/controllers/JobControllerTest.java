@@ -33,8 +33,7 @@ public class JobControllerTest {
 	JobController jc;
 	SkillController sc;
 	Set<Skill> skills;
-//	JobService jobServ = Mockito.mock(JobService.class);
-//	SkillService skillServ = Mockito.mock(SkillService.class);
+
 	@Rule 
 	public MockitoRule mockRule = MockitoJUnit.rule();
 	@Mock
@@ -63,14 +62,6 @@ public class JobControllerTest {
 		
 	}
 	
-//	@Test
-//	public void testInsertJob() {
-//		Job jb2 = new Job();
-//		Mockito.when(jobServ.insertJobInfo(jb2)).thenReturn(true);
-//		assertEquals(true, jc.insertJobInfo(jb2));
-//		Mockito.verify(jobServ).insertJobInfo(jb2);
-//	}
-	
 	@Test 
 	public void testGetAll() {
 		List<Job> jobs = new ArrayList<Job>();
@@ -97,8 +88,7 @@ public class JobControllerTest {
 		
 		assertEquals(10, jc.getAllPaged(0, "", "").size());
 		
-		Mockito.verify(jobServ).getAllJobsPaged(0);
-				
+		Mockito.verify(jobServ).getAllJobsPaged(0);			
 	}
 
 	@Test
@@ -120,6 +110,5 @@ public class JobControllerTest {
 		assertEquals(returnjobs, jc.getByTitle("T", 0));
 		
 		Mockito.verify(jobServ).findByTitlePaged("T", 0);
-		
 	}
 }
