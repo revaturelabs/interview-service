@@ -62,6 +62,6 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
      * @return A list containing the filtered jobs */
 	List<Job> findByTitleStartsWithIgnoreCaseOrLocationStartsWithIgnoreCase(String title,String location, Pageable page);
 
-	@Query(nativeQuery=true, value = "SELECT distinct j.job_id, j.* FROM jobs j LEFT JOIN job_skills js ON (js.skill_id IN (:skillIds)) WHERE j.job_id = js.job_id")
+	@Query(nativeQuery=true, value = "SELECT distinct j.* FROM jobs j LEFT JOIN job_skills js ON (js.skill_id IN (:skillIds)) WHERE j.job_id = js.job_id")
 	List<Job> findBySkills(int[] skillIds, Pageable page);	
 }
