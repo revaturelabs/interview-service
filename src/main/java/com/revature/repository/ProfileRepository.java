@@ -61,7 +61,7 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     List<Profile> findByFirstNameStartsWithIgnoreCaseOrLastNameStartsWithIgnoreCaseOrLocationStartsWithIgnoreCaseOrEmailAddressStartsWithIgnoreCase(
     		String firstName, String lastName, String location, String emailAddress, Pageable page);
 	
-    @Query(nativeQuery=true, value = "SELECT * FROM profiles p LEFT JOIN profile_skills ps ON (ps.skill_id IN (:skillIds)) WHERE p.profile_id = ps.profile_id")
+    @Query(nativeQuery=true, value = "SELECT distinct p.* FROM profiles p LEFT JOIN profile_skills ps ON (ps.skill_id IN (:skillIds)) WHERE p.profile_id = ps.profile_id")
 	List<Profile> findBySkills(int[] skillIds, Pageable page);	
     
 }
