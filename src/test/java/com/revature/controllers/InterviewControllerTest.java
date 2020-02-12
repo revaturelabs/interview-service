@@ -79,7 +79,6 @@ public class InterviewControllerTest {
 		Mockito.when(is.getById(1)).thenReturn(interview1);
 		Mockito.when(iis.findByInterview(interview1)).thenReturn(iil);
 
-		// assertEquals(ic.getById(1).getId(), interview1.getId());
 		assertEquals(iil, ic.findByInterview(1));
 
 		Mockito.verify(is).getById(1);
